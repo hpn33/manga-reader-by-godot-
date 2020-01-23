@@ -1,5 +1,7 @@
 extends Sprite
 
+signal done
+
 var thread = null
 
 func loading(file_path: String):
@@ -52,6 +54,8 @@ func _thread_done(resource):
 	
 	texture = resource
 	set_center_offset()
+	
+	emit_signal("done")
 
 
 func set_center_offset():
