@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://icon.png" type="Texture" id=1]
+[ext_resource path="res://object/ImageHolder.gd" type="Script" id=2]
+
+[node name="ImageHolder" type="CenterContainer"]
+margin_right = 1024.0
+size_flags_horizontal = 3
+size_flags_vertical = 0
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect" type="TextureRect" parent="."]
+margin_left = 480.0
+margin_right = 544.0
+margin_bottom = 64.0
+texture = ExtResource( 1 )
