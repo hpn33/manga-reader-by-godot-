@@ -1,20 +1,11 @@
-extends CenterContainer
+extends Sprite
 
-onready var texture_rect = $TextureRect
 var thread = null
-var SIMULATED_DELAY_SEC = 1.0
-
 
 func loading(file_path: String):
 	
 	load_image(file_path)
 	
-	
-	
-#	if ResourceLoader.exists(file_path):
-#		texture_rect.texture = ResourceLoader.load(file_path)
-	
-
 
 func _thread_load(path):
 	var ril = ResourceLoader.load_interactive(path)
@@ -59,9 +50,15 @@ func _thread_done(resource):
 	# Always wait for threads to finish, this is required on Windows
 	thread.wait_to_finish()
 	
-	texture_rect.texture = resource
+	texture = resource
+	set_center_offset()
 
 
+func set_center_offset():
+	var center_pos = get_tree().root.get_viewport().size.x/2
+	
+	offset.x = -int(texture.get_width())/2
+	position.x = center_pos
 
 func load_image(path):
 	

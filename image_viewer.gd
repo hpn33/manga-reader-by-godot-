@@ -1,7 +1,7 @@
 extends VBoxContainer
 
 
-export(PackedScene) var image_holder = preload("res://object/ImageHolder.tscn")
+export(PackedScene) var image_holder = preload("res://object/ihc/ImageHolder.tscn")
 
 
 func add_images(path, images_list):

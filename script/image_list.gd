@@ -2,7 +2,8 @@ extends CanvasLayer
 
 #var file_dialog := FileDialog.new()
 onready var file_dialog := $FileDialog
-onready var vb = $VBoxContainer2/ScrollContainer/VBoxContainer
+#onready var vb = $VBoxContainer2/ScrollContainer/VBoxContainer
+onready var vb = $"../vBox"
 
 
 #var image_list :Array= []
@@ -16,11 +17,11 @@ func _init() -> void:
 #	add_child(file_dialog)
 	pass
 
-func _process(delta):
-	var viewport = get_tree().root.get_viewport()
-	var m = viewport.get_mouse_position()
-	var z = m.x/viewport.size.x
-	
+#func _process(delta):
+#	var viewport = get_tree().root.get_viewport()
+#	var m = viewport.get_mouse_position()
+#	var z = m.x/viewport.size.x
+#
 	
 
 
