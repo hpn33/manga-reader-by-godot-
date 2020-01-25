@@ -2,12 +2,18 @@ extends Node2D
 
 export(PackedScene) var image_holder = preload("res://object/ih2d/ImageHolder2D.tscn")
 
-export(int) var spector = 0
-#var obj_list := []
+onready var camera2d = $"../Camera2D"
+
+export(int) var spector = 10
 
 var index := 0
 var image_names := []
 var path := ''
+
+var size := Vector2()
+
+func _process(delta: float) -> void:
+	update()
 
 func add_images(_path, images_list):
 	for child in get_children():
@@ -27,37 +33,15 @@ func add_image():
 	var new = image_holder.instance()
 	new.connect("done", self, 'advance')
 	
-#	if get_children().size() == 0:
-#		new.position.y = 0
-	
-#	var sum = 0
-#	for obj in get_children():
-#		sum += obj.texture.get_height()
-	
-#	new.position.y = sum
-	
 	add_child(new)
-#	obj_list.append(new)
+	
 	new.loading(path + '/' + image_names[index])
 	last_sort()
 	
 
 
-func _sort():
-	
-	var sum = 0
-	
-	for i in get_child_count():
-		
-		var child :Sprite= get_child(i)
-		
-		child.position.y = 0 if i == 0 else sum
-		
-		sum += child.texture.get_height() + spector
-		
-	
-
 func advance():
+	sort()
 	get_child(index).disconnect("done", self, 'advance')
 	if index + 1 >= image_names.size():
 		return
@@ -65,21 +49,77 @@ func advance():
 	index += 1
 	add_image()
 
+#func set_box_size():
+#
+#	var sum_h = 0
+#	var max_width := 0.0
+#
+#	for child in get_children():
+#
+#		sum_h += child.texture.get_height() + spector
+#		max_width = max(float(child.texture.get_width()), max_width)
+#
+#
+#	size = Vector2(max_width, sum_h)
+#
+
 func last_sort():
-	
+
+	if get_child_count() == 0:
+		return
+
+	var last:Sprite
+	var sum = 0
+	var max_width := 0.0
+
+	for i in get_child_count():
+
+		last = get_child(i)
+
+		sum += last.texture.get_height() + spector
+		max_width = max(float(last.texture.get_width()), max_width)
+
+	last.position.y = sum
+
+
+	size = Vector2(max_width, sum)
+	var rect = Rect2(position, size)
+	camera2d.limit_rect = rect
+
+
+func sort():
 	if get_child_count() == 0:
 		return
 	
-	var last:Sprite
+	var child:Sprite
 	var sum = 0
+	var max_width := 0.0
+	
+	for child in get_children():
+		max_width = max(float(child.texture.get_width()), max_width)
 	
 	for i in get_child_count():
 		
-		last = get_child(i)
 		
-		sum += last.texture.get_height() + spector
+		child = get_child(i)
+		
+		
+		child.position.x = max_width/2 - child.texture.size.x/2
+		
+		if i != 0:
+			child.position.y = sum
+		
+		sum += child.texture.get_height() + spector
 	
-	last.position.y = sum
 	
+	
+	size = Vector2(max_width, sum)
+	var rect = Rect2(position, size)
+	camera2d.limit_rect = rect
 
-
+func _draw() -> void:
+	
+	var rect = Rect2(Vector2(), size)
+	
+	draw_rect(rect, Color.white, false, 2)
+	
