@@ -2,6 +2,7 @@ extends CanvasLayer
 
 onready var file_dialog := $FileDialog
 onready var vb = $"../vBox"
+onready var label = $CenterContainer/Label
 
 func _on_FileDialog_dir_selected(path: String) -> void:
 	
@@ -42,4 +43,5 @@ func _on_FileDialog_dir_selected(path: String) -> void:
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_focus_next"):
+		label.visible = false
 		file_dialog.popup_centered()

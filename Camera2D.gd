@@ -36,13 +36,23 @@ func _input(event):
 # use _process for smoother scrolling
 func _process(delta):
 	
-	#smooth keyboard zoom
-	if Input.is_action_pressed("view_zoom_in"):
-		zoom /= zoom_step
-		_snap_zoom_limits()
-	if Input.is_action_pressed("view_zoom_out"):
-		zoom *= zoom_step
-		_snap_zoom_limits()
+	if Input.is_action_pressed("view_click_mouse"):
+		#smooth keyboard zoom
+		if Input.is_action_pressed("view_pan_up"):
+			zoom /= zoom_step
+			_snap_zoom_limits()
+		if Input.is_action_pressed("view_pan_down"):
+			zoom *= zoom_step
+			_snap_zoom_limits()
+	else:
+		#smooth keyboard zoom
+		if Input.is_action_pressed("view_zoom_in"):
+			zoom /= zoom_step
+			_snap_zoom_limits()
+		if Input.is_action_pressed("view_zoom_out"):
+			zoom *= zoom_step
+			_snap_zoom_limits()
+	
 	
 	var panning = Vector2()
 	panning.x += int(Input.is_action_pressed("view_pan_right")) - int(Input.is_action_pressed("view_pan_left"))

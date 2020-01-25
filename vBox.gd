@@ -86,17 +86,12 @@ func sort():
 	
 	for i in get_child_count():
 		
-		
 		child = get_child(i)
 		
-		
 		child.position.x = max_width/2 - child.texture.size.x/2
-		
-		if i != 0:
-			child.position.y = sum
+		child.position.y = sum if i != 0 else 0
 		
 		sum += child.texture.get_height() + spector
-	
 	
 	
 	size = Vector2(max_width, sum)
