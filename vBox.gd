@@ -49,20 +49,6 @@ func advance():
 	index += 1
 	add_image()
 
-#func set_box_size():
-#
-#	var sum_h = 0
-#	var max_width := 0.0
-#
-#	for child in get_children():
-#
-#		sum_h += child.texture.get_height() + spector
-#		max_width = max(float(child.texture.get_width()), max_width)
-#
-#
-#	size = Vector2(max_width, sum_h)
-#
-
 func last_sort():
 
 	if get_child_count() == 0:
