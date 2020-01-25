@@ -116,6 +116,7 @@ func sort():
 	size = Vector2(max_width, sum)
 	var rect = Rect2(position, size)
 	camera2d.limit_rect = rect
+	camera2d.position.x = size.x/2
 
 func _draw() -> void:
 	

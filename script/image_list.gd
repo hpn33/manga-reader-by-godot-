@@ -1,29 +1,7 @@
 extends CanvasLayer
 
-#var file_dialog := FileDialog.new()
 onready var file_dialog := $FileDialog
-#onready var vb = $VBoxContainer2/ScrollContainer/VBoxContainer
 onready var vb = $"../vBox"
-
-
-#var image_list :Array= []
-
-func _init() -> void:
-#	file_dialog.access = FileDialog.ACCESS_FILESYSTEM
-#	file_dialog.mode = FileDialog.MODE_OPEN_DIR
-#	file_dialog.resizable = true
-#	file_dialog.connect("dir_selected", self, '_on_FileDialog_dir_selected')
-#
-#	add_child(file_dialog)
-	pass
-
-#func _process(delta):
-#	var viewport = get_tree().root.get_viewport()
-#	var m = viewport.get_mouse_position()
-#	var z = m.x/viewport.size.x
-#
-	
-
 
 func _on_FileDialog_dir_selected(path: String) -> void:
 	
@@ -62,22 +40,6 @@ func _on_FileDialog_dir_selected(path: String) -> void:
 #		print(i)
 	
 
-
-func _on_Button_pressed() -> void:
-	file_dialog.popup_centered()
-	
-	
-
-var zoom = 0.4
-
-func _on_zin_pressed() -> void:
-	zoom += .2
-	set_image_scale()
-
-
-func _on_zout_pressed() -> void:
-	zoom -= .2
-	set_image_scale()
-
-func set_image_scale():
-	vb.rect_scale = Vector2.ONE * zoom
+func _unhandled_input(event: InputEvent) -> void:
+	if event.is_action_pressed("ui_focus_next"):
+		file_dialog.popup_centered()
