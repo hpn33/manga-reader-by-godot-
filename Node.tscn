@@ -1,6 +1,5 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://image_viewer.gd" type="Script" id=1]
 [ext_resource path="res://vBox.gd" type="Script" id=2]
 [ext_resource path="res://script/image_list.gd" type="Script" id=3]
 [ext_resource path="res://Camera2D.gd" type="Script" id=4]
@@ -10,78 +9,12 @@
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 script = ExtResource( 3 )
 
-[node name="VBoxContainer2" type="VBoxContainer" parent="CanvasLayer"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/VBoxContainer2"]
-margin_right = 1024.0
-margin_bottom = 59.0
-size_flags_vertical = 3
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="image_place" type="Button" parent="CanvasLayer/VBoxContainer2/HBoxContainer"]
-margin_right = 84.0
-margin_bottom = 59.0
-size_flags_horizontal = 3
-text = "place"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="zin" type="Button" parent="CanvasLayer/VBoxContainer2/HBoxContainer"]
-margin_left = 88.0
-margin_right = 172.0
-margin_bottom = 59.0
-size_flags_horizontal = 3
-text = "+"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="zout" type="Button" parent="CanvasLayer/VBoxContainer2/HBoxContainer"]
-margin_left = 176.0
-margin_right = 260.0
-margin_bottom = 59.0
-size_flags_horizontal = 3
-text = "-"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Container" type="Container" parent="CanvasLayer/VBoxContainer2/HBoxContainer"]
-margin_left = 264.0
-margin_right = 1024.0
-margin_bottom = 59.0
-size_flags_horizontal = 3
-size_flags_stretch_ratio = 9.0
-
-[node name="ScrollContainer" type="ScrollContainer" parent="CanvasLayer/VBoxContainer2"]
-margin_top = 63.0
-margin_right = 1024.0
-margin_bottom = 600.0
-size_flags_vertical = 3
-size_flags_stretch_ratio = 9.0
-
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/VBoxContainer2/ScrollContainer"]
-margin_right = 1024.0
-margin_bottom = 537.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-script = ExtResource( 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
 [node name="FileDialog" type="FileDialog" parent="CanvasLayer"]
 visible = true
-margin_right = 567.0
-margin_bottom = 309.0
+margin_left = 198.466
+margin_top = 462.003
+margin_right = 765.466
+margin_bottom = 771.003
 window_title = "Open a Directory"
 mode = 2
 access = 2
@@ -91,6 +24,22 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="CenterContainer" type="CenterContainer" parent="CanvasLayer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="CanvasLayer/CenterContainer"]
+margin_left = 398.0
+margin_top = 293.0
+margin_right = 625.0
+margin_bottom = 307.0
+text = "press 'TAB' and choise image folder"
+align = 1
+valign = 1
+
 [node name="vBox" type="Node2D" parent="."]
 script = ExtResource( 2 )
 
@@ -98,7 +47,4 @@ script = ExtResource( 2 )
 position = Vector2( 510.807, 299.326 )
 current = true
 script = ExtResource( 4 )
-[connection signal="pressed" from="CanvasLayer/VBoxContainer2/HBoxContainer/image_place" to="CanvasLayer" method="_on_Button_pressed"]
-[connection signal="pressed" from="CanvasLayer/VBoxContainer2/HBoxContainer/zin" to="CanvasLayer" method="_on_zin_pressed"]
-[connection signal="pressed" from="CanvasLayer/VBoxContainer2/HBoxContainer/zout" to="CanvasLayer" method="_on_zout_pressed"]
 [connection signal="dir_selected" from="CanvasLayer/FileDialog" to="CanvasLayer" method="_on_FileDialog_dir_selected"]
