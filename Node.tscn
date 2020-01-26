@@ -2,7 +2,7 @@
 
 [ext_resource path="res://assets/sprite/default/dot.png" type="Texture" id=1]
 [ext_resource path="res://vBox.gd" type="Script" id=2]
-[ext_resource path="res://script/image_list.gd" type="Script" id=3]
+[ext_resource path="res://script/UI.gd" type="Script" id=3]
 [ext_resource path="res://Camera2D.gd" type="Script" id=4]
 [ext_resource path="res://background.gd" type="Script" id=5]
 [ext_resource path="res://TitleBar.gd" type="Script" id=6]
@@ -10,10 +10,10 @@
 
 [node name="Node" type="Node"]
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="UI" type="CanvasLayer" parent="."]
 script = ExtResource( 3 )
 
-[node name="TitleBar" type="Control" parent="CanvasLayer"]
+[node name="TitleBar" type="Control" parent="UI"]
 anchor_right = 1.0
 margin_bottom = 20.0
 script = ExtResource( 6 )
@@ -21,7 +21,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="ColorRect" type="ColorRect" parent="CanvasLayer/TitleBar"]
+[node name="ColorRect" type="ColorRect" parent="UI/TitleBar"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 1
@@ -30,7 +30,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/TitleBar"]
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/TitleBar"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 alignment = 2
@@ -38,20 +38,20 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Options" type="Button" parent="CanvasLayer/TitleBar/HBoxContainer"]
+[node name="Options" type="Button" parent="UI/TitleBar/HBoxContainer"]
 margin_right = 20.0
 margin_bottom = 20.0
 text = "+"
 flat = true
 
-[node name="Container" type="Container" parent="CanvasLayer/TitleBar/HBoxContainer"]
+[node name="Container" type="Container" parent="UI/TitleBar/HBoxContainer"]
 margin_left = 24.0
 margin_right = 165.0
 margin_bottom = 20.0
 mouse_filter = 1
 size_flags_horizontal = 3
 
-[node name="Title" type="Label" parent="CanvasLayer/TitleBar/HBoxContainer"]
+[node name="Title" type="Label" parent="UI/TitleBar/HBoxContainer"]
 margin_left = 169.0
 margin_top = 3.0
 margin_right = 877.0
@@ -62,35 +62,35 @@ size_flags_stretch_ratio = 5.0
 text = "Title"
 align = 1
 
-[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/TitleBar/HBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/TitleBar/HBoxContainer"]
 margin_left = 881.0
 margin_right = 1024.0
 margin_bottom = 20.0
 size_flags_horizontal = 3
 alignment = 2
 
-[node name="minimize" type="Button" parent="CanvasLayer/TitleBar/HBoxContainer/HBoxContainer"]
+[node name="minimize" type="Button" parent="UI/TitleBar/HBoxContainer/HBoxContainer"]
 margin_left = 62.0
 margin_right = 80.0
 margin_bottom = 20.0
 text = "_"
 flat = true
 
-[node name="maximize" type="Button" parent="CanvasLayer/TitleBar/HBoxContainer/HBoxContainer"]
+[node name="maximize" type="Button" parent="UI/TitleBar/HBoxContainer/HBoxContainer"]
 margin_left = 84.0
 margin_right = 119.0
 margin_bottom = 20.0
 text = "Full"
 flat = true
 
-[node name="quit" type="Button" parent="CanvasLayer/TitleBar/HBoxContainer/HBoxContainer"]
+[node name="quit" type="Button" parent="UI/TitleBar/HBoxContainer/HBoxContainer"]
 margin_left = 123.0
 margin_right = 143.0
 margin_bottom = 20.0
 text = "X"
 flat = true
 
-[node name="Popup" type="Popup" parent="CanvasLayer"]
+[node name="Popup" type="Popup" parent="UI"]
 visible = true
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -98,7 +98,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="FileDialog" type="FileDialog" parent="CanvasLayer/Popup"]
+[node name="FileDialog" type="FileDialog" parent="UI/Popup"]
 visible = true
 margin_left = 524.825
 margin_top = 95.439
@@ -114,7 +114,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Popup"]
+[node name="MarginContainer" type="MarginContainer" parent="UI/Popup"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 50.0
@@ -125,7 +125,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Popup/MarginContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/Popup/MarginContainer"]
 margin_right = 924.0
 margin_bottom = 500.0
 size_flags_horizontal = 3
@@ -135,7 +135,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="ColorPicker" type="ColorPicker" parent="CanvasLayer/Popup/MarginContainer/HBoxContainer"]
+[node name="ColorPicker" type="ColorPicker" parent="UI/Popup/MarginContainer/HBoxContainer"]
 margin_right = 308.0
 margin_bottom = 500.0
 size_flags_horizontal = 3
@@ -143,14 +143,14 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Container" type="Container" parent="CanvasLayer/Popup/MarginContainer/HBoxContainer"]
+[node name="Container" type="Container" parent="UI/Popup/MarginContainer/HBoxContainer"]
 margin_left = 312.0
 margin_right = 924.0
 margin_bottom = 500.0
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 15.99
 
-[node name="Label" type="Label" parent="CanvasLayer"]
+[node name="Label" type="Label" parent="UI"]
 margin_left = 7.94473
 margin_top = 45.8555
 margin_right = 234.945
@@ -161,7 +161,7 @@ text = "choise image folder
 valign = 1
 script = ExtResource( 7 )
 
-[node name="Timer" type="Timer" parent="CanvasLayer/Label"]
+[node name="Timer" type="Timer" parent="UI/Label"]
 one_shot = true
 autostart = true
 
@@ -179,12 +179,12 @@ script = ExtResource( 2 )
 position = Vector2( 510.807, 299.326 )
 current = true
 script = ExtResource( 4 )
-[connection signal="gui_input" from="CanvasLayer/TitleBar" to="CanvasLayer/TitleBar" method="_on_TitleBar_gui_input"]
-[connection signal="pressed" from="CanvasLayer/TitleBar/HBoxContainer/Options" to="CanvasLayer/TitleBar" method="_on_Options_pressed"]
-[connection signal="pressed" from="CanvasLayer/TitleBar/HBoxContainer/HBoxContainer/minimize" to="CanvasLayer/TitleBar" method="_on_minimaiz_pressed"]
-[connection signal="pressed" from="CanvasLayer/TitleBar/HBoxContainer/HBoxContainer/maximize" to="CanvasLayer/TitleBar" method="_on_quit_pressed"]
-[connection signal="pressed" from="CanvasLayer/TitleBar/HBoxContainer/HBoxContainer/quit" to="CanvasLayer/TitleBar" method="_on_Button_pressed"]
-[connection signal="dir_selected" from="CanvasLayer/Popup/FileDialog" to="CanvasLayer" method="_on_FileDialog_dir_selected"]
-[connection signal="popup_hide" from="CanvasLayer/Popup/FileDialog" to="CanvasLayer" method="_on_FileDialog_popup_hide"]
-[connection signal="color_changed" from="CanvasLayer/Popup/MarginContainer/HBoxContainer/ColorPicker" to="CanvasLayer" method="_on_ColorPicker_color_changed"]
-[connection signal="timeout" from="CanvasLayer/Label/Timer" to="CanvasLayer/Label" method="_on_Timer_timeout"]
+[connection signal="gui_input" from="UI/TitleBar" to="UI/TitleBar" method="_on_TitleBar_gui_input"]
+[connection signal="pressed" from="UI/TitleBar/HBoxContainer/Options" to="UI/TitleBar" method="_on_Options_pressed"]
+[connection signal="pressed" from="UI/TitleBar/HBoxContainer/HBoxContainer/minimize" to="UI/TitleBar" method="_on_minimaiz_pressed"]
+[connection signal="pressed" from="UI/TitleBar/HBoxContainer/HBoxContainer/maximize" to="UI/TitleBar" method="_on_quit_pressed"]
+[connection signal="pressed" from="UI/TitleBar/HBoxContainer/HBoxContainer/quit" to="UI/TitleBar" method="_on_Button_pressed"]
+[connection signal="dir_selected" from="UI/Popup/FileDialog" to="UI" method="_on_FileDialog_dir_selected"]
+[connection signal="popup_hide" from="UI/Popup/FileDialog" to="UI" method="_on_FileDialog_popup_hide"]
+[connection signal="color_changed" from="UI/Popup/MarginContainer/HBoxContainer/ColorPicker" to="UI" method="_on_ColorPicker_color_changed"]
+[connection signal="timeout" from="UI/Label/Timer" to="UI/Label" method="_on_Timer_timeout"]
