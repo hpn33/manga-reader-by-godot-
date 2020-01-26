@@ -1,7 +1,7 @@
 extends Sprite
 
-var scalle := Vector2(1100, 800)
 
-func setting(camera):
+func fix_by_camera(camera):
 	position = camera.position
-	scale = scalle * camera.zoom
+	scale = get_viewport_rect().size * camera.zoom
+

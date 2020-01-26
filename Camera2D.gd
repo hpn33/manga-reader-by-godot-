@@ -14,8 +14,6 @@ export(Rect2) var limit_rect = Rect2(Vector2(), Vector2.ONE * 10) setget set_lim
 
 var mouse_captured := false
 
-onready var backg = $"../background"
-
 
 func _input(event):
 	if event.is_action_pressed("view_zoom_in"):
@@ -29,7 +27,6 @@ func _input(event):
 		mouse_captured = true
 	elif event.is_action_released("view_click_mouse"):
 		mouse_captured = false
-#	print(mouse_captured)
 	
 	if mouse_captured && event is InputEventMouseMotion:
 		position -= event.relative * zoom #like we're grabbing the map
@@ -37,6 +34,8 @@ func _input(event):
 
 # use _process for smoother scrolling
 func _process(delta):
+	
+#	print(get_viewport_rect())
 	
 	if Input.is_action_pressed("view_click_mouse"):
 		#smooth keyboard zoom
@@ -72,13 +71,13 @@ func _snap_to_limits():
 	position.x = clamp(position.x, limit_rect.position.x+offx, limit_rect.end.x-offx)
 	position.y = clamp(position.y, limit_rect.position.y+offy, limit_rect.end.y-offy)
 	
-	set_backg()
+	owner.fix_background()
 
 func _snap_zoom_limits():
 	zoom.x = clamp(zoom.x, min_zoom, max_zoom)
 	zoom.y = clamp(zoom.y, min_zoom, max_zoom)
 	
-	set_backg()
+	owner.fix_background()
 
 func set_limit_rect(rect: Rect2):
 	limit_rect = rect
@@ -88,5 +87,5 @@ func set_limit_rect(rect: Rect2):
 	_snap_to_limits()
 
 
-func set_backg():
-	backg.setting(self)
+func _on_Camera2D_item_rect_changed() -> void:
+	owner.fix_background()

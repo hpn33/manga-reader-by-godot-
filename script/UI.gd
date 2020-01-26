@@ -33,11 +33,6 @@ func _on_FileDialog_dir_selected(path: String) -> void:
 	
 	vb.add_images(path, image_list)
 	
-	
-#	print('=====last')
-#	for i in image_list:
-#		print(i)
-	
 
 onready var popup = $Popup
 onready var file_pop = $Popup/FileDialog
