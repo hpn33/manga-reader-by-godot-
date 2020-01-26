@@ -24,6 +24,10 @@ config/name="Manga Reader"
 run/main_scene="res://Node.tscn"
 config/icon="res://icon.png"
 
+[display]
+
+window/size/borderless=true
+
 [input]
 
 view_pan_left={
