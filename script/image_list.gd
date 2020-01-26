@@ -56,3 +56,7 @@ onready var background = $"../background"
 func _on_ColorPicker_color_changed(color: Color) -> void:
 	background.modulate = color
 	
+
+
+func _on_FileDialog_popup_hide() -> void:
+	popup.hide()
