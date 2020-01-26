@@ -1,8 +1,10 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=6 format=2]
 
+[ext_resource path="res://icon.png" type="Texture" id=1]
 [ext_resource path="res://vBox.gd" type="Script" id=2]
 [ext_resource path="res://script/image_list.gd" type="Script" id=3]
 [ext_resource path="res://Camera2D.gd" type="Script" id=4]
+[ext_resource path="res://background.gd" type="Script" id=5]
 
 [node name="Node" type="Node"]
 
@@ -39,6 +41,13 @@ margin_bottom = 307.0
 text = "press 'TAB' and choise image folder"
 align = 1
 valign = 1
+
+[node name="background" type="Sprite" parent="."]
+modulate = Color( 0, 0, 0, 1 )
+position = Vector2( 522.293, 319.1 )
+scale = Vector2( 20, 20 )
+texture = ExtResource( 1 )
+script = ExtResource( 5 )
 
 [node name="vBox" type="Node2D" parent="."]
 script = ExtResource( 2 )

@@ -101,7 +101,7 @@ func sort():
 
 func _draw() -> void:
 	
-	var rect = Rect2(Vector2(), size)
+#	var rect = Rect2(Vector2(), size)
 	
-	draw_rect(rect, Color.white, false, 2)
-	
+#	draw_rect(rect, Color.white, false, 2)
+	pass

@@ -84,10 +84,11 @@ func load_image(path):
 
 func _draw() -> void:
 #	var size = Vector2(texture.get_width(), texture.get_height())
-	var rect = Rect2(Vector2(), texture.get_size())
+#	var rect = Rect2(Vector2(), texture.get_size())
 	
-	draw_rect(rect, Color.green, false)
-	draw_circle(Vector2(), 5, Color.yellow)
+#	draw_rect(rect, Color.green, false)
+#	draw_circle(Vector2(), 5, Color.yellow)
+	pass
 
 
 

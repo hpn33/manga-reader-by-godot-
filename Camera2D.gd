@@ -14,6 +14,8 @@ export(Rect2) var limit_rect = Rect2(Vector2(), Vector2.ONE * 10) setget set_lim
 
 var mouse_captured := false
 
+onready var backg = $"../background"
+
 
 func _input(event):
 	if event.is_action_pressed("view_zoom_in"):
@@ -69,14 +71,22 @@ func _snap_to_limits():
 	
 	position.x = clamp(position.x, limit_rect.position.x+offx, limit_rect.end.x-offx)
 	position.y = clamp(position.y, limit_rect.position.y+offy, limit_rect.end.y-offy)
+	
+	set_backg()
 
 func _snap_zoom_limits():
 	zoom.x = clamp(zoom.x, min_zoom, max_zoom)
 	zoom.y = clamp(zoom.y, min_zoom, max_zoom)
+	
+	set_backg()
 
 func set_limit_rect(rect: Rect2):
 	limit_rect = rect
 
 	offx =(limit_rect.size.x/2) * 0.25
-	offy =(limit_rect.size.y/2) * 0.01
+	offy =(limit_rect.size.y/2) * 0.001
 	_snap_to_limits()
+
+
+func set_backg():
+	backg.setting(self)
