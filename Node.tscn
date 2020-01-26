@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://assets/sprite/default/dot.png" type="Texture" id=1]
 [ext_resource path="res://vBox.gd" type="Script" id=2]
@@ -8,12 +8,45 @@
 [ext_resource path="res://TitleBar.gd" type="Script" id=6]
 [ext_resource path="res://Label.gd" type="Script" id=7]
 [ext_resource path="res://Main.gd" type="Script" id=8]
+[ext_resource path="res://info.gd" type="Script" id=9]
+[ext_resource path="res://FileDialog.gd" type="Script" id=10]
 
 [node name="Mian" type="Node"]
 script = ExtResource( 8 )
 
 [node name="UI" type="CanvasLayer" parent="."]
 script = ExtResource( 3 )
+
+[node name="info" type="Control" parent="UI"]
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_top = -223.0
+margin_right = 240.0
+script = ExtResource( 9 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect" type="ColorRect" parent="UI/info"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 1
+color = Color( 0.886275, 0.886275, 0.886275, 0.27451 )
+
+[node name="MarginContainer" type="MarginContainer" parent="UI/info"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 15.0
+margin_top = 15.0
+margin_right = -15.0
+margin_bottom = -15.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/info/MarginContainer"]
+margin_right = 210.0
+margin_bottom = 193.0
 
 [node name="TitleBar" type="Control" parent="UI"]
 anchor_right = 1.0
@@ -112,6 +145,7 @@ mode = 2
 access = 2
 current_dir = "E:/workspace/godot/manga_reader"
 current_path = "E:/workspace/godot/manga_reader/"
+script = ExtResource( 10 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -189,7 +223,7 @@ script = ExtResource( 4 )
 [connection signal="pressed" from="UI/TitleBar/HBoxContainer/HBoxContainer/minimize" to="UI/TitleBar" method="_on_minimaiz_pressed"]
 [connection signal="pressed" from="UI/TitleBar/HBoxContainer/HBoxContainer/maximize" to="UI/TitleBar" method="_on_maximize_pressed"]
 [connection signal="pressed" from="UI/TitleBar/HBoxContainer/HBoxContainer/quit" to="UI/TitleBar" method="_on_quit_pressed"]
-[connection signal="dir_selected" from="UI/Popup/FileDialog" to="UI" method="_on_FileDialog_dir_selected"]
+[connection signal="dir_selected" from="UI/Popup/FileDialog" to="UI/Popup/FileDialog" method="_on_FileDialog_dir_selected"]
 [connection signal="popup_hide" from="UI/Popup/FileDialog" to="UI" method="_on_FileDialog_popup_hide"]
 [connection signal="color_changed" from="UI/Popup/MarginContainer/HBoxContainer/ColorPicker" to="UI" method="_on_ColorPicker_color_changed"]
 [connection signal="timeout" from="UI/Label/Timer" to="UI/Label" method="_on_Timer_timeout"]
