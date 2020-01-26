@@ -26,3 +26,8 @@ func _on_Button_pressed() -> void:
 
 func _on_minimaiz_pressed() -> void:
 	OS.window_minimized = true
+
+
+func _on_quit_pressed() -> void:
+	
+	OS.window_maximized = !OS.window_maximized

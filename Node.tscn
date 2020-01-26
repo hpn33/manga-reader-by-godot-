@@ -61,11 +61,18 @@ margin_bottom = 20.0
 size_flags_horizontal = 3
 alignment = 2
 
-[node name="minimaiz" type="Button" parent="CanvasLayer/TitleBar/HBoxContainer/HBoxContainer"]
-margin_left = 104.0
-margin_right = 122.0
+[node name="minimize" type="Button" parent="CanvasLayer/TitleBar/HBoxContainer/HBoxContainer"]
+margin_left = 65.0
+margin_right = 83.0
 margin_bottom = 20.0
 text = "_"
+flat = true
+
+[node name="maximize" type="Button" parent="CanvasLayer/TitleBar/HBoxContainer/HBoxContainer"]
+margin_left = 87.0
+margin_right = 122.0
+margin_bottom = 20.0
+text = "Full"
 flat = true
 
 [node name="quit" type="Button" parent="CanvasLayer/TitleBar/HBoxContainer/HBoxContainer"]
@@ -167,7 +174,8 @@ position = Vector2( 510.807, 299.326 )
 current = true
 script = ExtResource( 4 )
 [connection signal="gui_input" from="CanvasLayer/TitleBar" to="CanvasLayer/TitleBar" method="_on_TitleBar_gui_input"]
-[connection signal="pressed" from="CanvasLayer/TitleBar/HBoxContainer/HBoxContainer/minimaiz" to="CanvasLayer/TitleBar" method="_on_minimaiz_pressed"]
+[connection signal="pressed" from="CanvasLayer/TitleBar/HBoxContainer/HBoxContainer/minimize" to="CanvasLayer/TitleBar" method="_on_minimaiz_pressed"]
+[connection signal="pressed" from="CanvasLayer/TitleBar/HBoxContainer/HBoxContainer/maximize" to="CanvasLayer/TitleBar" method="_on_quit_pressed"]
 [connection signal="pressed" from="CanvasLayer/TitleBar/HBoxContainer/HBoxContainer/quit" to="CanvasLayer/TitleBar" method="_on_Button_pressed"]
 [connection signal="dir_selected" from="CanvasLayer/Popup/FileDialog" to="CanvasLayer" method="_on_FileDialog_dir_selected"]
 [connection signal="popup_hide" from="CanvasLayer/Popup/FileDialog" to="CanvasLayer" method="_on_FileDialog_popup_hide"]
