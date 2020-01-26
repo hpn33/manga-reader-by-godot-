@@ -31,3 +31,7 @@ func _on_minimaiz_pressed() -> void:
 func _on_quit_pressed() -> void:
 	
 	OS.window_maximized = !OS.window_maximized
+
+
+func _on_Options_pressed() -> void:
+	$'..'.open_options()

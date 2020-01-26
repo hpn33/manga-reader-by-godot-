@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://assets/sprite/default/dot.png" type="Texture" id=1]
 [ext_resource path="res://vBox.gd" type="Script" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://Camera2D.gd" type="Script" id=4]
 [ext_resource path="res://background.gd" type="Script" id=5]
 [ext_resource path="res://TitleBar.gd" type="Script" id=6]
+[ext_resource path="res://Label.gd" type="Script" id=7]
 
 [node name="Node" type="Node"]
 
@@ -37,16 +38,23 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="Options" type="Button" parent="CanvasLayer/TitleBar/HBoxContainer"]
+margin_right = 20.0
+margin_bottom = 20.0
+text = "+"
+flat = true
+
 [node name="Container" type="Container" parent="CanvasLayer/TitleBar/HBoxContainer"]
-margin_right = 145.0
+margin_left = 24.0
+margin_right = 165.0
 margin_bottom = 20.0
 mouse_filter = 1
 size_flags_horizontal = 3
 
 [node name="Title" type="Label" parent="CanvasLayer/TitleBar/HBoxContainer"]
-margin_left = 149.0
+margin_left = 169.0
 margin_top = 3.0
-margin_right = 874.0
+margin_right = 877.0
 margin_bottom = 17.0
 mouse_filter = 1
 size_flags_horizontal = 3
@@ -55,49 +63,32 @@ text = "Title"
 align = 1
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/TitleBar/HBoxContainer"]
-margin_left = 878.0
+margin_left = 881.0
 margin_right = 1024.0
 margin_bottom = 20.0
 size_flags_horizontal = 3
 alignment = 2
 
 [node name="minimize" type="Button" parent="CanvasLayer/TitleBar/HBoxContainer/HBoxContainer"]
-margin_left = 65.0
-margin_right = 83.0
+margin_left = 62.0
+margin_right = 80.0
 margin_bottom = 20.0
 text = "_"
 flat = true
 
 [node name="maximize" type="Button" parent="CanvasLayer/TitleBar/HBoxContainer/HBoxContainer"]
-margin_left = 87.0
-margin_right = 122.0
+margin_left = 84.0
+margin_right = 119.0
 margin_bottom = 20.0
 text = "Full"
 flat = true
 
 [node name="quit" type="Button" parent="CanvasLayer/TitleBar/HBoxContainer/HBoxContainer"]
-margin_left = 126.0
-margin_right = 146.0
+margin_left = 123.0
+margin_right = 143.0
 margin_bottom = 20.0
 text = "X"
 flat = true
-
-[node name="LabelHolder" type="CenterContainer" parent="CanvasLayer"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-mouse_filter = 2
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Label" type="Label" parent="CanvasLayer/LabelHolder"]
-margin_left = 398.0
-margin_top = 293.0
-margin_right = 625.0
-margin_bottom = 307.0
-text = "press 'TAB' and choise image folder"
-align = 1
-valign = 1
 
 [node name="Popup" type="Popup" parent="CanvasLayer"]
 visible = true
@@ -159,6 +150,21 @@ margin_bottom = 500.0
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 15.99
 
+[node name="Label" type="Label" parent="CanvasLayer"]
+margin_left = 7.94473
+margin_top = 45.8555
+margin_right = 234.945
+margin_bottom = 59.8555
+text = "choise image folder
+ -press 'TAB' and
+ -click '+' up left  "
+valign = 1
+script = ExtResource( 7 )
+
+[node name="Timer" type="Timer" parent="CanvasLayer/Label"]
+one_shot = true
+autostart = true
+
 [node name="background" type="Sprite" parent="."]
 modulate = Color( 0.1, 0.1, 0.1, 1 )
 position = Vector2( 522.293, 319.1 )
@@ -174,9 +180,11 @@ position = Vector2( 510.807, 299.326 )
 current = true
 script = ExtResource( 4 )
 [connection signal="gui_input" from="CanvasLayer/TitleBar" to="CanvasLayer/TitleBar" method="_on_TitleBar_gui_input"]
+[connection signal="pressed" from="CanvasLayer/TitleBar/HBoxContainer/Options" to="CanvasLayer/TitleBar" method="_on_Options_pressed"]
 [connection signal="pressed" from="CanvasLayer/TitleBar/HBoxContainer/HBoxContainer/minimize" to="CanvasLayer/TitleBar" method="_on_minimaiz_pressed"]
 [connection signal="pressed" from="CanvasLayer/TitleBar/HBoxContainer/HBoxContainer/maximize" to="CanvasLayer/TitleBar" method="_on_quit_pressed"]
 [connection signal="pressed" from="CanvasLayer/TitleBar/HBoxContainer/HBoxContainer/quit" to="CanvasLayer/TitleBar" method="_on_Button_pressed"]
 [connection signal="dir_selected" from="CanvasLayer/Popup/FileDialog" to="CanvasLayer" method="_on_FileDialog_dir_selected"]
 [connection signal="popup_hide" from="CanvasLayer/Popup/FileDialog" to="CanvasLayer" method="_on_FileDialog_popup_hide"]
 [connection signal="color_changed" from="CanvasLayer/Popup/MarginContainer/HBoxContainer/ColorPicker" to="CanvasLayer" method="_on_ColorPicker_color_changed"]
+[connection signal="timeout" from="CanvasLayer/Label/Timer" to="CanvasLayer/Label" method="_on_Timer_timeout"]

@@ -1,7 +1,6 @@
 extends CanvasLayer
 
 onready var vb = $"../vBox"
-onready var label = $LabelHolder
 
 func _on_FileDialog_dir_selected(path: String) -> void:
 	
@@ -45,10 +44,7 @@ onready var file_pop = $Popup/FileDialog
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_focus_next"):
-		label.visible = false
-		popup.popup()
-		file_pop.popup()
-#		file_dialog.popup_centered()
+		open_options()
 
 
 onready var background = $"../background"
@@ -60,3 +56,8 @@ func _on_ColorPicker_color_changed(color: Color) -> void:
 
 func _on_FileDialog_popup_hide() -> void:
 	popup.hide()
+
+
+func open_options():
+	popup.popup()
+	file_pop.popup()
