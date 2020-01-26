@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=2]
 
-[ext_resource path="res://icon.png" type="Texture" id=1]
+[ext_resource path="res://assets/sprite/default/dot.png" type="Texture" id=1]
 [ext_resource path="res://vBox.gd" type="Script" id=2]
 [ext_resource path="res://script/image_list.gd" type="Script" id=3]
 [ext_resource path="res://Camera2D.gd" type="Script" id=4]
@@ -11,12 +11,37 @@
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 script = ExtResource( 3 )
 
-[node name="FileDialog" type="FileDialog" parent="CanvasLayer"]
+[node name="LabelHolder" type="CenterContainer" parent="CanvasLayer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="CanvasLayer/LabelHolder"]
+margin_left = 398.0
+margin_top = 293.0
+margin_right = 625.0
+margin_bottom = 307.0
+text = "press 'TAB' and choise image folder"
+align = 1
+valign = 1
+
+[node name="Popup" type="Popup" parent="CanvasLayer"]
 visible = true
-margin_left = 198.466
-margin_top = 462.003
-margin_right = 765.466
-margin_bottom = 771.003
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="FileDialog" type="FileDialog" parent="CanvasLayer/Popup"]
+visible = true
+margin_left = 524.825
+margin_top = 95.439
+margin_right = 948.825
+margin_bottom = 519.439
+size_flags_horizontal = 3
 window_title = "Open a Directory"
 mode = 2
 access = 2
@@ -26,26 +51,46 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="CenterContainer" type="CenterContainer" parent="CanvasLayer"]
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Popup"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+margin_left = 50.0
+margin_top = 50.0
+margin_right = -50.0
+margin_bottom = -50.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label" type="Label" parent="CanvasLayer/CenterContainer"]
-margin_left = 398.0
-margin_top = 293.0
-margin_right = 625.0
-margin_bottom = 307.0
-text = "press 'TAB' and choise image folder"
-align = 1
-valign = 1
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Popup/MarginContainer"]
+margin_right = 924.0
+margin_bottom = 500.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorPicker" type="ColorPicker" parent="CanvasLayer/Popup/MarginContainer/HBoxContainer"]
+margin_right = 308.0
+margin_bottom = 500.0
+size_flags_horizontal = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Container" type="Container" parent="CanvasLayer/Popup/MarginContainer/HBoxContainer"]
+margin_left = 312.0
+margin_right = 924.0
+margin_bottom = 500.0
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 15.99
 
 [node name="background" type="Sprite" parent="."]
 modulate = Color( 0, 0, 0, 1 )
 position = Vector2( 522.293, 319.1 )
-scale = Vector2( 20, 20 )
+scale = Vector2( 1100, 800 )
 texture = ExtResource( 1 )
 script = ExtResource( 5 )
 
@@ -56,4 +101,5 @@ script = ExtResource( 2 )
 position = Vector2( 510.807, 299.326 )
 current = true
 script = ExtResource( 4 )
-[connection signal="dir_selected" from="CanvasLayer/FileDialog" to="CanvasLayer" method="_on_FileDialog_dir_selected"]
+[connection signal="dir_selected" from="CanvasLayer/Popup/FileDialog" to="CanvasLayer" method="_on_FileDialog_dir_selected"]
+[connection signal="color_changed" from="CanvasLayer/Popup/MarginContainer/HBoxContainer/ColorPicker" to="CanvasLayer" method="_on_ColorPicker_color_changed"]
