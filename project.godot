@@ -24,6 +24,10 @@ config/name="Manga Reader"
 run/main_scene="res://scene/Main.tscn"
 config/icon="res://icon.png"
 
+[autoload]
+
+data="*res://autoload/data.gd"
+
 [display]
 
 window/size/borderless=true

@@ -12,12 +12,15 @@ var path := ''
 
 var size := Vector2()
 
+
 func _process(delta: float) -> void:
 	update()
 
+
 func add_images(_path, images_list):
+	
 	for child in get_children():
-		child.free()
+		remove_child(child)
 	
 	index = 0
 	path = _path
@@ -99,9 +102,11 @@ func sort():
 	camera2d.limit_rect = rect
 	camera2d.position.x = size.x/2
 
+
 func _draw() -> void:
 	
 #	var rect = Rect2(Vector2(), size)
 	
 #	draw_rect(rect, Color.white, false, 2)
 	pass
+

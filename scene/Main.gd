@@ -3,10 +3,12 @@ extends Node
 
 onready var camera = $Camera2D
 onready var background = $background
-onready var info = $UI/info
 onready var image_holder = $vBox 
 onready var ui = $UI
 
+
+func _ready() -> void:
+	data.connect("data_changed", self, '_data_changed')
 
 func fix_background():
 	background.fix_by_camera(camera)
@@ -46,5 +48,6 @@ func find_image_path(path: String) -> void:
 	image_holder.add_images(path, image_list)
 
 
-func set_title(title):
-	ui.title_bar.title.text = title
+func _data_changed(_data):
+	
+	find_image_path(_data['path'])
