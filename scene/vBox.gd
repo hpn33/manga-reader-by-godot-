@@ -1,6 +1,6 @@
 extends Node2D
 
-export(PackedScene) var image_holder = preload("res://object/ih2d/ImageHolder2D.tscn")
+export(PackedScene) var image_holder = preload("res://object/ImageHolder2D/ImageHolder2D.tscn")
 
 onready var camera2d = $"../Camera2D"
 
