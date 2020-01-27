@@ -1,5 +1,7 @@
 extends Control
 
+onready var title :Label= $HBoxContainer/Title
+
 var following := false
 var draging_start_position = Vector2()
 

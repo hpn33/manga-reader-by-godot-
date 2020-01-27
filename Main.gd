@@ -5,6 +5,7 @@ onready var camera = $Camera2D
 onready var background = $background
 onready var info = $UI/info
 onready var image_holder = $vBox 
+onready var ui = $UI
 
 
 func fix_background():
@@ -43,3 +44,7 @@ func find_image_path(path: String) -> void:
 		print("An error occurred when trying to access the path.")
 	
 	image_holder.add_images(path, image_list)
+
+
+func set_title(title):
+	ui.title_bar.title.text = title
