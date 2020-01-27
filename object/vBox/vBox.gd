@@ -1,4 +1,5 @@
 extends Node2D
+class_name vBox
 
 export(PackedScene) var image_holder = preload("res://object/ImageHolder2D/ImageHolder2D.tscn")
 

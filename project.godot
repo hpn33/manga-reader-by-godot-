@@ -13,9 +13,15 @@ _global_script_classes=[ {
 "class": "Box2D",
 "language": "GDScript",
 "path": "res://object/Box2D/Box2D.gd"
+}, {
+"base": "Node2D",
+"class": "vBox",
+"language": "GDScript",
+"path": "res://object/vBox/vBox.gd"
 } ]
 _global_script_class_icons={
-"Box2D": ""
+"Box2D": "",
+"vBox": ""
 }
 
 [application]
