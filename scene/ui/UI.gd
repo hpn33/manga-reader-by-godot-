@@ -1,7 +1,7 @@
 extends CanvasLayer
 
 onready var popup = $Popup
-onready var file_pop = $Popup/FileDialog
+onready var file_dialog = $FileDialog
 onready var title_bar = $TitleBar
 onready var info = $info
 onready var background = $"../background"
@@ -23,4 +23,9 @@ func _on_FileDialog_popup_hide() -> void:
 
 func open_options():
 	popup.popup()
-	file_pop.popup()
+	file_dialog.popup()
+
+
+func pop_file_dialog():
+	file_dialog.popup_centered()
+

@@ -43,4 +43,4 @@ func _on_maximize_pressed() -> void:
 
 
 func _data_changed(_data):
-	title.text = _data['path']
+	title.set_title(_data.path)

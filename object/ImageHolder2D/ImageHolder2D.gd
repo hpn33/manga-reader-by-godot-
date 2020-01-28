@@ -70,7 +70,8 @@ func _thread_done(resource):
 
 func set_center_offset():
 #	var center_pos = get_tree().root.get_viewport().size.x/2
-	var center_pos = get_parent().size.x/2
+	if get_parent():
+		var center_pos = get_parent().size.x/2
 	
 #	offset.x = -int(texture.get_width())/2
 #	position.x = center_pos
