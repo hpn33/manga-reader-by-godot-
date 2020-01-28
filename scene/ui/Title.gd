@@ -13,4 +13,4 @@ func set_title(title: String):
 
 
 func _on_Title_pressed() -> void:
-	owner.ui.pop_file_dialog()
+	owner.ui.open_file_dialog()

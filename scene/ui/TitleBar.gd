@@ -21,7 +21,6 @@ func _on_TitleBar_gui_input(event: InputEvent) -> void:
 func _process(delta: float) -> void:
 	if following:
 		OS.window_position = OS.window_position + get_local_mouse_position() - draging_start_position
-		
 
 
 func _on_minimaiz_pressed() -> void:
@@ -30,11 +29,10 @@ func _on_minimaiz_pressed() -> void:
 
 func _on_quit_pressed() -> void:
 	get_tree().quit()
-	
 
 
 func _on_Options_pressed() -> void:
-	$'..'.open_options()
+	owner.ui.open_options()
 
 
 func _on_maximize_pressed() -> void:

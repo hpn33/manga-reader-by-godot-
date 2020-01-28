@@ -13,7 +13,7 @@
 [ext_resource path="res://scene/ImagePlace.gd" type="Script" id=11]
 [ext_resource path="res://scene/ui/Title.gd" type="Script" id=12]
 
-[sub_resource type="Animation" id=2]
+[sub_resource type="Animation" id=1]
 resource_name = "init"
 length = 0.001
 tracks/0/type = "value"
@@ -41,8 +41,7 @@ tracks/1/keys = {
 "values": [ Color( 1, 1, 1, 1 ) ]
 }
 
-[sub_resource type="Animation" id=1]
-resource_name = "show"
+[sub_resource type="Animation" id=2]
 length = 0.3
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:modulate")
@@ -104,7 +103,7 @@ __meta__ = {
 
 [node name="VBoxContainer" type="VBoxContainer" parent="UI/info/MarginContainer"]
 margin_right = 210.0
-margin_bottom = 3992.0
+margin_bottom = 193.0
 
 [node name="TitleBar" type="Control" parent="UI"]
 anchor_right = 1.0
@@ -144,8 +143,8 @@ text = "Option"
 flat = true
 
 [node name="Title" type="Button" parent="UI/TitleBar/HBoxContainer"]
-margin_left = 358.0
-margin_right = 696.0
+margin_left = 342.0
+margin_right = 680.0
 margin_bottom = 20.0
 size_flags_horizontal = 3
 text = "choise image path"
@@ -154,8 +153,8 @@ script = ExtResource( 12 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="UI/TitleBar/HBoxContainer/Title"]
 autoplay = "init"
-anims/init = SubResource( 2 )
-anims/show = SubResource( 1 )
+anims/init = SubResource( 1 )
+anims/show = SubResource( 2 )
 
 [node name="right" type="HBoxContainer" parent="UI/TitleBar/HBoxContainer"]
 margin_left = 684.0
@@ -185,50 +184,6 @@ margin_bottom = 20.0
 text = "X"
 flat = true
 
-[node name="Popup" type="Popup" parent="UI"]
-visible = true
-anchor_right = 1.0
-anchor_bottom = 1.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="MarginContainer" type="MarginContainer" parent="UI/Popup"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = 50.0
-margin_top = 50.0
-margin_right = -50.0
-margin_bottom = -50.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="HBoxContainer" type="HBoxContainer" parent="UI/Popup/MarginContainer"]
-margin_right = 924.0
-margin_bottom = 500.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-alignment = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="ColorPicker" type="ColorPicker" parent="UI/Popup/MarginContainer/HBoxContainer"]
-margin_right = 308.0
-margin_bottom = 500.0
-size_flags_horizontal = 3
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Container" type="Container" parent="UI/Popup/MarginContainer/HBoxContainer"]
-margin_left = 312.0
-margin_right = 924.0
-margin_bottom = 500.0
-size_flags_horizontal = 3
-size_flags_stretch_ratio = 15.99
-
 [node name="GuildText" type="Label" parent="UI"]
 margin_left = 7.94473
 margin_top = 45.8555
@@ -249,10 +204,10 @@ autostart = true
 
 [node name="FileDialog" type="FileDialog" parent="UI"]
 visible = true
-margin_left = 524.825
-margin_top = 95.439
-margin_right = 948.825
-margin_bottom = 519.439
+margin_left = 1132.64
+margin_top = 51.3941
+margin_right = 1556.64
+margin_bottom = 475.394
 size_flags_horizontal = 3
 window_title = "Open a Directory"
 mode = 2
@@ -260,6 +215,23 @@ access = 2
 current_dir = "E:/workspace/godot/manga_reader"
 current_path = "E:/workspace/godot/manga_reader/"
 script = ExtResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorPicker" type="PopupPanel" parent="UI"]
+visible = true
+margin_left = -432.426
+margin_top = 43.5945
+margin_right = -116.426
+margin_bottom = 513.594
+
+[node name="ColorPicker" type="ColorPicker" parent="UI/ColorPicker"]
+margin_left = 4.0
+margin_top = 4.0
+margin_right = 312.0
+margin_bottom = 466.0
+size_flags_horizontal = 3
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -284,8 +256,7 @@ script = ExtResource( 4 )
 [connection signal="pressed" from="UI/TitleBar/HBoxContainer/right/minimize" to="UI/TitleBar" method="_on_minimaiz_pressed"]
 [connection signal="pressed" from="UI/TitleBar/HBoxContainer/right/maximize" to="UI/TitleBar" method="_on_maximize_pressed"]
 [connection signal="pressed" from="UI/TitleBar/HBoxContainer/right/quit" to="UI/TitleBar" method="_on_quit_pressed"]
-[connection signal="color_changed" from="UI/Popup/MarginContainer/HBoxContainer/ColorPicker" to="UI" method="_on_ColorPicker_color_changed"]
 [connection signal="timeout" from="UI/GuildText/Timer" to="UI/GuildText" method="_on_Timer_timeout"]
 [connection signal="dir_selected" from="UI/FileDialog" to="UI/FileDialog" method="_on_FileDialog_dir_selected"]
-[connection signal="popup_hide" from="UI/FileDialog" to="UI" method="_on_FileDialog_popup_hide"]
+[connection signal="color_changed" from="UI/ColorPicker/ColorPicker" to="UI" method="_on_ColorPicker_color_changed"]
 [connection signal="item_rect_changed" from="Camera2D" to="Camera2D" method="_on_Camera2D_item_rect_changed"]
