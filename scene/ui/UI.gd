@@ -1,7 +1,7 @@
 extends CanvasLayer
 
-onready var color_picker = $ColorPicker
-onready var file_dialog = $FileDialog
+onready var color_picker = $PopMenu/ColorPicker
+onready var file_dialog = $PopMenu/FileDialog
 
 onready var title_bar = $TitleBar
 onready var info = $info
