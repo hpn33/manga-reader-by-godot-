@@ -132,25 +132,21 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Options" type="Button" parent="UI/TitleBar/HBoxContainer"]
+[node name="left" type="HBoxContainer" parent="UI/TitleBar/HBoxContainer"]
+margin_right = 338.0
+margin_bottom = 20.0
+size_flags_horizontal = 3
+
+[node name="Options" type="Button" parent="UI/TitleBar/HBoxContainer/left"]
 margin_right = 56.0
 margin_bottom = 20.0
 text = "Option"
 flat = true
 
-[node name="Container" type="Container" parent="UI/TitleBar/HBoxContainer"]
-margin_left = 60.0
-margin_right = 378.0
-margin_bottom = 20.0
-mouse_filter = 1
-size_flags_horizontal = 3
-
 [node name="Title" type="Button" parent="UI/TitleBar/HBoxContainer"]
-modulate = Color( 1, 1, 1, 0 )
 margin_left = 358.0
-margin_top = 20.0
-margin_right = 676.0
-margin_bottom = 40.0
+margin_right = 696.0
+margin_bottom = 20.0
 size_flags_horizontal = 3
 text = "choise image path"
 flat = true
@@ -161,32 +157,30 @@ autoplay = "init"
 anims/init = SubResource( 2 )
 anims/show = SubResource( 1 )
 
-[node name="Tween" type="Tween" parent="UI/TitleBar/HBoxContainer/Title"]
-
-[node name="HBoxContainer" type="HBoxContainer" parent="UI/TitleBar/HBoxContainer"]
-margin_left = 704.0
+[node name="right" type="HBoxContainer" parent="UI/TitleBar/HBoxContainer"]
+margin_left = 684.0
 margin_right = 1024.0
 margin_bottom = 20.0
 size_flags_horizontal = 3
 alignment = 2
 
-[node name="minimize" type="Button" parent="UI/TitleBar/HBoxContainer/HBoxContainer"]
-margin_left = 239.0
-margin_right = 257.0
+[node name="minimize" type="Button" parent="UI/TitleBar/HBoxContainer/right"]
+margin_left = 259.0
+margin_right = 277.0
 margin_bottom = 20.0
 text = "_"
 flat = true
 
-[node name="maximize" type="Button" parent="UI/TitleBar/HBoxContainer/HBoxContainer"]
-margin_left = 261.0
-margin_right = 296.0
+[node name="maximize" type="Button" parent="UI/TitleBar/HBoxContainer/right"]
+margin_left = 281.0
+margin_right = 316.0
 margin_bottom = 20.0
 text = "Full"
 flat = true
 
-[node name="quit" type="Button" parent="UI/TitleBar/HBoxContainer/HBoxContainer"]
-margin_left = 300.0
-margin_right = 320.0
+[node name="quit" type="Button" parent="UI/TitleBar/HBoxContainer/right"]
+margin_left = 320.0
+margin_right = 340.0
 margin_bottom = 20.0
 text = "X"
 flat = true
@@ -285,11 +279,11 @@ position = Vector2( 510.807, 299.326 )
 current = true
 script = ExtResource( 4 )
 [connection signal="gui_input" from="UI/TitleBar" to="UI/TitleBar" method="_on_TitleBar_gui_input"]
-[connection signal="pressed" from="UI/TitleBar/HBoxContainer/Options" to="UI/TitleBar" method="_on_Options_pressed"]
+[connection signal="pressed" from="UI/TitleBar/HBoxContainer/left/Options" to="UI/TitleBar" method="_on_Options_pressed"]
 [connection signal="pressed" from="UI/TitleBar/HBoxContainer/Title" to="UI/TitleBar/HBoxContainer/Title" method="_on_Title_pressed"]
-[connection signal="pressed" from="UI/TitleBar/HBoxContainer/HBoxContainer/minimize" to="UI/TitleBar" method="_on_minimaiz_pressed"]
-[connection signal="pressed" from="UI/TitleBar/HBoxContainer/HBoxContainer/maximize" to="UI/TitleBar" method="_on_maximize_pressed"]
-[connection signal="pressed" from="UI/TitleBar/HBoxContainer/HBoxContainer/quit" to="UI/TitleBar" method="_on_quit_pressed"]
+[connection signal="pressed" from="UI/TitleBar/HBoxContainer/right/minimize" to="UI/TitleBar" method="_on_minimaiz_pressed"]
+[connection signal="pressed" from="UI/TitleBar/HBoxContainer/right/maximize" to="UI/TitleBar" method="_on_maximize_pressed"]
+[connection signal="pressed" from="UI/TitleBar/HBoxContainer/right/quit" to="UI/TitleBar" method="_on_quit_pressed"]
 [connection signal="color_changed" from="UI/Popup/MarginContainer/HBoxContainer/ColorPicker" to="UI" method="_on_ColorPicker_color_changed"]
 [connection signal="timeout" from="UI/GuildText/Timer" to="UI/GuildText" method="_on_Timer_timeout"]
 [connection signal="dir_selected" from="UI/FileDialog" to="UI/FileDialog" method="_on_FileDialog_dir_selected"]
