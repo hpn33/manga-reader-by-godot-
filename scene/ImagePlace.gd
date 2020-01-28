@@ -1,12 +1,15 @@
 extends vBox
 
-
 func _ready() -> void:
 	data.connect("data_changed", self, '_data_changed')
 
 
 func _data_changed(_data):
-	find_image_path(_data['path'])
+	if path == _data.path:
+		return
+	
+	path = _data['path']
+	find_image_path(path)
 
 
 func find_image_path(path: String) -> void:
@@ -37,5 +40,7 @@ func find_image_path(path: String) -> void:
 			file_name = dir.get_next()
 	else:
 		print("An error occurred when trying to access the path.")
+	
+	data.page_count = image_list.size()
 	
 	add_images(path, image_list)

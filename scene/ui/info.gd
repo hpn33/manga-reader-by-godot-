@@ -8,11 +8,15 @@ var info := {
 }
 
 func _ready() -> void:
+	data.connect("data_changed", self, '_data_changed')
 	check_visiblity()
+	
 
-func add_info(key, text):
+func add_info(key, text: String):
 	var label = Label.new()
-	label.text = text
+	label.rect_min_size.x = 210
+	label.autowrap = true
+	label.text = key + ': ' + text
 	
 	info.keys.append(key)
 	info.values.append(label)
@@ -52,3 +56,9 @@ func check_visiblity():
 	else:
 		if info.keys.size() > 0:
 			visible = true
+
+
+func _data_changed(_data):
+	clear_all()
+	add_info('path', data.path)
+	add_info('pages', str(data.page_count))
