@@ -133,14 +133,14 @@ __meta__ = {
 }
 
 [node name="Options" type="Button" parent="UI/TitleBar/HBoxContainer"]
-margin_right = 20.0
+margin_right = 56.0
 margin_bottom = 20.0
-text = "+"
+text = "Option"
 flat = true
 
 [node name="Container" type="Container" parent="UI/TitleBar/HBoxContainer"]
-margin_left = 24.0
-margin_right = 354.0
+margin_left = 60.0
+margin_right = 378.0
 margin_bottom = 20.0
 mouse_filter = 1
 size_flags_horizontal = 3
@@ -149,7 +149,7 @@ size_flags_horizontal = 3
 modulate = Color( 1, 1, 1, 0 )
 margin_left = 358.0
 margin_top = 20.0
-margin_right = 688.0
+margin_right = 676.0
 margin_bottom = 40.0
 size_flags_horizontal = 3
 text = "choise image path"
@@ -164,29 +164,29 @@ anims/show = SubResource( 1 )
 [node name="Tween" type="Tween" parent="UI/TitleBar/HBoxContainer/Title"]
 
 [node name="HBoxContainer" type="HBoxContainer" parent="UI/TitleBar/HBoxContainer"]
-margin_left = 692.0
+margin_left = 704.0
 margin_right = 1024.0
 margin_bottom = 20.0
 size_flags_horizontal = 3
 alignment = 2
 
 [node name="minimize" type="Button" parent="UI/TitleBar/HBoxContainer/HBoxContainer"]
-margin_left = 251.0
-margin_right = 269.0
+margin_left = 239.0
+margin_right = 257.0
 margin_bottom = 20.0
 text = "_"
 flat = true
 
 [node name="maximize" type="Button" parent="UI/TitleBar/HBoxContainer/HBoxContainer"]
-margin_left = 273.0
-margin_right = 308.0
+margin_left = 261.0
+margin_right = 296.0
 margin_bottom = 20.0
 text = "Full"
 flat = true
 
 [node name="quit" type="Button" parent="UI/TitleBar/HBoxContainer/HBoxContainer"]
-margin_left = 312.0
-margin_right = 332.0
+margin_left = 300.0
+margin_right = 320.0
 margin_bottom = 20.0
 text = "X"
 flat = true
