@@ -39,6 +39,8 @@ config/icon="res://icon.png"
 [autoload]
 
 data="*res://autoload/data.gd"
+loader="*res://autoload/loader.gd"
+config="*res://autoload/config.gd"
 
 [display]
 
