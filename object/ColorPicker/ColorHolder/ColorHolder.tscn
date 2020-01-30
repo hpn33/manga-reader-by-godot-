@@ -1,0 +1,39 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://object/ColorPicker/ColorHolder/ColorHolder.gd" type="Script" id=1]
+
+[node name="ColorHolder" type="Button"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = -1012.0
+margin_bottom = -575.0
+rect_min_size = Vector2( 105, 25 )
+flat = true
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="hBox" type="HBoxContainer" parent="."]
+margin_right = 105.0
+margin_bottom = 25.0
+size_flags_horizontal = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Color" type="ColorRect" parent="hBox"]
+margin_right = 25.0
+margin_bottom = 25.0
+rect_min_size = Vector2( 25, 25 )
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="hBox"]
+margin_left = 29.0
+margin_top = 5.0
+margin_right = 105.0
+margin_bottom = 19.0
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 3.0
+text = "Default"
+align = 1

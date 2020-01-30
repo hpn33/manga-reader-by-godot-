@@ -14,6 +14,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://object/Box2D/Box2D.gd"
 }, {
+"base": "MarginContainer",
+"class": "ColorList",
+"language": "GDScript",
+"path": "res://object/ColorPicker/ColorList.gd"
+}, {
 "base": "Node2D",
 "class": "vBox",
 "language": "GDScript",
@@ -21,6 +26,7 @@ _global_script_classes=[ {
 } ]
 _global_script_class_icons={
 "Box2D": "",
+"ColorList": "",
 "vBox": ""
 }
 

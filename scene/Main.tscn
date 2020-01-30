@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://assets/sprite/default/dot.png" type="Texture" id=1]
 [ext_resource path="res://object/vBox/vBox.tscn" type="PackedScene" id=2]
@@ -12,6 +12,7 @@
 [ext_resource path="res://scene/ui/UI.gd" type="Script" id=10]
 [ext_resource path="res://scene/ImagePlace.gd" type="Script" id=11]
 [ext_resource path="res://scene/ui/Title.gd" type="Script" id=12]
+[ext_resource path="res://object/ColorPicker/ColorPicker.tscn" type="PackedScene" id=13]
 
 [sub_resource type="Animation" id=1]
 resource_name = "init"
@@ -238,25 +239,15 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="ColorPicker" type="PopupPanel" parent="UI/PopMenu"]
+[node name="ColorPicker" parent="UI/PopMenu" instance=ExtResource( 13 )]
 visible = true
-margin_left = -432.426
-margin_top = 43.5945
-margin_right = -116.426
-margin_bottom = 513.594
-
-[node name="ColorPicker" type="ColorPicker" parent="UI/PopMenu/ColorPicker"]
-margin_left = 4.0
-margin_top = 4.0
-margin_right = 312.0
-margin_bottom = 466.0
-size_flags_horizontal = 3
-__meta__ = {
-"_edit_use_anchors_": false
-}
+margin_left = -458.191
+margin_top = 22.6578
+margin_right = -23.1912
+margin_bottom = 492.658
 
 [node name="background" type="Sprite" parent="."]
-modulate = Color( 0.1, 0.1, 0.1, 1 )
+modulate = Color( 0.101961, 0.101961, 0.101961, 1 )
 position = Vector2( 507.301, 287.604 )
 scale = Vector2( 1100, 800 )
 texture = ExtResource( 1 )
@@ -277,5 +268,5 @@ script = ExtResource( 4 )
 [connection signal="pressed" from="UI/TitleBar/ColorRect/HBoxContainer/right/quit" to="UI/TitleBar" method="_on_quit_pressed"]
 [connection signal="timeout" from="UI/GuildText/Timer" to="UI/GuildText" method="_on_Timer_timeout"]
 [connection signal="dir_selected" from="UI/PopMenu/FileDialog" to="UI/PopMenu/FileDialog" method="_on_FileDialog_dir_selected"]
-[connection signal="color_changed" from="UI/PopMenu/ColorPicker/ColorPicker" to="UI" method="_on_ColorPicker_color_changed"]
+[connection signal="color_changed" from="UI/PopMenu/ColorPicker" to="UI" method="_on_ColorPicker_color_changed"]
 [connection signal="item_rect_changed" from="Camera2D" to="Camera2D" method="_on_Camera2D_item_rect_changed"]

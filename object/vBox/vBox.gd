@@ -5,7 +5,7 @@ export(PackedScene) var image_holder = preload("res://object/ImageHolder2D/Image
 
 onready var camera2d = $"../Camera2D"
 
-export(int) var spector = 10
+export(int) var seperation = 10
 
 var index := 0
 var image_names := []
@@ -66,7 +66,7 @@ func last_sort():
 
 		last = get_child(i)
 
-		sum += last.texture.get_height() + spector
+		sum += last.texture.get_height() + seperation
 		max_width = max(float(last.texture.get_width()), max_width)
 
 	last.position.y = sum
@@ -95,7 +95,7 @@ func sort():
 		child.position.x = max_width/2 - child.texture.size.x/2
 		child.position.y = sum if i != 0 else 0
 		
-		sum += child.texture.get_height() + spector
+		sum += child.texture.get_height() + seperation
 	
 	
 	size = Vector2(max_width, sum)
