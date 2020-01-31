@@ -161,7 +161,7 @@ margin_right = 680.0
 margin_bottom = 20.0
 size_flags_horizontal = 3
 
-[node name="Title" type="MenuButton" parent="UI/TitleBar/ColorRect/HBoxContainer/center"]
+[node name="RecentMenu" type="MenuButton" parent="UI/TitleBar/ColorRect/HBoxContainer/center"]
 margin_top = 3.0
 margin_right = 300.0
 margin_bottom = 23.0
@@ -173,7 +173,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="UI/TitleBar/ColorRect/HBoxContainer/center/Title"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="UI/TitleBar/ColorRect/HBoxContainer/center/RecentMenu"]
 autoplay = "init"
 anims/init = SubResource( 1 )
 anims/show = SubResource( 2 )
