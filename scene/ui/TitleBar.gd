@@ -1,6 +1,6 @@
 extends Control
 
-onready var title :Label= $ColorRect/HBoxContainer/Title
+onready var title :Label= $ColorRect/HBoxContainer/center/Title
 
 var following := false
 var draging_start_position := Vector2()
@@ -42,4 +42,3 @@ func _on_maximize_pressed() -> void:
 
 func _data_changed(_data):
 	title.set_title(_data.path)
-
