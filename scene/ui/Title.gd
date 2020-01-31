@@ -22,6 +22,7 @@ func _id_pressed(id: int):
 
 
 func _set_recent_path():
+	get_popup().clear()
 	for path in config.get_data('recents'):
 		get_popup().add_item(path)
-	
+
