@@ -20,7 +20,10 @@ func set_page_count(value):
 	emit_signal("data_changed", self)
 
 
-var colors := []
+var configs := {
+	colors = [],
+	recents = []
+}
 
 
 

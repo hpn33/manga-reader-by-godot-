@@ -1,34 +1,60 @@
 extends Node
+class_name Config
 
-var _path := 'user://config.json'
+var _path := 'user://config.cfg'
 
 var _default := {
-	colors = {
-		'default': '1a1a1a'
-	}
+	colors = [
+		['default', '1a1a1a'],
+	],
+	recents = []
 }
 
+var root_section = 'setting'
+
+
+var cf : ConfigFile
+
+
 func init():
-	
-	var file := File.new()
-	
-	if not file.file_exists(_path):
+	cf = ConfigFile.new()
+	_make_first()
+
+
+func _make_first():
+	if cf.load(_path) != OK:
 		# making config file
-		file.open(_path, File.WRITE)
-		file.store_string(to_json(_default))
+		for key in _default.keys():
+			cf.set_value(root_section, key, _default[key])
 	
-	file.close()
+	save()
 
 
+func show_text():
+	var f =  File.new()
+	f.open(_path, File.READ)
+	print(f.get_as_text())
+	f.close()
 
 
+func rebuild():
+	
+	for key in _default.keys():
+		cf.set_value(root_section, key, _default[key])
+	
+	save()
 
 
+func save(): cf.save(_path)
+func load(): cf.load(_path)
 
 
+func get_data(key):
+	return cf.get_value(root_section, key, [])
 
 
-
+func set_data(key, value):
+	cf.set_value(root_section, key, value)
 
 
 
