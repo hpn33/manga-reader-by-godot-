@@ -1,38 +1,36 @@
 # Manga Reader for manga eater
 maked by Godot
+> for showing squere image like any normal web manga reader
 
-# Manga eater
-for showing squere image like any normal web manga reader
-
-# feture
+## feture
 * movement
 * setting
 * config file on images location
 * pagination
 
 
-# movement
+### movement
 - [x] movement with mouse ( need improve )
 - [x] movement with keyboard ( need improve )
 
-
-# setting
+### setting
 make file on `user://` directory of godot by name `config.cfg`
 for saving:
 - [x] background colors
 - [ ] recent folder 
 
-# config file
+### config file
 make config file for images in folder location
 for sorting image
 
-# pagination
+### pagination
 navigate to another image by number
 
-# setting
+### setting
 - [ ] change background color
 
-# TODO
+
+## TODO
 - [ ] improve movement
 - [ ] make recent folder address
 - [ ] config file on image folder ( for sorting images )
