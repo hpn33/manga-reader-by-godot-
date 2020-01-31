@@ -12,14 +12,15 @@ for showing squere image like any normal web manga reader
 
 
 # movement
-[x] movement with mouse ( need improve )
-[x] movement with keyboard ( need improve )
+- [x] movement with mouse ( need improve )
+- [x] movement with keyboard ( need improve )
+
 
 # setting
 make file on `user://` directory of godot by name `config.cfg`
 for saving:
-[*] background colors
-[ ] recent folder 
+- [x] background colors
+- [ ] recent folder 
 
 # config file
 make config file for images in folder location
@@ -29,10 +30,10 @@ for sorting image
 navigate to another image by number
 
 # setting
-[ ] change background color
+- [ ] change background color
 
 # TODO
-[ ] improve movement
-[ ] make recent folder address
-[ ] config file on image folder ( for sorting images )
-[ ] save image folder address on setting file
+- [ ] improve movement
+- [ ] make recent folder address
+- [ ] config file on image folder ( for sorting images )
+- [ ] save image folder address on setting file
