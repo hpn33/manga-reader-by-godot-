@@ -17,7 +17,8 @@ maked by Godot
 make file on `user://` directory of godot by name `config.cfg`
 for saving:
 - [x] background colors
-- [ ] recent folder 
+- [ ] recent folder
+- [ ] some signal system for data changed
 
 ### config file
 make config file for images in folder location
@@ -35,3 +36,4 @@ navigate to another image by number
 - [ ] make recent folder address
 - [ ] config file on image folder ( for sorting images )
 - [ ] save image folder address on setting file
+- [ ] signal system on cinfig system for when a data changed
