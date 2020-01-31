@@ -22,13 +22,12 @@ func init():
 
 
 func _make_first():
-	print(_default.keys())
-	if not Directory.new().file_exists(_path):
+	if cf.load(_path) != OK:
 		# making config file
 		for key in _default.keys():
-			cf.set_value('setting', key, _default[key])
+			cf.set_value(root_section, key, _default[key])
 	
-	_save()
+	save()
 
 
 func show_text():
@@ -37,36 +36,25 @@ func show_text():
 	print(f.get_as_text())
 	f.close()
 
-#func get_data():
-#
-#	var dat = parse_json(file.get_as_text())
-#
-#	return dat
-
-
-#func set_data(_data):
-#	_open_file(File.WRITE)
-#	cf.store_line(_data)
-#	cf.close()
-
 
 func rebuild():
 	
 	for key in _default.keys():
 		cf.set_value(root_section, key, _default[key])
 	
-	_save()
+	save()
 
 
-func _save(): cf.save(_path)
+func save(): cf.save(_path)
 func load(): cf.load(_path)
 
 
-func set_data(_data: Dictionary):
-	for key in _data.keys():
-		cf.set_value(root_section, key, _data[key])
-	
+func get_data(key):
+	return cf.get_value(root_section, key, [])
 
+
+func set_data(key, value):
+	cf.set_value(root_section, key, value)
 
 
 
