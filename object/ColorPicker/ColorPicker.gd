@@ -7,15 +7,11 @@ onready var color_picker = $HBoxContainer/VBoxContainer/ColorPicker
 onready var title = $HBoxContainer/VBoxContainer/HBoxContainer/Title
 
 
-var colors = [
-	['c1', '1a1a1a'],
-	['c2','1a1abb'],
-	['c3','cc1a1a']
-]
+var colors := [] #setget , _get_colors
 
 
-#func _ready():
-#	popup()
+func _ready():
+	config.connect("init", self, '_set_config_data')
 
 
 func _on_ColorPicker_color_changed(color: Color) -> void:
@@ -28,7 +24,6 @@ func set_color(_color):
 	var color = Color('#' + _color[1]) 
 	color_picker.color = color
 	emit_signal("color_changed", color)
-
 
 
 func _on_Edit_pressed() -> void:
@@ -50,5 +45,13 @@ func _on_Edit_pressed() -> void:
 		var new_color = [tit, color]
 		colors.append(new_color)
 		color_list.add(new_color)
-		
+	
+	config.set_data('colors', colors)
+	config.save()
+	print(config.get_data('colors'))
+
+
+func _set_config_data():
+	colors = config.get_data('colors')
+	color_list.re_add(colors)
 

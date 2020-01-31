@@ -9,6 +9,7 @@ onready var ui = $UI
 
 func _ready() -> void:
 	config.init()
+	config.load()
 
 
 func fix_background():

@@ -1,6 +1,10 @@
 extends Node
 class_name Config
 
+
+signal init
+
+
 var _path := 'user://config.cfg'
 
 var _default := {
@@ -19,6 +23,8 @@ var cf : ConfigFile
 func init():
 	cf = ConfigFile.new()
 	_make_first()
+	self.load()
+	emit_signal("init")
 
 
 func _make_first():

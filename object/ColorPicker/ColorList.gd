@@ -8,10 +8,7 @@ onready var list := $vBox
 
 
 func _ready() -> void:
-	
-	clear()
-	
-	add_by_array(owner.colors)
+	re_add(owner.colors)
 
 
 func clear():
@@ -44,3 +41,7 @@ func up_item(title, color_code):
 func _holder_pressed(holder, color):
 	owner.set_color(color)
 
+
+func re_add(colors: Array):
+	clear()
+	add_by_array(colors)
