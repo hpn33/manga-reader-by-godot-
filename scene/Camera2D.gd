@@ -35,8 +35,6 @@ func _input(event):
 # use _process for smoother scrolling
 func _process(delta):
 	
-#	print(get_viewport_rect())
-	
 	if Input.is_action_pressed("view_click_mouse"):
 		#smooth keyboard zoom
 		if Input.is_action_pressed("view_pan_up"):

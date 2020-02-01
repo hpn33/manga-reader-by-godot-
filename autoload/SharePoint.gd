@@ -16,22 +16,15 @@ var hook_keys := []
 var hooks := []
 
 
-func add_value(key: String, value = ''):
-	debug('add_value:\t%s\t%s' % [key, value])
-	
-	keys.append(key)
-	values.append(value)
-	
-	
-
-
 func set_value(key: String, value, hooking := true):
 	debug('set_value:\t%s\t%s' % [key, value])
 	
 	var index = keys.find(key)
 	
 	if index == -1:
-		add_value(key, value)
+#		add_value(key, value)
+		keys.append(key)
+		values.append(value)
 	else:
 		values[index] = value
 	
@@ -69,11 +62,6 @@ func remove_value(key: String):
 
 func add_hook(key: String, target, method: String):
 	debug('add_hook:\t%s\t%s\t%s' % [key, target, method])
-	
-#	# check key exist
-#	if keys.find(key) == -1:
-#		print('key not exist: add key by add_value')
-#		return
 	
 	# not exist: can add
 	if hook_keys.find(key) != -1:

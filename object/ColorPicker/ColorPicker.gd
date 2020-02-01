@@ -7,11 +7,10 @@ onready var color_picker = $HBoxContainer/VBoxContainer/ColorPicker
 onready var title = $HBoxContainer/VBoxContainer/HBoxContainer/Title
 
 
-var colors := [] #setget , _get_colors
+var colors := []
 
 
 func _ready():
-#	config.connect("init", self, '_set_config_data')
 	share.add_hook('colors', self, '_colors_changed')
 
 
@@ -49,12 +48,6 @@ func _on_Edit_pressed() -> void:
 	
 	config.set_data('colors', colors)
 	config.save()
-	print(config.get_data('colors'))
-
-
-#func _set_config_data():
-#	colors = config.get_data('colors')
-#	color_list.re_add(colors)
 
 
 func _colors_changed(value):

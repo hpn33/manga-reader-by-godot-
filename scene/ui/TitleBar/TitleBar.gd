@@ -7,7 +7,6 @@ var draging_start_position := Vector2()
 
 
 func _ready() -> void:
-	#data.connect("data_changed", self, '_data_changed')
 	share.add_hook('path', self, '_path_changed')
 
 
@@ -39,10 +38,6 @@ func _on_Options_pressed() -> void:
 func _on_maximize_pressed() -> void:
 	OS.window_maximized = !OS.window_maximized
 	owner.fix_background()
-
-
-#func _data_changed(_data):
-#	recent_menu.set_title(_data.path)
 
 
 func _path_changed(path):

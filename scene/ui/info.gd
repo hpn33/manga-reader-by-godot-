@@ -11,7 +11,7 @@ func _ready() -> void:
 	data.connect("data_changed", self, '_data_changed')
 #	share.add_hook('')
 	check_visiblity()
-	
+
 
 func add_info(key, text: String):
 	var label = Label.new()
@@ -26,6 +26,7 @@ func add_info(key, text: String):
 	
 	check_visiblity()
 
+
 func clear(key):
 	
 	var index = info.keys.find(key)
@@ -37,6 +38,7 @@ func clear(key):
 	info.values.remove(index)
 	
 	check_visiblity()
+
 
 func clear_all():
 	
@@ -63,3 +65,4 @@ func _data_changed(_data):
 	clear_all()
 	add_info('path', data.path)
 	add_info('pages', str(data.page_count))
+
