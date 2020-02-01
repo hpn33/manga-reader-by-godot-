@@ -20,12 +20,15 @@ func set_page_count(value):
 	emit_signal("data_changed", self)
 
 
-var configs := {
-	colors = [],
-	recents = []
-}
+#var configs := {
+#	colors = [],
+#	recents = []
+#}
 
 
-
-
-
+#var recents := [] setget set_recents
+#
+#
+#func set_recents(value: Array):
+#	recents = value
+#	emit_signal("data_changed", self)

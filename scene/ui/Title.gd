@@ -19,10 +19,14 @@ func set_title(title: String):
 func _id_pressed(id: int):
 	var item = get_popup().get_item_text(id)
 	data.path = item
+	re_init()
 
 
 func _set_recent_path():
 	get_popup().clear()
 	for path in config.get_data('recents'):
-		get_popup().add_item(path)
+		if text != path:
+			get_popup().add_item(path)
 
+func re_init():
+	_set_recent_path()

@@ -162,9 +162,8 @@ margin_bottom = 20.0
 size_flags_horizontal = 3
 
 [node name="RecentMenu" type="MenuButton" parent="UI/TitleBar/ColorRect/HBoxContainer/center"]
-margin_top = 3.0
 margin_right = 300.0
-margin_bottom = 23.0
+margin_bottom = 20.0
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 9.0
 text = "choise some folder"
