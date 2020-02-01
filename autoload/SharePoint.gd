@@ -27,6 +27,11 @@ func set_value(key: String, value, hooking := true):
 	debug('set_value:\t%s\t%s' % [key, value])
 	
 	var index = keys.find(key)
+	
+	if index == -1:
+		add_value(key, value)
+		return
+	
 	values[index] = value
 	
 	if hooking:
