@@ -9,6 +9,7 @@ var info := {
 
 func _ready() -> void:
 	data.connect("data_changed", self, '_data_changed')
+#	share.add_hook('')
 	check_visiblity()
 	
 

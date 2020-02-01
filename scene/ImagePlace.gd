@@ -1,14 +1,23 @@
 extends vBox
 
 func _ready() -> void:
-	data.connect("data_changed", self, '_data_changed')
+#	data.connect("data_changed", self, '_data_changed')
+	share.add_hook('path', self, '_path_changed')
 
 
-func _data_changed(_data):
-	if path == _data.path:
+#func _data_changed(_data):
+#	if path == _data.path:
+#		return
+#
+#	path = _data['path']
+#	find_image_path(path)
+
+
+func _path_changed(value):
+	if path == value:
 		return
 	
-	path = _data['path']
+	path = value
 	find_image_path(path)
 
 
@@ -41,6 +50,7 @@ func find_image_path(path: String) -> void:
 	else:
 		print("An error occurred when trying to access the path.")
 	
-	data.page_count = image_list.size()
+#	data.page_count = image_list.size()
+	share.set_value('page_count', image_list.size())
 	
 	add_images(path, image_list)

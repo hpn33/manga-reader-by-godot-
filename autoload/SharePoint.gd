@@ -21,6 +21,8 @@ func add_value(key: String, value = ''):
 	
 	keys.append(key)
 	values.append(value)
+	
+	
 
 
 func set_value(key: String, value, hooking := true):
@@ -30,9 +32,8 @@ func set_value(key: String, value, hooking := true):
 	
 	if index == -1:
 		add_value(key, value)
-		return
-	
-	values[index] = value
+	else:
+		values[index] = value
 	
 	if hooking:
 		call_hooks(key, value)
