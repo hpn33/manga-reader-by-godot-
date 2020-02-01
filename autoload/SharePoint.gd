@@ -1,6 +1,13 @@
 extends Node
 class_name SharePoint
 
+# debug -----------------------
+var debug := true
+
+func debug(message: String) -> void:
+	if debug:
+		print('SharePoint = ', message, '\n')
+# -----------------------------
 
 var keys := []
 var values := []
@@ -10,11 +17,15 @@ var hooks := []
 
 
 func add_value(key: String, value = ''):
+	debug('add_value:\t%s\t%s' % [key, value])
+	
 	keys.append(key)
 	values.append(value)
 
 
 func set_value(key: String, value, hooking := true):
+	debug('set_value:\t%s\t%s' % [key, value])
+	
 	var index = keys.find(key)
 	values[index] = value
 	
@@ -23,6 +34,7 @@ func set_value(key: String, value, hooking := true):
 
 
 func get_value(key: String):
+	debug('get_value:\t%s' % key)
 	
 	if keys.find(key) == -1:
 		print('key not exist')
@@ -30,11 +42,13 @@ func get_value(key: String):
 	
 	var value = values[keys.find(key)]
 	
+	debug('get_value:\t%s\t%s' % [key, value])
 	
 	return value
 
 
 func remove_value(key: String):
+	debug('remove_value:\t%s' % key)
 	
 	var index = keys.find(key)
 	if index == -1:
@@ -48,6 +62,8 @@ func remove_value(key: String):
 
 
 func add_hook(key: String, target, method: String):
+	debug('add_hook:\t%s\t%s\t%s' % [key, target, method])
+	
 	# check key exist
 	if keys.find(key) == -1:
 		print('key not exist: add key by add_value')
@@ -68,6 +84,8 @@ func add_hook(key: String, target, method: String):
 
 
 func remove_hook(key: String, target, method: String):
+	debug('remove_hook:\t%s\t%s\t%s' % [key, target, method])
+	
 	var match_hooks := match_by_key(key)
 	
 	for index in match_hooks:
@@ -86,6 +104,8 @@ func remove_hook(key: String, target, method: String):
 
 
 func remove_hook_by_key(key: String):
+	debug('remove_hook_by_key:\t%s' % key)
+	
 	var match_hooks = match_by_key(key)
 	
 	for index in match_hooks:
@@ -94,6 +114,8 @@ func remove_hook_by_key(key: String):
 
 
 func call_hooks(key: String, value):
+	debug('call_hooks:\t%s\t%s' % [key, value])
+	
 	var match_hooks = match_by_key(key)
 	
 	for index in match_hooks:
