@@ -24,6 +24,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://autoload/config.gd"
 }, {
+"base": "Node",
+"class": "SharePoint",
+"language": "GDScript",
+"path": "res://autoload/SharePoint.gd"
+}, {
 "base": "Node2D",
 "class": "vBox",
 "language": "GDScript",
@@ -33,6 +38,7 @@ _global_script_class_icons={
 "Box2D": "",
 "ColorList": "",
 "Config": "",
+"SharePoint": "",
 "vBox": ""
 }
 
@@ -46,6 +52,7 @@ config/icon="res://icon.png"
 
 data="*res://autoload/data.gd"
 config="*res://autoload/config.gd"
+share="*res://autoload/SharePoint.gd"
 
 [display]
 
