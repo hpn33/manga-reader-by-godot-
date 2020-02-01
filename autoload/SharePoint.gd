@@ -69,10 +69,10 @@ func remove_value(key: String):
 func add_hook(key: String, target, method: String):
 	debug('add_hook:\t%s\t%s\t%s' % [key, target, method])
 	
-	# check key exist
-	if keys.find(key) == -1:
-		print('key not exist: add key by add_value')
-		return
+#	# check key exist
+#	if keys.find(key) == -1:
+#		print('key not exist: add key by add_value')
+#		return
 	
 	# not exist: can add
 	if hook_keys.find(key) != -1:
