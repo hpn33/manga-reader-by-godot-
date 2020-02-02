@@ -46,3 +46,4 @@ navigate to another image by number
 - [ ] undo for color panel
 - [ ] fix recent address sort
 - [ ] fix image view for showing image
+- [ ] fix background responsiblity

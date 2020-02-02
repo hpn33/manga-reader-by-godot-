@@ -1,5 +1,6 @@
 extends vBox
 
+
 func _ready() -> void:
 	share.add_hook('path', self, '_path_changed')
 
@@ -38,3 +39,4 @@ func find_image_path(path: String) -> void:
 	share.set_value('page_count', image_list.size())
 	
 	add_images(path, image_list)
+
