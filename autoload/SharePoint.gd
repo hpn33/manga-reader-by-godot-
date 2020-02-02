@@ -2,7 +2,7 @@ extends Node
 class_name SharePoint
 
 # debug -----------------------
-var debug := true
+var debug := false
 
 func debug(message: String) -> void:
 	if debug:

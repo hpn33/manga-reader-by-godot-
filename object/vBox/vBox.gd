@@ -8,8 +8,11 @@ onready var camera2d = $"../Camera2D"
 export(int) var seperation = 10
 
 var index := 0
-var image_names := []
 var path := ''
+var image_names := []
+var image_textures := []
+
+var load_thread :Thread 
 
 var size := Vector2()
 
@@ -18,23 +21,53 @@ func _process(delta: float) -> void:
 	update()
 
 
-func add_images(_path, images_list):
+func add_images(_path, _image_names):
 	
+	# clear
 	for child in get_children():
 		remove_child(child)
 	
-	if images_list.size() == 0:
+	path = _path
+	image_names = _image_names
+	
+	if image_names.size() == 0:
 		print('no image')
 		return
 	
-	index = 0
-	path = _path
-	image_names = images_list
+	for i in image_names.size():
+		var image_path = path + '/' + image_names[i]
+		image_names[i] = image_path
 	
-	add_image()
 	
-#	for image_name in images_list:
-#		add_image(path + '/' + image_name)
+	_load_images()
+
+
+func _load_images():
+	load_thread = Thread.new()
+	load_thread.start( self, "_thread_load_image", image_names)
+
+
+func _thread_load_image(paths):
+	
+	for _path in paths:
+		print(_path)
+		
+		var image = Image.new()
+		image.load(_path)
+		var res = ImageTexture.new()
+		res.create_from_image(image)
+		image_textures.append(res)
+		
+	
+	# Send whathever we did (or not) get
+	call_deferred("_thread_done")
+
+
+func _thread_done():
+	# Always wait for threads to finish, this is required on Windows
+	load_thread.wait_to_finish()
+	print('done')
+
 
 func add_image():
 	
@@ -45,7 +78,6 @@ func add_image():
 	
 	new.loading(path + '/' + image_names[index])
 	last_sort()
-	
 
 
 func advance():
@@ -60,6 +92,7 @@ func advance():
 	
 	index += 1
 	add_image()
+
 
 func last_sort():
 
