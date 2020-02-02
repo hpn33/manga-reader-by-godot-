@@ -44,3 +44,5 @@ navigate to another image by number
 - [x] signal system on config system (  ) for when a data changed ( by name SharePoint )
 - [ ] delete color
 - [ ] undo for color panel
+- [ ] fix recent address sort
+- [ ] fix image view for showing image
