@@ -23,6 +23,10 @@ func add_images(_path, images_list):
 	for child in get_children():
 		remove_child(child)
 	
+	if images_list.size() == 0:
+		print('no image')
+		return
+	
 	index = 0
 	path = _path
 	image_names = images_list
@@ -46,7 +50,11 @@ func add_image():
 
 func advance():
 	sort()
-	get_child(index).disconnect("done", self, 'advance')
+	
+	var child = get_child(index)
+	if child.is_connected("done", self, 'advance'):
+		child.disconnect("done", self, 'advance')
+	
 	if index + 1 >= image_names.size():
 		return
 	
