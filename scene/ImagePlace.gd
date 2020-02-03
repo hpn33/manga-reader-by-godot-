@@ -1,9 +1,10 @@
-extends vBox
+extends ImageView
 
 
 func _ready() -> void:
 	share.add_hook('path', self, '_path_changed')
 
+var path := ''
 
 func _path_changed(value):
 	if path == value:
@@ -30,7 +31,7 @@ func find_image_path(path: String) -> void:
 				var result = regex.search(file_name)
 				
 				if result:
-					image_list.append(file_name)
+					image_list.append(path + '/' + file_name)
 				
 			file_name = dir.get_next()
 	else:
@@ -38,5 +39,5 @@ func find_image_path(path: String) -> void:
 	
 	share.set_value('page_count', image_list.size())
 	
-	add_images(path, image_list)
+	start(image_list)
 

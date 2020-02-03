@@ -1,7 +1,7 @@
 [gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://assets/sprite/default/dot.png" type="Texture" id=1]
-[ext_resource path="res://object/vBox/vBox.tscn" type="PackedScene" id=2]
+[ext_resource path="res://object/ImageView/ImageView.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scene/background.gd" type="Script" id=3]
 [ext_resource path="res://scene/Camera2D.gd" type="Script" id=4]
 [ext_resource path="res://scene/ui/FileDialog.gd" type="Script" id=5]
@@ -108,8 +108,8 @@ margin_right = 210.0
 margin_bottom = 193.0
 
 [node name="TitleBar" type="Control" parent="UI"]
-anchor_right = 1.0
-margin_bottom = 20.0
+margin_right = 1024.0
+margin_bottom = 18.0
 script = ExtResource( 7 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -262,6 +262,16 @@ margin_left = -458.191
 margin_top = 22.6578
 margin_right = -23.1912
 margin_bottom = 492.658
+
+[node name="ProgressBar" type="ProgressBar" parent="UI"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = 21.0
+value = 0.12
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="background" type="Sprite" parent="."]
 modulate = Color( 0.101961, 0.101961, 0.101961, 1 )

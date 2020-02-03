@@ -1,0 +1,27 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://object/ImageView/ImageView.gd" type="Script" id=1]
+[ext_resource path="res://object/ImageView/state.gd" type="Script" id=2]
+[ext_resource path="res://object/ImageView/idle.gd" type="Script" id=3]
+[ext_resource path="res://object/ImageView/load.gd" type="Script" id=4]
+[ext_resource path="res://object/ImageView/sort.gd" type="Script" id=5]
+[ext_resource path="res://object/ImageView/add.gd" type="Script" id=6]
+
+[node name="ImageView" type="Node2D"]
+script = ExtResource( 1 )
+
+[node name="state" type="Node" parent="."]
+script = ExtResource( 2 )
+initial_state = NodePath("idle")
+
+[node name="idle" type="Node" parent="state"]
+script = ExtResource( 3 )
+
+[node name="load" type="Node" parent="state"]
+script = ExtResource( 4 )
+
+[node name="add" type="Node" parent="state"]
+script = ExtResource( 6 )
+
+[node name="sort" type="Node" parent="state"]
+script = ExtResource( 5 )

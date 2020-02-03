@@ -24,22 +24,34 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://autoload/config.gd"
 }, {
+"base": "Node2D",
+"class": "ImageView",
+"language": "GDScript",
+"path": "res://object/ImageView/ImageView.gd"
+}, {
 "base": "Node",
 "class": "SharePoint",
 "language": "GDScript",
 "path": "res://autoload/SharePoint.gd"
 }, {
-"base": "Node2D",
-"class": "vBox",
+"base": "Node",
+"class": "State",
 "language": "GDScript",
-"path": "res://object/vBox/vBox.gd"
+"path": "res://addons/hp.fsm/state.gd"
+}, {
+"base": "Node",
+"class": "StateMachine",
+"language": "GDScript",
+"path": "res://addons/hp.fsm/state_machine.gd"
 } ]
 _global_script_class_icons={
 "Box2D": "",
 "ColorList": "",
 "Config": "",
+"ImageView": "",
 "SharePoint": "",
-"vBox": ""
+"State": "",
+"StateMachine": ""
 }
 
 [application]
