@@ -14,8 +14,6 @@ onready var _state_name: String = current_state.name
 var active = false setget set_active
 onready var parent = get_parent()
 
-var _TAG := 'fsm:\t'
-
 
 
 func _init() -> void:
@@ -58,9 +56,9 @@ func transition_to(target_state_path: String, msg: Dictionary = {}) -> void:
 	var target_state: = get_node(target_state_path)
 	assert(target_state.is_composite == false)
 	
-	msg = {'pre': _state_name}
+#	msg = {'pre': _state_name}
 	
-	print(_TAG + ('%s -> %s' % [_state_name, target_state.name]))
+	print('%s:\t%s -> %s' % [parent.name, _state_name, target_state.name])
 	
 	if current_state:
 		current_state.exit()
@@ -72,4 +70,8 @@ func transition_to(target_state_path: String, msg: Dictionary = {}) -> void:
 func set_state(value: State) -> void:
 	current_state = value
 	_state_name = current_state.name
-	print(_TAG + ( '= %s' % _state_name ))
+	print('%s:\t= %s' % [parent.name, _state_name] )
+
+
+func state_is(target_state_path: String) -> bool:
+	return target_state_path == _state_name

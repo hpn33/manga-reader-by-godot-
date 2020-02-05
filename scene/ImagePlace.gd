@@ -11,10 +11,10 @@ func _path_changed(value):
 		return
 	
 	path = value
-	find_image_path(path)
+	_find_image_path()
 
 
-func find_image_path(path: String) -> void:
+func _find_image_path() -> void:
 	
 	var regex = RegEx.new()
 	var image_list:= []

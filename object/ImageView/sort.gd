@@ -3,6 +3,7 @@ extends State
 
 func enter(msg: Dictionary = {}) -> void:
 	_sort()
+	change_state('idle')
 
 
 func _sort():
@@ -11,14 +12,8 @@ func _sort():
 	
 #	var child:Sprite
 	var sum = 0
-	var max_width := 0.0
-	
-	for child in owner.get_children():
-		
-		if _is_fsm(child):
-			continue
-		
-		max_width = max(float(child.texture.get_width()), max_width)
+	var max_width :float= owner.size.x
+	var seperation = 0
 	
 	for i in owner.get_child_count():
 		
@@ -27,12 +22,18 @@ func _sort():
 		if _is_fsm(child):
 			continue
 		
-		child.position.x = max_width/2 - child.texture.size.x/2
-		child.position.y = sum if i != 0 else 0
+		child.position.x = max_width/2
+		child.position.y = sum if not i in [0, 1] else 0
 		
-		sum += child.texture.get_height() + owner.seperation
 		
-		owner.set_box(max_width, sum)
+		if i >= 1 and (not i >= owner.get_child_count()-1):
+			seperation = owner.seperation
+		
+#		print('i:\t', i, ':', owner.get_child_count()-1)
+		
+		sum += child.texture.get_height() + seperation
+		
+#		owner.set_box(max_width, sum)
 
 
 func _is_fsm(node):

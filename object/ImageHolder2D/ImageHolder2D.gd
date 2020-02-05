@@ -11,7 +11,7 @@ func loading(file_path: String):
 #	print(StreamTexture.new().load(file_path))
 	
 	load_image(file_path)
-	
+
 
 func _thread_load(path):
 #	var ril = ResourceLoader.load_interactive(path)
@@ -55,7 +55,6 @@ func _thread_load(path):
 	call_deferred("_thread_done", res)
 
 
-
 func _thread_done(resource):
 	assert(resource)
 	
@@ -68,30 +67,31 @@ func _thread_done(resource):
 	emit_signal("done")
 
 
-func set_center_offset():
-#	var center_pos = get_tree().root.get_viewport().size.x/2
-	if get_parent():
-		var center_pos = get_parent().size.x/2
-	
-#	offset.x = -int(texture.get_width())/2
-#	position.x = center_pos
-
 func load_image(path):
 	
 	thread = Thread.new()
 	thread.start( self, "_thread_load", path)
 
 
+func set_center_offset():
+	offset.y = texture.get_height() / 2
+
 
 func _draw() -> void:
 #	var size = Vector2(texture.get_width(), texture.get_height())
-#	var rect = Rect2(Vector2(), texture.get_size())
+#	print(offset)
+	var pos = Vector2(-texture.get_size().x / 2, 0)
+	var rect = Rect2(pos, texture.get_size())
 	
-#	draw_rect(rect, Color.green, false)
-#	draw_circle(Vector2(), 5, Color.yellow)
-	pass
+	draw_rect(rect, Color.green, false)
+	draw_circle(pos, 5, Color.yellow)
+	draw_circle(pos + Vector2(0, rect.size.y), 5, Color.yellow)
 
 
 
 
 
+
+
+func _on_ImageHolder2D_texture_changed() -> void:
+	set_center_offset()

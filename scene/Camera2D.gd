@@ -2,7 +2,7 @@ extends Camera2D
 
 var zoom_step := 1.1
 var min_zoom := 0.5
-var max_zoom := 2.0
+var max_zoom := 10.0
 
 var pan_speed := 800
 
@@ -10,9 +10,13 @@ var pan_speed := 800
 ## Note that the built in camera limits do not work: they don't actually constrain the position of the camera.
 ## They only stop the view from moving. For the player, this makes the camera appear to "stick" at the edges of the map, 
 ## which is bad.
-export(Rect2) var limit_rect = Rect2(Vector2(), Vector2.ONE * 10) setget set_limit_rect
+export(Rect2) var limit_rect = Rect2(Vector2(), Vector2.ONE * 100) setget set_limit_rect
 
 var mouse_captured := false
+
+
+func _ready() -> void:
+	share.add_hook('camera_limit', self, '_set_camera_limit')
 
 
 func _input(event):
@@ -80,10 +84,15 @@ func _snap_zoom_limits():
 func set_limit_rect(rect: Rect2):
 	limit_rect = rect
 
-	offx =(limit_rect.size.x/2) * 0.25
-	offy =(limit_rect.size.y/2) * 0.001
+	offx =(limit_rect.size.x/2) * 0.20
+	offy =(limit_rect.size.y/2) * 0.0001
 	_snap_to_limits()
 
 
 func _on_Camera2D_item_rect_changed() -> void:
 	owner.fix_background()
+
+
+func _set_camera_limit(value: Rect2):
+	set_limit_rect(value)
+

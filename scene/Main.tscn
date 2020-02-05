@@ -108,7 +108,7 @@ margin_right = 210.0
 margin_bottom = 193.0
 
 [node name="TitleBar" type="Control" parent="UI"]
-margin_right = 1024.0
+anchor_right = 1.0
 margin_bottom = 18.0
 script = ExtResource( 7 )
 __meta__ = {
@@ -264,10 +264,12 @@ margin_right = -23.1912
 margin_bottom = 492.658
 
 [node name="ProgressBar" type="ProgressBar" parent="UI"]
-visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_top = 21.0
+margin_left = 346.0
+margin_top = 262.0
+margin_right = -352.0
+margin_bottom = -261.0
 value = 0.12
 __meta__ = {
 "_edit_use_anchors_": false
