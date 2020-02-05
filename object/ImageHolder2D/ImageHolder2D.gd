@@ -10,7 +10,13 @@ func loading(file_path: String):
 #	print(ResourceLoader.load(file_path))
 #	print(StreamTexture.new().load(file_path))
 	
-	load_image(file_path)
+	_load_image(file_path)
+
+
+func _load_image(path):
+	
+	thread = Thread.new()
+	thread.start( self, "_thread_load", path)
 
 
 func _thread_load(path):
@@ -67,10 +73,7 @@ func _thread_done(resource):
 	emit_signal("done")
 
 
-func load_image(path):
-	
-	thread = Thread.new()
-	thread.start( self, "_thread_load", path)
+
 
 
 func set_center_offset():
@@ -84,8 +87,8 @@ func _draw() -> void:
 	var rect = Rect2(pos, texture.get_size())
 	
 	draw_rect(rect, Color.green, false)
-	draw_circle(pos, 5, Color.yellow)
-	draw_circle(pos + Vector2(0, rect.size.y), 5, Color.yellow)
+#	draw_circle(pos, 5, Color.yellow)
+#	draw_circle(pos + Vector2(0, rect.size.y), 5, Color.yellow)
 
 
 

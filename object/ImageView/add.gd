@@ -14,8 +14,8 @@ func _add_image():
 	
 	_add()
 	
-	change_state('sort')
-#	change_state('idle')
+#	change_state('sort')
+	change_state('idle')
 
 
 func _remove_children():
@@ -31,29 +31,25 @@ func _has_image():
 
 
 func _add():
-	var seperat = true
 	
 	var index := 0
-	var size :float= owner.image_textures.size()
+	var size :float= owner.image_list.size()
 	
-#	while true:
-#		pass
-	
-#	for texture in owner.image_textures:
 	for i in size:
-		var tex = owner.image_textures[i]
+#	for image_path in owner.image_list:
+		
+		var image_path :String= owner.image_list[i]
+		
 		var new :Sprite= owner.image_holder.instance()
 	
 		owner.add_child(new)
-		new.texture = tex
+		new.loading(image_path)
 		
-		# todo: seperat
-		if i >= size -1:
-			seperat = false
+		var do_if_is_last :bool= i >= size -1
 		
-		_sort(new, seperat)
+		_sort(new, not do_if_is_last)
 		
-		print(i)
+#		print(i)
 		if i >= size -1:
 			break
 #		new.position = owner.size.x / 2.0

@@ -12,7 +12,7 @@ export(int) var seperation = 10 #setget set_sperat
 
 
 var index := 0
-var image_list := []
+var image_list := PoolStringArray()
 var image_textures := []
 
 
@@ -23,7 +23,7 @@ var margin := Vector2(20, 10)
 func start(_image_list):
 	image_list = _image_list
 	
-	fsm.transition_to('load')
+	fsm.transition_to('add')
 
 
 func set_box(w, h):
