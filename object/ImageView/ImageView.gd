@@ -1,6 +1,7 @@
 extends Node2D
 class_name ImageView
 
+#signal children_changed
 
 onready var fsm = $state
 
@@ -19,6 +20,10 @@ var image_textures := []
 var size := Vector2()
 var margin := Vector2(20, 10)
 
+
+func _ready() -> void:
+	share.set_value('image_loader', Thread.new())
+	connect("children_changed", self, '_children_changed')
 
 func start(_image_list):
 	image_list = _image_list
@@ -43,6 +48,31 @@ func set_box(w, h):
 #	if fsm and not fsm.state_is('sort'):
 #		fsm.transition_to('sort')
 
+
+
+
+#func _children_changed():
+#	sort_children()
+
+
+func sort_children():
+	var w := 0
+	var h := 0
+	
+	for child in get_children():
+		if child is StateMachine:
+			continue
+		
+		var size = child.texture.get_size()
+		
+		w = max(size.x, w)
+		h += size.y
+		
+		child.position.x = w/2
+		child.position.y = h
+#		print(size)
+		
+	pass
 
 
 func _process(delta: float) -> void:

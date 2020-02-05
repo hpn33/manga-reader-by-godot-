@@ -1,10 +1,18 @@
 extends Sprite
 
-signal done
 
 var thread = null
 
-func loading(file_path: String):
+var file_path := ''
+var adapter
+
+
+func init(_adapter, _file_path: String):
+	adapter = _adapter
+	file_path = _file_path
+
+
+func loading():
 	
 #	print(Image.new().load(file_path))
 #	print(ResourceLoader.load(file_path))
@@ -69,11 +77,7 @@ func _thread_done(resource):
 	
 	texture = resource
 	set_center_offset()
-	
-	emit_signal("done")
-
-
-
+	adapter.sort_children()
 
 
 func set_center_offset():

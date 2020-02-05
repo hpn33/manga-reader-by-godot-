@@ -43,16 +43,15 @@ func _add():
 		var new :Sprite= owner.image_holder.instance()
 	
 		owner.add_child(new)
-		new.loading(image_path)
+		new.init(owner, image_path)
+		new.loading()
+
+#		owner.sort_children()
 		
-		var do_if_is_last :bool= i >= size -1
-		
-		_sort(new, not do_if_is_last)
-		
-#		print(i)
+
 		if i >= size -1:
 			break
-#		new.position = owner.size.x / 2.0
+		
 	y_pos = 0
 
 
