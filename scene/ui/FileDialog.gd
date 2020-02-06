@@ -16,7 +16,6 @@ func _on_FileDialog_dir_selected(dir: String) -> void:
 	config.set_data('recents', paths)
 	config.save()
 	
-	share.set_value('path', dir)
-	
-	owner.ui.title_bar.recent_menu.re_init()
+	share.set_value('target_dir', dir)
+	share.set_value('recents', paths)
 

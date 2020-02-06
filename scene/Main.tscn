@@ -349,6 +349,7 @@ margin_right = -23.1912
 margin_bottom = 492.658
 
 [node name="LoadProgressBar" parent="UI" instance=ExtResource( 15 )]
+visible = false
 margin_left = 958.611
 margin_top = 180.262
 margin_right = 1021.61

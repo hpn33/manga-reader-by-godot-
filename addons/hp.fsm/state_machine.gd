@@ -70,7 +70,7 @@ func transition_to(target_state_path: String, msg: Dictionary = {}) -> void:
 func set_state(value: State) -> void:
 	current_state = value
 	_state_name = current_state.name
-	print('%s:\t= %s' % [parent.name, _state_name] )
+#	print('%s:\t= %s' % [parent.name, _state_name] )
 
 
 func state_is(target_state_path: String) -> bool:

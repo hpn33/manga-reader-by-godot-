@@ -9,71 +9,54 @@ export(PackedScene) var image_holder = preload("res://object/ImageHolder2D/Image
 
 onready var camera2d = $"../Camera2D"
 
-export(int) var seperation = 10 #setget set_sperat
 
-
-var index := 0
+#var index := 0
 var image_list := PoolStringArray()
 var image_textures := []
+var image_size := []
 
 
 var size := Vector2()
 var margin := Vector2(20, 10)
 
+var box := Rect2()
 
-func _ready() -> void:
-	share.set_value('image_loader', Thread.new())
-	connect("children_changed", self, '_children_changed')
+
+#func _ready() -> void:
+#	share.set_value('image_loader', Thread.new())
 
 func start(_image_list):
 	image_list = _image_list
-	
+
 	fsm.transition_to('add')
 
 
-func set_box(w, h):
-	
-	size.x = max(w, size.x)
-	size.y += h
+func set_camera_limit():
 	
 	var rect = Rect2(position, size)
 	
 	share.set_value('camera_limit', rect)
-#	camera2d.limit_rect = rect
-#	camera2d.position.x = size.x/2
 
 
-#func set_sperat(value: int) -> void:
-#	seperation = value
-#	if fsm and not fsm.state_is('sort'):
-#		fsm.transition_to('sort')
-
-
-
-
-#func _children_changed():
-#	sort_children()
-
-
-func sort_children():
-	var w := 0
-	var h := 0
+func set_size():
 	
-	for child in get_children():
-		if child is StateMachine:
+	for i in get_child_count():
+		
+		var child = get_children()[i]
+		
+		if child.name == 'state':
 			continue
 		
-		var size = child.texture.get_size()
+		size.x = max(size.x, child.size.x)
 		
-		w = max(size.x, w)
-		h += size.y
-		
-		child.position.x = w/2
-		child.position.y = h
-#		print(size)
-		
-	pass
+		if i == get_child_count()-1:
+			size.y = child.get_pos().y + child.size.y
+#			print(size)
+	
+	set_camera_limit()
 
+#func sort_to_last(index: int):
+#	pass
 
 func _process(delta: float) -> void:
 	update()

@@ -1,6 +1,6 @@
 extends Node
 
-signal data_changed(_data)
+#signal data_changed(_data)
 
 #var path := '' setget set_path
 #

@@ -9,8 +9,8 @@ export(Align) var align = Align.CENTER setget set_align
 onready var box := $Box
 
 
-func _ready() -> void:
-	print('root')
+#func _ready() -> void:
+#	print('root')
 	
 	set_align(Align.CENTER)
 

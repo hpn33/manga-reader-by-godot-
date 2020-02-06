@@ -6,7 +6,7 @@ var debug := false
 
 func debug(message: String) -> void:
 	if debug:
-		print('SharePoint = ', message, '\n')
+		print('SharePoint = %s\n' % message)
 # -----------------------------
 
 var keys := []

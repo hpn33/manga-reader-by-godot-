@@ -12,10 +12,10 @@ export var value := 0.0 setget set_value
 
 
 
-func set_total(value):
-	total = value
+func set_total(_value):
+	total = _value
 	if total_label:
-		total_label.text = str(value)
+		total_label.text = str(_value)
 
 
 func set_value(_value):

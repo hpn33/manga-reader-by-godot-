@@ -11,7 +11,7 @@ func _ready() -> void:
 	config.init()
 	config.load()
 	
-	share.set_value('path', 'choise image folder')
+	share.set_value('target_dir', 'choise image folder')
 	share.set_value('colors', config.get_data('colors'))
 	share.set_value('recents', config.get_data('recents'))
 

@@ -18,8 +18,9 @@ func set_title(title: String):
 
 func _id_pressed(id: int):
 	var item = get_popup().get_item_text(id)
-	share.set_value('path', item)
-	re_init()
+	share.set_value('target_dir', item)
+	
+	_recent_changed(share.get_value('recents')) 
 
 
 func _recent_changed(recents: Array):
@@ -27,8 +28,4 @@ func _recent_changed(recents: Array):
 	for path in recents:
 		if text != path:
 			get_popup().add_item(path)
-
-
-func re_init():
-	_recent_changed(share.get_value('recents'))
 

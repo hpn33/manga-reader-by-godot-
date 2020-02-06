@@ -8,7 +8,7 @@ var info := {
 }
 
 func _ready() -> void:
-	data.connect("data_changed", self, '_data_changed')
+#	data.connect("data_changed", self, '_data_changed')
 #	share.add_hook('')
 	check_visiblity()
 
@@ -61,8 +61,8 @@ func check_visiblity():
 			visible = true
 
 
-func _data_changed(_data):
-	clear_all()
-	add_info('path', data.path)
-	add_info('pages', str(data.page_count))
+#func _data_changed(_data):
+#	clear_all()
+#	add_info('path', data.path)
+#	add_info('pages', str(data.page_count))
 

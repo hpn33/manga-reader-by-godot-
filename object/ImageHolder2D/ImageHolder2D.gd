@@ -6,6 +6,23 @@ var thread = null
 var file_path := ''
 var adapter
 
+signal update
+
+#var pos := Vector2() setget , get_pos
+var size := Vector2()
+var margin := Vector2()
+
+
+func get_off():
+	return offset - Vector2(0, size.y/2)
+
+func get_pos():
+	return position + get_off()
+
+
+func _ready() -> void:
+	set_center_offset()
+
 
 func init(_adapter, _file_path: String):
 	adapter = _adapter
@@ -13,10 +30,6 @@ func init(_adapter, _file_path: String):
 
 
 func loading():
-	
-#	print(Image.new().load(file_path))
-#	print(ResourceLoader.load(file_path))
-#	print(StreamTexture.new().load(file_path))
 	
 	_load_image(file_path)
 
@@ -28,36 +41,6 @@ func _load_image(path):
 
 
 func _thread_load(path):
-#	var ril = ResourceLoader.load_interactive(path)
-	
-#	assert(ril)
-#	var total = ril.get_stage_count()
-	
-	# Call deferred to configure max load steps
-#	progress.call_deferred("set_max", total)
-	
-#	var res = null
-	
-#	while true: #iterate until we have a resource
-#
-#		# Update progress bar, use call deferred, which routes to main thread
-##		progress.call_deferred("set_value", ril.get_stage())
-#
-#		# Simulate a delay
-##		OS.delay_msec(SIMULATED_DELAY_SEC * 1000.0)
-#
-#		# Poll (does a load step)
-#		var err = ril.poll()
-#
-#		# if OK, then load another one. If EOF, it' s done. Otherwise there was an error.
-#		if err == ERR_FILE_EOF:
-#			# Loading done, fetch resource
-#			res = ril.get_resource()
-#			break
-#		elif err != OK:
-#			# Not OK, there was an error
-#			print("There was an error loading")
-#			break
 	
 	var image = Image.new()
 	image.load(path)
@@ -76,29 +59,60 @@ func _thread_done(resource):
 	thread.wait_to_finish()
 	
 	texture = resource
+	set_size()
 	set_center_offset()
-	adapter.sort_children()
+	
+#	adapter.sort_children()
+	adapter.set_size()
+
+
+
+
+func set_margin(x, y):
+	margin.x = x
+	margin.y = y
+	set_size()
+
+
+func set_size():
+	size = texture.get_size() + margin
+	emit_signal("update")
 
 
 func set_center_offset():
-	offset.y = texture.get_height() / 2
+	if texture.get_size().y != 0:
+		offset.y = texture.get_size().y / 2.0
 
 
 func _draw() -> void:
 #	var size = Vector2(texture.get_width(), texture.get_height())
 #	print(offset)
-	var pos = Vector2(-texture.get_size().x / 2, 0)
-	var rect = Rect2(pos, texture.get_size())
+	var pos = Vector2(-texture.get_size().x/2, 0)
+	var tex := Rect2(pos, texture.get_size())
 	
-	draw_rect(rect, Color.green, false)
-#	draw_circle(pos, 5, Color.yellow)
-#	draw_circle(pos + Vector2(0, rect.size.y), 5, Color.yellow)
+	draw_rect(tex, Color.green, false)
+	
+	
+	pos = tex.position - (margin/2)
+	var siz :Vector2= tex.size + margin
+	
+	var box := Rect2()
+	
+	box.position = pos
+	box.size = siz
+	
+	draw_rect(box, Color.red, false)
+	
+	# 0, 0
+	draw_circle(Vector2(), 5, Color.green)
+	# offset
+	draw_circle(offset, 5, Color.yellow)
+	# offset - size.y/2
+	draw_circle(get_off(), 5, Color.red)
+	
+	
 
 
 
 
 
-
-
-func _on_ImageHolder2D_texture_changed() -> void:
-	set_center_offset()

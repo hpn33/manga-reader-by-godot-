@@ -2,11 +2,11 @@ extends ImageView
 
 
 func _ready() -> void:
-	share.add_hook('path', self, '_path_changed')
+	share.add_hook('target_dir', self, '_target_dir_changed')
 
 var path := ''
 
-func _path_changed(value):
+func _target_dir_changed(value):
 	if path == value:
 		return
 	
@@ -37,7 +37,8 @@ func _find_image_path() -> void:
 	else:
 		print("An error occurred when trying to access the path.")
 	
-	share.set_value('page_count', image_list.size())
+#	share.set_value('page_count', image_list.size())
+	share.set_value('image_list', image_list)
 	
 	start(image_list)
 
