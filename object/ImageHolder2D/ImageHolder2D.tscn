@@ -6,3 +6,4 @@
 [node name="ImageHolder2D" type="Sprite"]
 texture = ExtResource( 1 )
 script = ExtResource( 2 )
+[connection signal="texture_changed" from="." to="." method="_on_ImageHolder2D_texture_changed"]

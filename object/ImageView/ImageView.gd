@@ -40,6 +40,7 @@ func set_camera_limit():
 
 func set_size():
 	
+	size.y = 0
 	for i in get_child_count():
 		
 		var child = get_children()[i]
@@ -49,14 +50,61 @@ func set_size():
 		
 		size.x = max(size.x, child.size.x)
 		
-		if i == get_child_count()-1:
-			size.y = child.get_pos().y + child.size.y
-#			print(size)
+		
+		size.y += child.size.y
+		
+#		if i == get_child_count()-1:
+#			size.y = child.get_pos().y + child.size.y
 	
 	set_camera_limit()
+	sort()
 
-#func sort_to_last(index: int):
-#	pass
+
+func sort():
+	var hp = 0
+	
+	for i in get_child_count():
+		
+		var child = get_children()[i]
+		if child.name == 'state':
+			continue
+#		child.set_margin(50, 50)
+		
+		# set center
+		child.position.x = size.x/2
+		
+		# set vertical position
+		var fix = child.margin.y/2 if i == 1 else 0
+		child.position.y = hp + fix
+		
+#		print(child.position)
+		hp += child.size.y
+
+
+func sort_to_last(index: int):
+	var hp = 0
+	
+	for i in get_child_count():
+		
+		var child = get_children()[i]
+		
+		if child.name == 'state':
+			continue
+		
+		if i >= index:
+			# set center
+			var x = size.x /2
+			child.position.x = size.x/2
+			
+			# set vertical position
+			var fix = child.margin.y/2 if i == 1 else 0
+			child.position.y = hp + fix
+			
+		
+		
+#		print(child.position)
+		hp += child.size.y
+
 
 func _process(delta: float) -> void:
 	update()

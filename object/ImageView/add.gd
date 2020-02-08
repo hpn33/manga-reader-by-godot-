@@ -36,14 +36,13 @@ func _add():
 		var new :Sprite= owner.image_holder.instance()
 		
 		new.init(owner, image_path)
-		new.set_margin(0, 10)
+		new.set_margin(10, 10)
 		
 #		owner.image_textures.append(new)
 		owner.add_child(new)
 		
-		new.connect("update", owner, 'set_size')
-		
-#		new.loading()
+		new.connect("update", owner, 'sort_to_last')
+		new.loading()
 	
 	owner.set_size()
 	

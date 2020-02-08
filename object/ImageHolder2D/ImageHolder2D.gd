@@ -1,23 +1,31 @@
 extends Sprite
 
+signal update(index)
 
 var thread = null
 
 var file_path := ''
 var adapter
 
-signal update
 
-#var pos := Vector2() setget , get_pos
 var size := Vector2()
 var margin := Vector2()
 
 
-func get_off():
-	return offset - Vector2(0, size.y/2)
+func pos_wo_offset():
+	# position without offset
+	return offset
 
-func get_pos():
-	return position + get_off()
+func pos_wo_offset_w_size():
+	# position without offset & with size
+	return pos_wo_offset() - Vector2(0, size.y/2)
+
+
+func set_pos_w(x = position.x, y = position.y):
+	# set position with anything that need
+	position.x = x
+	position.y = y
+	
 
 
 func _ready() -> void:
@@ -76,7 +84,7 @@ func set_margin(x, y):
 
 func set_size():
 	size = texture.get_size() + margin
-	emit_signal("update")
+	emit_signal("update", get_position_in_parent())
 
 
 func set_center_offset():
@@ -106,9 +114,10 @@ func _draw() -> void:
 	# 0, 0
 	draw_circle(Vector2(), 5, Color.green)
 	# offset
-	draw_circle(offset, 5, Color.yellow)
+	draw_circle(pos_wo_offset(), 5, Color.yellow)
 	# offset - size.y/2
-	draw_circle(get_off(), 5, Color.red)
+	draw_circle(pos_wo_offset_w_size(), 5, Color.red)
+#	draw_circle(get_pos(), 5, Color.red)
 	
 	
 
@@ -116,3 +125,8 @@ func _draw() -> void:
 
 
 
+
+
+
+func _on_ImageHolder2D_texture_changed() -> void:
+	set_size()
