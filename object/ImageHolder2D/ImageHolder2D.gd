@@ -12,24 +12,8 @@ var size := Vector2()
 var margin := Vector2()
 
 
-func pos_wo_offset():
-	# position without offset
-	return offset
-
-func pos_wo_offset_w_size():
-	# position without offset & with size
-	return pos_wo_offset() - Vector2(0, size.y/2)
-
-
-func set_pos_w(x = position.x, y = position.y):
-	# set position with anything that need
-	position.x = x
-	position.y = y
-	
-
-
 func _ready() -> void:
-	set_center_offset()
+	set_size()
 
 
 func init(_adapter, _file_path: String):
@@ -68,10 +52,8 @@ func _thread_done(resource):
 	
 	texture = resource
 	set_size()
-	set_center_offset()
 	
-#	adapter.sort_children()
-	adapter.set_size()
+#	adapter.set_size()
 
 
 
@@ -84,40 +66,35 @@ func set_margin(x, y):
 
 func set_size():
 	size = texture.get_size() + margin
-	emit_signal("update", get_position_in_parent())
+	fix_offset()
+	emit_signal("update")
 
 
-func set_center_offset():
-	if texture.get_size().y != 0:
-		offset.y = texture.get_size().y / 2.0
+func fix_offset():
+	if size.y != 0:
+		offset.y = size.y / 2.0
 
 
 func _draw() -> void:
-#	var size = Vector2(texture.get_width(), texture.get_height())
-#	print(offset)
-	var pos = Vector2(-texture.get_size().x/2, 0)
-	var tex := Rect2(pos, texture.get_size())
 	
-	draw_rect(tex, Color.green, false)
+	# draw texture box
+	var pos := Vector2(-texture.get_size().x /2 , margin.y/2)
+	var box := Rect2(pos, texture.get_size())
+	draw_rect(box, Color.green, false)
 	
-	
-	pos = tex.position - (margin/2)
-	var siz :Vector2= tex.size + margin
-	
-	var box := Rect2()
-	
-	box.position = pos
-	box.size = siz
-	
+	# draw full box
+	pos = Vector2(-size.x/2, 0)
+	box = Rect2(pos, size)
 	draw_rect(box, Color.red, false)
 	
-	# 0, 0
-	draw_circle(Vector2(), 5, Color.green)
-	# offset
-	draw_circle(pos_wo_offset(), 5, Color.yellow)
-	# offset - size.y/2
-	draw_circle(pos_wo_offset_w_size(), 5, Color.red)
-#	draw_circle(get_pos(), 5, Color.red)
+	# final position
+	draw_circle(Vector2(), 5, Color.red)
+	
+	# without offset ( center of box )
+	draw_circle(offset, 5, Color.yellow)
+	
+	# just texture size ( on lap of texture )
+	draw_circle(Vector2(0, margin.y/2), 5, Color.green)
 	
 	
 

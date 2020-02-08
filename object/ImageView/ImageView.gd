@@ -50,11 +50,8 @@ func set_size():
 		
 		size.x = max(size.x, child.size.x)
 		
-		
-		size.y += child.size.y
-		
-#		if i == get_child_count()-1:
-#			size.y = child.get_pos().y + child.size.y
+		if i == get_child_count()-1:
+			size.y = child.position.y + child.size.y
 	
 	set_camera_limit()
 	sort()
