@@ -8,20 +8,12 @@ var adapter
 
 signal update
 
-#var pos := Vector2() setget , get_pos
 var size := Vector2()
 var margin := Vector2()
 
 
-func get_off():
-	return offset - Vector2(0, size.y/2)
-
-func get_pos():
-	return position + get_off()
-
-
 func _ready() -> void:
-	set_center_offset()
+	set_size()
 
 
 func init(_adapter, _file_path: String):
@@ -60,10 +52,8 @@ func _thread_done(resource):
 	
 	texture = resource
 	set_size()
-	set_center_offset()
 	
-#	adapter.sort_children()
-	adapter.set_size()
+#	adapter.set_size()
 
 
 
@@ -76,39 +66,35 @@ func set_margin(x, y):
 
 func set_size():
 	size = texture.get_size() + margin
+	fix_offset()
 	emit_signal("update")
 
 
-func set_center_offset():
-	if texture.get_size().y != 0:
-		offset.y = texture.get_size().y / 2.0
+func fix_offset():
+	if size.y != 0:
+		offset.y = size.y / 2.0
 
 
 func _draw() -> void:
-#	var size = Vector2(texture.get_width(), texture.get_height())
-#	print(offset)
-	var pos = Vector2(-texture.get_size().x/2, 0)
-	var tex := Rect2(pos, texture.get_size())
 	
-	draw_rect(tex, Color.green, false)
+	# draw texture box
+	var pos := Vector2(-texture.get_size().x /2 , margin.y/2)
+	var box := Rect2(pos, texture.get_size())
+	draw_rect(box, Color.green, false)
 	
-	
-	pos = tex.position - (margin/2)
-	var siz :Vector2= tex.size + margin
-	
-	var box := Rect2()
-	
-	box.position = pos
-	box.size = siz
-	
+	# draw full box
+	pos = Vector2(-size.x/2, 0)
+	box = Rect2(pos, size)
 	draw_rect(box, Color.red, false)
 	
-	# 0, 0
-	draw_circle(Vector2(), 5, Color.green)
-	# offset
+	# final position
+	draw_circle(Vector2(), 5, Color.red)
+	
+	# without offset ( center of box )
 	draw_circle(offset, 5, Color.yellow)
-	# offset - size.y/2
-	draw_circle(get_off(), 5, Color.red)
+	
+	# just texture size ( on lap of texture )
+	draw_circle(Vector2(0, margin.y/2), 5, Color.green)
 	
 	
 

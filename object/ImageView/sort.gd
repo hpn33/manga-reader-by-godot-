@@ -15,9 +15,8 @@ func enter(msg: Dictionary = {}) -> void:
 		child.position.x = owner.size.x/2
 		
 		# set vertical position
-		child.position.y = hp -child.get_pos().y
+		child.position.y = hp
 		
-#		print(child.position)
 		hp += child.size.y
 	
 	owner.set_size()
