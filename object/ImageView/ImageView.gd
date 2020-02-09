@@ -1,7 +1,6 @@
 extends Node2D
 class_name ImageView
 
-#signal children_changed
 
 onready var fsm = $state
 
@@ -10,7 +9,6 @@ export(PackedScene) var image_holder = preload("res://object/ImageHolder2D/Image
 onready var camera2d = $"../Camera2D"
 
 
-#var index := 0
 var image_list := PoolStringArray()
 var image_textures := []
 var image_size := []
@@ -19,11 +17,6 @@ var image_size := []
 var size := Vector2()
 var margin := Vector2(20, 10)
 
-var box := Rect2()
-
-
-#func _ready() -> void:
-#	share.set_value('image_loader', Thread.new())
 
 func start(_image_list):
 	image_list = _image_list
@@ -42,7 +35,6 @@ func set_size():
 	
 	size.y = 0
 	for i in get_child_count():
-		
 		var child = get_children()[i]
 		
 		if child.name == 'state':
@@ -50,36 +42,37 @@ func set_size():
 		
 		size.x = max(size.x, child.size.x)
 		
-		if i == get_child_count()-1:
-			size.y = child.position.y + child.size.y
+		size.y += child.size.y
 	
 	set_camera_limit()
-	sort()
+
+
+func set_size_zero():
+	size = Vector2()
 
 
 func sort():
 	var hp = 0
+	var center_x = size.x/2
 	
 	for i in get_child_count():
 		
 		var child = get_children()[i]
 		if child.name == 'state':
 			continue
-#		child.set_margin(50, 50)
 		
 		# set center
-		child.position.x = size.x/2
+		child.position.x = center_x
 		
 		# set vertical position
-		var fix = child.margin.y/2 if i == 1 else 0
-		child.position.y = hp + fix
+		child.position.y = hp
 		
-#		print(child.position)
 		hp += child.size.y
 
 
-func sort_to_last(index: int):
-	var hp = 0
+func fix_pos_to_last(index: int, diff):
+	set_size()
+	var center_x = size.x/2
 	
 	for i in get_child_count():
 		
@@ -88,19 +81,15 @@ func sort_to_last(index: int):
 		if child.name == 'state':
 			continue
 		
-		if i >= index:
-			# set center
-			var x = size.x /2
-			child.position.x = size.x/2
-			
-			# set vertical position
-			var fix = child.margin.y/2 if i == 1 else 0
-			child.position.y = hp + fix
-			
+		child.position.x = center_x
 		
-		
-#		print(child.position)
-		hp += child.size.y
+		if i > index:
+			child.position.y += diff
+
+
+func sorting():
+	set_size()
+	sort()
 
 
 func _process(delta: float) -> void:

@@ -2,8 +2,7 @@ extends State
 
 
 func enter(msg: Dictionary = {}) -> void:
-#	_sort()
 	
-#	owner.sort()
+	owner.sorting()
 	change_state('idle')
 

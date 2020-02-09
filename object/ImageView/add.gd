@@ -1,7 +1,6 @@
 extends State
 
 
-
 func enter(msg: Dictionary = {}) -> void:
 	_add_image()
 	
@@ -11,6 +10,8 @@ func enter(msg: Dictionary = {}) -> void:
 func _add_image():
 	 
 	_remove_children()
+	
+	owner.set_size_zero()
 	
 	if not _has_image():
 		return
@@ -38,14 +39,9 @@ func _add():
 		new.init(owner, image_path)
 		new.set_margin(10, 10)
 		
-#		owner.image_textures.append(new)
 		owner.add_child(new)
 		
-		new.connect("update", owner, 'sort_to_last')
 		new.loading()
-	
-	owner.set_size()
-	
 	
 
 

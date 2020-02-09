@@ -1,7 +1,5 @@
 extends Sprite
 
-signal update(index)
-
 var thread = null
 
 var file_path := ''
@@ -50,12 +48,14 @@ func _thread_done(resource):
 	# Always wait for threads to finish, this is required on Windows
 	thread.wait_to_finish()
 	
-	texture = resource
-	set_size()
+	var prev_size = size.y
 	
-#	adapter.set_size()
-
-
+	texture = resource
+	
+	var diff = size.y - prev_size
+	
+	adapter.fix_pos_to_last(get_position_in_parent(), diff)
+#	adapter.sorting()
 
 
 func set_margin(x, y):
@@ -67,7 +67,6 @@ func set_margin(x, y):
 func set_size():
 	size = texture.get_size() + margin
 	fix_offset()
-	emit_signal("update")
 
 
 func fix_offset():
@@ -107,3 +106,4 @@ func _draw() -> void:
 
 func _on_ImageHolder2D_texture_changed() -> void:
 	set_size()
+
