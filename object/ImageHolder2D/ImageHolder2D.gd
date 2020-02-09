@@ -55,7 +55,6 @@ func _thread_done(resource):
 	var diff = size.y - prev_size
 	
 	adapter.fix_pos_to_last(get_position_in_parent(), diff)
-#	adapter.sorting()
 
 
 func set_margin(x, y):
