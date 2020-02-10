@@ -2,16 +2,12 @@
 maked by Godot
 > for showing squere image like any normal web manga reader
 
+
 ## feture
-* movement
-* setting
-* config file on images location
-* pagination
-
-
-### Core System
-* Observer System ( SharePoint ) for control data
-* config wraper for use config file to save setting
+- [x] movement
+- [x] setting
+- [ ] config file on images location
+- [ ] pagination
 
 
 ### movement
@@ -19,6 +15,13 @@ maked by Godot
 - [x] movement with keyboard ( need improve )
 
 ### setting
+* setting file
+* Background Color panel
+- [x] change background color
+
+
+
+#### setting file
 make file on `user://` directory of godot by name `config.cfg`
 for saving:
 - [x] background colors
@@ -32,18 +35,24 @@ for sorting image
 ### pagination
 navigate to another image by number
 
-### setting
-- [x] change background color
+
+## Logic System
+* SharePoint: Observer System for control data
+* config wraper for use config file to save setting
+
+#### Share Point
+use Obserever pattern to reacte when exact data changed
+> similar to signal but for variable and when changed call function that set with variable
 
 
 ## TODO
-- [ ] improve movement
-- [x] make recent folder address
-- [ ] config file on image folder ( for sorting images )
-- [x] save image folder address on setting file
-- [x] signal system on config system (  ) for when a data changed ( by name SharePoint )
-- [ ] delete color
 - [ ] undo for color panel
 - [ ] fix recent address sort
-- [ ] fix image view for showing image
+- [ ] delete color
+- [ ] improve movement
+- [x] make recent folder address
+- [ ] config file on image folder ( for sorting images and set custom setting )
+- [x] save image folder address on setting file
+- [x] signal system on config system (  ) for when a data changed ( by name SharePoint )
+- [x] fix image view for showing image
 - [ ] fix background responsiblity
