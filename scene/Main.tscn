@@ -257,7 +257,6 @@ __meta__ = {
 }
 
 [node name="ColorPicker" parent="UI/PopMenu" instance=ExtResource( 13 )]
-visible = true
 margin_left = -458.191
 margin_top = 22.6578
 margin_right = -23.1912

@@ -14,7 +14,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://object/Box2D/Box2D.gd"
 }, {
-"base": "MarginContainer",
+"base": "VBoxContainer",
 "class": "ColorList",
 "language": "GDScript",
 "path": "res://object/ColorPicker/ColorList.gd"

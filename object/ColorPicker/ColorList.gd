@@ -1,28 +1,27 @@
-extends MarginContainer
+extends VBoxContainer
 class_name ColorList
 
 
 onready var color_holder = preload("res://object/ColorPicker/ColorHolder/ColorHolder.tscn")
 
-onready var list := $vBox
-
 
 func _ready() -> void:
-	re_add(owner.colors)
+	re_add()
 
 
 func clear():
-	for i in list.get_child_count():
-		list.remove_child(list.get_child(0))
+	for i in get_child_count():
+		remove_child(get_child(0))
 
 
 func add(color):
 	var new :Button= color_holder.instance()
 	
-	list.add_child(new)
+	add_child(new)
 	
-	new.set_(color)
-	new.connect("pressed", self, '_holder_pressed', [new, color])
+	new.set_(color[0], color[1])
+	new.connect("pressed", self, '_holder_pressed', [color])
+	new.connect("delete", self, '_delete_button', [new])
 
 
 func add_by_array(colors: Array):
@@ -30,18 +29,31 @@ func add_by_array(colors: Array):
 		add(color)
 
 
-func up_item(title, color_code):
-	for i in list.get_child_count():
-		var child = list.get_child(i)
+func update_item(title, color_code):
+	for i in get_child_count():
+		var child = get_child(i)
 		if title == child.title:
 			child.set_color(color_code)
 			break
 
 
-func _holder_pressed(holder, color):
-	owner.set_color(color)
+func _holder_pressed(color):
+	share.set_value('background_color', color[1])
 
 
-func re_add(colors: Array):
+func _delete_button(target):
+	for i in owner.colors.size():
+		var color = owner.colors[i]
+		if color[0] == target.title:
+			owner.colors.remove(i)
+			break
+	
+	config.set_data('colors', owner.colors)
+	config.save()
+	
+	re_add()
+
+
+func re_add(colors: Array = owner.colors):
 	clear()
 	add_by_array(colors)

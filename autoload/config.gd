@@ -8,6 +8,7 @@ signal init
 var _path := 'user://config.cfg'
 
 var _default := {
+	current_color = '',
 	colors = [
 		['default', '1a1a1a'],
 	],
@@ -55,8 +56,8 @@ func save(): cf.save(_path)
 func load(): cf.load(_path)
 
 
-func get_data(key):
-	return cf.get_value(root_section, key, [])
+func get_data(key, default = null):
+	return cf.get_value(root_section, key, default)
 
 
 func set_data(key, value):
