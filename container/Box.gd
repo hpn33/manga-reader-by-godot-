@@ -6,9 +6,6 @@ export(Vector2) var size := Vector2.ONE * 10 setget set_size
 var offset := Vector2()
 
 
-#func _ready() -> void:
-#	print('child')
-
 func set_size(_size):
 	size = _size
 	update()

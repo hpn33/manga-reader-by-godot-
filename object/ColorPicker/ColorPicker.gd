@@ -1,6 +1,6 @@
 extends PopupPanel
 
-signal color_changed(color)
+#signal color_changed(color)
 
 onready var color_picker :ColorPicker= $HBoxContainer/ColorPicker
 
@@ -19,6 +19,8 @@ var color_name := '' setget set_color_name, get_color_name
 
 func set_color_name(value: String) -> void:
 	color_title.text = value
+#	color_edit.check_title()
+	
 
 func get_color_name():
 	return color_title.text
@@ -35,6 +37,9 @@ func get_color_code():
 
 
 var colors := []
+
+var current_color_title := 'None'
+var current_color_code := 'ccc'
 
 
 func _ready():
@@ -66,9 +71,9 @@ func _on_Edit_pressed() -> void:
 		var new_color = [title, code]
 		colors.append(new_color)
 		color_list.add(new_color)
+	
+	save_colors()
 
-	config.set_data('colors', colors)
-	config.save()
 
 
 func _colors_changed(value):
@@ -76,18 +81,41 @@ func _colors_changed(value):
 	color_list.re_add(colors)
 
 
-func active_color():
-	pass
+func set_current_color(_color_title, _color_code):
+	current_color_title = _color_title
+	current_color_code = _color_code
+	
+	self.color_name = _color_title
+	self.color_code = _color_code
+	
+	check_button_title()
+	
+	share.set_value('background_color', _color_code)
 
-func delete_color(color_name: String):
-	pass
+
+func check_button_title():
+	print(self.color_name)
+	if self.color_name == current_color_title:
+		color_edit.text = 'edit'
+	else:
+		color_edit.text = 'create'
+
+#func active_color():
+#	pass
+
+#func delete_color(color_name: String):
+#	pass
 
 #func update_color(color_name: String, new_color_code: String):
 #	pass
 
-func create_color(color_name: String, color_code: String):
-	pass
+#func create_color(color_name: String, color_code: String):
+#	pass
 
+
+func save_colors():
+	config.set_data('colors', colors)
+	config.save()
 
 
 func _on_ColorPicker_color_changed(color: Color) -> void:

@@ -249,18 +249,18 @@ size_flags_horizontal = 3
 window_title = "Open a Directory"
 mode = 2
 access = 2
-current_dir = "E:/workspace/godot/manga_reader"
-current_path = "E:/workspace/godot/manga_reader/"
+current_dir = "H:/workspace/godot/manga-reader-by-godot-"
+current_path = "H:/workspace/godot/manga-reader-by-godot-/"
 script = ExtResource( 5 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="ColorPicker" parent="UI/PopMenu" instance=ExtResource( 13 )]
-margin_left = -458.191
-margin_top = 22.6578
-margin_right = -23.1912
-margin_bottom = 492.658
+margin_left = -629.383
+margin_top = 25.1753
+margin_right = -59.3833
+margin_bottom = 495.176
 
 [node name="background" type="Sprite" parent="."]
 modulate = Color( 0.101961, 0.101961, 0.101961, 1 )
@@ -284,5 +284,4 @@ script = ExtResource( 4 )
 [connection signal="pressed" from="UI/TitleBar/ColorRect/HBoxContainer/right/quit" to="UI/TitleBar" method="_on_quit_pressed"]
 [connection signal="timeout" from="UI/GuildText/Timer" to="UI/GuildText" method="_on_Timer_timeout"]
 [connection signal="dir_selected" from="UI/PopMenu/FileDialog" to="UI/PopMenu/FileDialog" method="_on_FileDialog_dir_selected"]
-[connection signal="color_changed" from="UI/PopMenu/ColorPicker" to="UI" method="_on_ColorPicker_color_changed"]
 [connection signal="item_rect_changed" from="Camera2D" to="Camera2D" method="_on_Camera2D_item_rect_changed"]

@@ -1,10 +1,13 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://object/ColorPicker/ColorHolder/ColorHolder.tscn" type="PackedScene" id=1]
 [ext_resource path="res://object/ColorPicker/ColorPicker.gd" type="Script" id=2]
 [ext_resource path="res://object/ColorPicker/ColorList.gd" type="Script" id=3]
+[ext_resource path="res://object/ColorPicker/Btn.gd" type="Script" id=4]
+[ext_resource path="res://object/ColorPicker/Title.gd" type="Script" id=5]
 
 [node name="ColorPicker" type="PopupPanel"]
+visible = true
 margin_right = 563.0
 margin_bottom = 470.0
 rect_min_size = Vector2( 570, 470 )
@@ -25,10 +28,8 @@ __meta__ = {
 }
 
 [node name="ColorPicker" type="ColorPicker" parent="HBoxContainer"]
-margin_left = 4.0
-margin_top = 4.0
-margin_right = 4.0
-margin_bottom = 4.0
+margin_right = 308.0
+margin_bottom = 462.0
 size_flags_horizontal = 3
 edit_alpha = false
 presets_enabled = false
@@ -39,8 +40,8 @@ __meta__ = {
 
 [node name="Colors" type="VBoxContainer" parent="HBoxContainer"]
 margin_left = 312.0
-margin_right = 439.0
-margin_bottom = 470.0
+margin_right = 435.0
+margin_bottom = 462.0
 size_flags_horizontal = 3
 custom_constants/separation = 10
 __meta__ = {
@@ -48,28 +49,30 @@ __meta__ = {
 }
 
 [node name="Edit" type="HBoxContainer" parent="HBoxContainer/Colors"]
-margin_right = 127.0
+margin_right = 123.0
 margin_bottom = 41.0
 size_flags_vertical = 3
 custom_constants/separation = 5
 
 [node name="Title" type="LineEdit" parent="HBoxContainer/Colors/Edit"]
-margin_right = 81.0
+margin_right = 78.0
 margin_bottom = 41.0
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 2.0
+script = ExtResource( 5 )
 
 [node name="Btn" type="Button" parent="HBoxContainer/Colors/Edit"]
-margin_left = 86.0
-margin_right = 127.0
+margin_left = 83.0
+margin_right = 123.0
 margin_bottom = 41.0
 size_flags_horizontal = 3
 text = "edit"
+script = ExtResource( 4 )
 
 [node name="List" type="VBoxContainer" parent="HBoxContainer/Colors"]
 margin_top = 51.0
-margin_right = 127.0
-margin_bottom = 470.0
+margin_right = 123.0
+margin_bottom = 462.0
 size_flags_vertical = 3
 size_flags_stretch_ratio = 10.0
 custom_constants/separation = 10
@@ -81,13 +84,13 @@ __meta__ = {
 [node name="ColorHolder" parent="HBoxContainer/Colors/List" instance=ExtResource( 1 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_right = 127.0
+margin_right = 123.0
 margin_bottom = 25.0
 
 [node name="Actions" type="VBoxContainer" parent="HBoxContainer"]
-margin_left = 443.0
-margin_right = 570.0
-margin_bottom = 470.0
+margin_left = 439.0
+margin_right = 562.0
+margin_bottom = 462.0
 size_flags_horizontal = 3
 custom_constants/separation = 10
 __meta__ = {
@@ -95,14 +98,14 @@ __meta__ = {
 }
 
 [node name="Undo" type="Button" parent="HBoxContainer/Actions"]
-margin_right = 127.0
+margin_right = 123.0
 margin_bottom = 20.0
 text = "undo"
 
 [node name="List" type="VBoxContainer" parent="HBoxContainer/Actions"]
 margin_top = 30.0
-margin_right = 127.0
-margin_bottom = 470.0
+margin_right = 123.0
+margin_bottom = 462.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_constants/separation = 10
@@ -111,7 +114,7 @@ __meta__ = {
 }
 
 [node name="Label" type="Label" parent="HBoxContainer/Actions/List"]
-margin_right = 127.0
+margin_right = 123.0
 margin_bottom = 14.0
 size_flags_horizontal = 3
 text = "active 'color1'"
@@ -120,7 +123,7 @@ valign = 1
 
 [node name="Label2" type="Label" parent="HBoxContainer/Actions/List"]
 margin_top = 24.0
-margin_right = 127.0
+margin_right = 123.0
 margin_bottom = 55.0
 size_flags_horizontal = 3
 text = "change 'color1':
@@ -130,7 +133,7 @@ valign = 1
 
 [node name="Label3" type="Label" parent="HBoxContainer/Actions/List"]
 margin_top = 65.0
-margin_right = 127.0
+margin_right = 123.0
 margin_bottom = 96.0
 size_flags_horizontal = 3
 text = "new color
@@ -140,7 +143,7 @@ valign = 1
 
 [node name="Label4" type="Label" parent="HBoxContainer/Actions/List"]
 margin_top = 106.0
-margin_right = 127.0
+margin_right = 123.0
 margin_bottom = 137.0
 size_flags_horizontal = 3
 text = "delete color
@@ -148,4 +151,5 @@ text = "delete color
 align = 1
 valign = 1
 [connection signal="color_changed" from="HBoxContainer/ColorPicker" to="." method="_on_ColorPicker_color_changed"]
+[connection signal="text_changed" from="HBoxContainer/Colors/Edit/Title" to="HBoxContainer/Colors/Edit/Title" method="_on_Title_text_changed"]
 [connection signal="pressed" from="HBoxContainer/Colors/Edit/Btn" to="." method="_on_Edit_pressed"]

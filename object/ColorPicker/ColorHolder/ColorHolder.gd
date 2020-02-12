@@ -21,8 +21,8 @@ func get_title():
 
 var color_code setget set_color, get_colour
 
-func set_color(color_code:String):
-	color_view.color = Color('#' + color_code)
+func set_color(_color_code:String):
+	color_view.color = Color('#' + _color_code)
 
 func get_colour():
 	return color_view.color.to_html()

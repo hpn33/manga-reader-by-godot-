@@ -11,6 +11,5 @@ func fix_by_camera(camera):
 
 
 func _background_color_changed(color_code):
-	print(color_code)
 	if color_code:
 		modulate = Color('#' + color_code)

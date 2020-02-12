@@ -38,7 +38,8 @@ func update_item(title, color_code):
 
 
 func _holder_pressed(color):
-	share.set_value('background_color', color[1])
+	owner.set_current_color(color[0], color[1])
+	
 
 
 func _delete_button(target):
@@ -48,8 +49,7 @@ func _delete_button(target):
 			owner.colors.remove(i)
 			break
 	
-	config.set_data('colors', owner.colors)
-	config.save()
+	owner.save_colors()
 	
 	re_add()
 

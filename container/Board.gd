@@ -10,9 +10,8 @@ onready var box := $Box
 
 
 #func _ready() -> void:
-#	print('root')
 	
-	set_align(Align.CENTER)
+#	set_align(Align.CENTER)
 
 func set_align(_align):
 	align = _align
