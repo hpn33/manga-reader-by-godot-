@@ -84,8 +84,6 @@ func _on_Edit_pressed() -> void:
 			done = true
 			# update color
 			update_color([title, code])
-			
-			check_button_title()
 			break
 	
 	if not done:
@@ -133,6 +131,10 @@ func check_button_title():
 	else:
 		color_btn.text = 'create'
 
+
+
+
+
 func active_color(_color, add_action := true):
 	set_current_color(_color[0], _color[1], add_action)
 
@@ -141,13 +143,17 @@ func create_color(_color, add_action := true):
 	
 	colors.append(_color[0], _color[1])
 	
+	
 	if add_action:
 		action_list.create(_color)
-		action_list.active([current_color_title, current_color_code], _color)
+	
+	set_current_color(_color[0], _color[1], add_action)
 	
 	save_colors()
 	
 	color_list.re_add()
+	
+	check_button_title()
 
 
 func delete_color(_color, add_action := true):
@@ -160,25 +166,35 @@ func delete_color(_color, add_action := true):
 	if add_action:
 		action_list.delete(_color)
 	
+	
 	save_colors()
 	
 	color_list.re_add()
+	
+	color_title.text = ''
+	check_button_title()
 
 
 func update_color(_color, add_action := true):
 	
 	colors.set(_color[0], _color[1])
 	
+	
 	if add_action:
 		var old_color = [current_color_title, current_color_code]
 		
 		action_list.rewrite(old_color, _color)
-		action_list.active(old_color, _color)
-
+	
+	set_current_color(_color[0], _color[1], add_action)
 	
 	save_colors()
 	
 	color_list.re_add()
+	
+	check_button_title()
+
+
+
 
 
 
