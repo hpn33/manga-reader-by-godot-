@@ -19,7 +19,7 @@ func add(color):
 	
 	add_child(new)
 	
-	new.set_(color[0], color[1])
+	new.set_(color)
 	new.connect("pressed", self, '_holder_pressed', [color])
 	new.connect("delete", self, '_delete_button', [new])
 
@@ -40,18 +40,22 @@ func update_item(title, color_code):
 func _holder_pressed(color):
 	owner.set_current_color(color[0], color[1])
 	
+#	owner.active_color()
+	
 
 
 func _delete_button(target):
-	for i in owner.colors.size():
-		var color = owner.colors[i]
-		if color[0] == target.title:
-			owner.colors.remove(i)
-			break
+#	for i in owner.colors.size():
+#		var color = owner.colors[i]
+#		if color[0] == target.title:
+#			owner.colors.remove(i)
+#			break
 	
-	owner.save_colors()
+#	owner.save_colors()
 	
-	re_add()
+	owner.delete_color(target.color)
+	
+#	re_add()
 
 
 func re_add(colors :GMap= owner.colors):

@@ -54,10 +54,18 @@ func set_active_color():
 	yield(owner, "ready")
 	var active_color_name = config.get_data('active_color')
 	
-	for color in colors.to_iterator():
-		if color[0] == active_color_name:
-			set_current_color(color[0], color[1], false)
-			break
+	
+	if colors.can_find(active_color_name):
+		set_current_color(active_color_name, colors.get(active_color_name), false)
+	else:
+		var color = colors.first()
+		set_current_color(color[0], color[1], false)
+#	for color in colors.to_iterator():
+#		if color[0] == active_color_name:
+#			set_current_color(color[0], color[1], false)
+#			return
+	
+	
 	
 
 
@@ -72,9 +80,9 @@ func _on_Edit_pressed() -> void:
 	var title = self.color_name
 	var code = self.color_code
 	
-	for i in colors.size():
-		if colors[i][0] == title:
-			colors[i][1] = code
+	for color in colors.to_iterator():
+		if color[0] == title:
+			color[1] = code
 			done = true
 			# update color
 			color_list.update_item(title, code)
@@ -95,7 +103,6 @@ func _on_Edit_pressed() -> void:
 
 func _colors_changed(value):
 	colors.from_iterator(value)
-	print(colors)
 	color_list.re_add(colors)
 
 
@@ -134,8 +141,18 @@ func check_button_title():
 #func active_color():
 #	pass
 
-#func delete_color(color_name: String):
-#	pass
+
+func delete_color(_color):
+	
+	for color in colors.to_iterator():
+		if color[0] == _color[0]:
+			colors.remove(color[0])
+			break
+	
+	save_colors()
+	
+	color_list.re_add()
+
 
 #func update_color(color_name: String, new_color_code: String):
 #	pass
@@ -145,7 +162,7 @@ func check_button_title():
 
 
 func save_colors():
-	config.set_data('colors', colors)
+	config.set_data('colors', colors.to_iterator())
 	config.save()
 
 

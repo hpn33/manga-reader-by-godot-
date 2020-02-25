@@ -29,8 +29,10 @@ __meta__ = {
 }
 
 [node name="ColorPicker" type="ColorPicker" parent="HBoxContainer"]
-margin_right = 308.0
-margin_bottom = 462.0
+margin_left = 4.0
+margin_top = 4.0
+margin_right = 4.0
+margin_bottom = 4.0
 size_flags_horizontal = 3
 edit_alpha = false
 presets_enabled = false

@@ -4,5 +4,8 @@ onready var list = $'../List'
 
 
 func _on_Undo_pressed():
-	list.get_child(list.get_child_count()-1).undo()
+	var size = list.get_child_count()
+	
+	if size > 0:
+		list.get_child(size-1).undo()
 
