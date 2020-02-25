@@ -99,7 +99,6 @@ func set_current_color(_color_title, _color_code):
 
 
 func check_button_title():
-	print(self.color_name)
 	
 	color_btn.disabled = self.color_name == ''
 	
