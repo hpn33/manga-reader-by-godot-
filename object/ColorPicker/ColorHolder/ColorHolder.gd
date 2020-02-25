@@ -1,11 +1,16 @@
 extends Control
 
-signal delete
 
 onready var color_view = $hBox/CenterContainer/Color
 onready var label = $hBox/Label
 
-func set_(color):
+
+var color_panel
+
+
+func set_(_color_panel, color):
+	color_panel = _color_panel
+	
 	self.title = color[0]
 	self.color_code = color[1]
 
@@ -28,12 +33,16 @@ func get_color_code():
 	return color_view.color.to_html()
 
 
-func _on_Delete_pressed() -> void:
-	emit_signal("delete")
-
-
-
 var color setget , get_colour
 
 func get_colour():
 	return [self.title, self.color_code]
+
+
+
+
+func _on_Delete_pressed() -> void:
+	color_panel.delete_color([self.title, self.color_code])
+
+func _on_ColorHolder_pressed():
+	color_panel.active_color([self.title, self.color_code])

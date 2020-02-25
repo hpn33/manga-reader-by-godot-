@@ -48,4 +48,5 @@ margin_left = 226.0
 margin_right = 245.0
 margin_bottom = 25.0
 text = "x"
+[connection signal="pressed" from="." to="." method="_on_ColorHolder_pressed"]
 [connection signal="pressed" from="hBox/Delete" to="." method="_on_Delete_pressed"]
