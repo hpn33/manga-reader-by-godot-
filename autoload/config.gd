@@ -8,7 +8,7 @@ signal init
 var _path := 'user://config.cfg'
 
 var _default := {
-	current_color = '',
+	active_color = 'default',
 	colors = [
 		['default', '1a1a1a'],
 		['color-1', '115853']

@@ -46,7 +46,18 @@ func _ready():
 	share.add_hook('colors', self, '_colors_changed')
 	
 	color_btn.disabled = true
+	
+	set_active_color()
 
+func set_active_color():
+	yield(owner, "ready")
+	var active_color_name = config.get_data('active_color')
+	
+	for color in colors:
+		if color[0] == active_color_name:
+			set_current_color(color[0], color[1], false)
+			break
+	
 
 
 func set_color(_color):
@@ -86,21 +97,32 @@ func _colors_changed(value):
 	color_list.re_add(colors)
 
 
-func set_current_color(_color_title, _color_code):
+func set_current_color(_color_title, _color_code, add_action = true):
+	
+	var old_color = [current_color_title, current_color_code]
+	
 	current_color_title = _color_title
 	current_color_code = _color_code
+	
+	var new_color = [current_color_title, current_color_code]
 	
 	self.color_name = _color_title
 	self.color_code = _color_code
 	
 	check_button_title()
 	
+	if add_action:
+		action_list.active(old_color, new_color)
+	
+	config.set_data('active_color', current_color_title)
+	config.save()
+	
 	share.set_value('background_color', _color_code)
 
 
 func check_button_title():
 	
-	color_btn.disabled = self.color_name == ''
+	color_btn.disabled = (self.color_name == '')
 	
 	if self.color_name == current_color_title:
 		color_btn.text = 'edit'

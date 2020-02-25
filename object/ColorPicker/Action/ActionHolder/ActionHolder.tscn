@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://object/ColorPicker/Action/ActionHolder/ActionHolder.gd" type="Script" id=1]
+
+[node name="ActionHolder" type="Label"]
+margin_right = 123.0
+margin_bottom = 14.0
+size_flags_horizontal = 3
+text = "active 'color1'"
+align = 1
+valign = 1
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
