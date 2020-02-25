@@ -46,9 +46,10 @@ use Obserever pattern to reacte when exact data changed
 
 
 ## TODO
-- [ ] undo for color panel
+- [ ] undo delete color for back color to ex position on the color list
+- [x] undo for color panel
 - [ ] fix recent address sort
-- [ ] delete color
+- [x] delete color
 - [ ] improve movement
 - [x] make recent folder address
 - [ ] config file on image folder ( for sorting images and set custom setting )
