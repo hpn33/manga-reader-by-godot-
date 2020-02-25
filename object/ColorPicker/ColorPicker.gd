@@ -55,18 +55,16 @@ func set_active_color():
 	var active_color_name = config.get_data('active_color')
 	
 	
+	var color := []
+	
+	
 	if colors.can_find(active_color_name):
-		set_current_color(active_color_name, colors.get(active_color_name), false)
+		color = [active_color_name, colors.get(active_color_name)]
 	else:
-		var color = colors.first()
-		set_current_color(color[0], color[1], false)
-#	for color in colors.to_iterator():
-#		if color[0] == active_color_name:
-#			set_current_color(color[0], color[1], false)
-#			return
+		color = colors.first()
 	
 	
-	
+	active_color(color, false)
 
 
 func set_color(_color):
@@ -85,17 +83,14 @@ func _on_Edit_pressed() -> void:
 			color[1] = code
 			done = true
 			# update color
-			color_list.update_item(title, code)
+			update_color([title, code])
+			
 			check_button_title()
 			break
 	
 	if not done:
 		# set new color
-#		var new_color = [title, code]
-		colors.append(title, code)
-		color_list.add([title, code])
-		
-		set_current_color(title, code)
+		create_color([title, code])
 	
 	save_colors()
 
@@ -106,7 +101,7 @@ func _colors_changed(value):
 	color_list.re_add(colors)
 
 
-func set_current_color(_color_title, _color_code, add_action = true):
+func set_current_color(_color_title, _color_code, add_action):
 	
 	var old_color = [current_color_title, current_color_code]
 	
@@ -138,27 +133,53 @@ func check_button_title():
 	else:
 		color_btn.text = 'create'
 
-#func active_color():
-#	pass
+func active_color(_color, add_action := true):
+	set_current_color(_color[0], _color[1], add_action)
 
 
-func delete_color(_color):
+func create_color(_color, add_action := true):
 	
-	for color in colors.to_iterator():
-		if color[0] == _color[0]:
-			colors.remove(color[0])
-			break
+	colors.append(_color[0], _color[1])
+	
+	if add_action:
+		action_list.create(_color)
+		action_list.active([current_color_title, current_color_code], _color)
 	
 	save_colors()
 	
 	color_list.re_add()
 
 
-#func update_color(color_name: String, new_color_code: String):
-#	pass
+func delete_color(_color, add_action := true):
+	
+	for color in colors.to_iterator():
+		if color[0] == _color[0]:
+			colors.remove(color[0])
+			break
+	
+	if add_action:
+		action_list.delete(_color)
+	
+	save_colors()
+	
+	color_list.re_add()
 
-#func create_color(color_name: String, color_code: String):
-#	pass
+
+func update_color(_color, add_action := true):
+	
+	colors.set(_color[0], _color[1])
+	
+	if add_action:
+		var old_color = [current_color_title, current_color_code]
+		
+		action_list.rewrite(old_color, _color)
+		action_list.active(old_color, _color)
+
+	
+	save_colors()
+	
+	color_list.re_add()
+
 
 
 func save_colors():

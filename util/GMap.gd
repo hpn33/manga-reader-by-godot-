@@ -40,6 +40,42 @@ func at(position: int):
 	return values[position]
 
 
+func first():
+	return [keys[0], values[0]]
+
+func first_key():
+	return keys[0]
+
+func first_value():
+	return values[0]
+
+
+func last():
+	return [keys[size()-1], values[size()-1]]
+
+func last_key():
+	return keys[size()-1]
+
+func last_value():
+	return values[size()-1]
+
+
+
+#################################################
+
+#  iterating
+#  ---------
+
+#   ability to work with array
+
+#################################################
+
+
+func set(key: String, new_value):
+	values[keys.find(key)] = new_value
+
+
+
 
 #################################################
 
@@ -128,23 +164,6 @@ func can_find(key: String) -> bool:
 	return find(key) != -1
 
 
-func first():
-	return [keys[0], values[0]]
 
-func first_key():
-	return keys[0]
-
-func first_value():
-	return values[0]
-
-
-func last():
-	return [keys[size()-1], values[size()-1]]
-
-func last_key():
-	return keys[size()-1]
-
-func last_value():
-	return values[size()-1]
 
 

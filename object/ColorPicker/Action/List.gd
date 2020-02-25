@@ -24,8 +24,19 @@ func add():
 
 
 func active(_old_color, _new_color):
-	var new = add()
-	
-	new.active(owner, _old_color, _new_color)
+	add().active(owner, _old_color, _new_color)
+
+
+func create(_new_color):
+	add().create(owner, _new_color)
+
+
+func delete(_old_color):
+	add().delete(owner, _old_color)
+
+
+func rewrite(_old_color, _new_color):
+	add().rewrite(owner, _old_color, _new_color)
+
 
 
