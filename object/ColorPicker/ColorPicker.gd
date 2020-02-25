@@ -6,7 +6,7 @@ onready var color_picker :ColorPicker= $HBoxContainer/ColorPicker
 
 onready var color_list :ColorList= $HBoxContainer/Colors/List
 onready var color_title :LineEdit= $HBoxContainer/Colors/Edit/Title
-onready var color_edit :Button= $HBoxContainer/Colors/Edit/Btn
+onready var color_btn :Button= $HBoxContainer/Colors/Edit/Btn
 
 onready var action_list :VBoxContainer= $HBoxContainer/Actions/List
 onready var action_undo :Button= $HBoxContainer/Actions/Undo
@@ -19,7 +19,7 @@ var color_name := '' setget set_color_name, get_color_name
 
 func set_color_name(value: String) -> void:
 	color_title.text = value
-#	color_edit.check_title()
+#	color_btn.check_title()
 	
 
 func get_color_name():
@@ -44,6 +44,8 @@ var current_color_code := 'ccc'
 
 func _ready():
 	share.add_hook('colors', self, '_colors_changed')
+	
+	color_btn.disabled = true
 
 
 
@@ -64,6 +66,7 @@ func _on_Edit_pressed() -> void:
 			done = true
 			# update color
 			color_list.update_item(title, code)
+			check_button_title()
 			break
 	
 	if not done:
@@ -71,6 +74,8 @@ func _on_Edit_pressed() -> void:
 		var new_color = [title, code]
 		colors.append(new_color)
 		color_list.add(new_color)
+		
+		set_current_color(title, code)
 	
 	save_colors()
 
@@ -95,10 +100,13 @@ func set_current_color(_color_title, _color_code):
 
 func check_button_title():
 	print(self.color_name)
+	
+	color_btn.disabled = self.color_name == ''
+	
 	if self.color_name == current_color_title:
-		color_edit.text = 'edit'
+		color_btn.text = 'edit'
 	else:
-		color_edit.text = 'create'
+		color_btn.text = 'create'
 
 #func active_color():
 #	pass
@@ -120,3 +128,6 @@ func save_colors():
 
 func _on_ColorPicker_color_changed(color: Color) -> void:
 	share.set_value('background_color', color.to_html())
+
+
+

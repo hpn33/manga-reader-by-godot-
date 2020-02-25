@@ -1,9 +1,8 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://object/ColorPicker/ColorHolder/ColorHolder.tscn" type="PackedScene" id=1]
 [ext_resource path="res://object/ColorPicker/ColorPicker.gd" type="Script" id=2]
 [ext_resource path="res://object/ColorPicker/ColorList.gd" type="Script" id=3]
-[ext_resource path="res://object/ColorPicker/Btn.gd" type="Script" id=4]
 [ext_resource path="res://object/ColorPicker/Title.gd" type="Script" id=5]
 
 [node name="ColorPicker" type="PopupPanel"]
@@ -67,7 +66,6 @@ margin_right = 123.0
 margin_bottom = 41.0
 size_flags_horizontal = 3
 text = "edit"
-script = ExtResource( 4 )
 
 [node name="List" type="VBoxContainer" parent="HBoxContainer/Colors"]
 margin_top = 51.0
