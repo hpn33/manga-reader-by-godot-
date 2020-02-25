@@ -36,7 +36,8 @@ func get_color_code():
 	return color_picker.color.to_html()
 
 
-var colors := []
+#var colors := []
+var colors := GMap.new()
 
 var current_color_title := 'None'
 var current_color_code := 'ccc'
@@ -53,7 +54,7 @@ func set_active_color():
 	yield(owner, "ready")
 	var active_color_name = config.get_data('active_color')
 	
-	for color in colors:
+	for color in colors.to_iterator():
 		if color[0] == active_color_name:
 			set_current_color(color[0], color[1], false)
 			break
@@ -82,9 +83,9 @@ func _on_Edit_pressed() -> void:
 	
 	if not done:
 		# set new color
-		var new_color = [title, code]
-		colors.append(new_color)
-		color_list.add(new_color)
+#		var new_color = [title, code]
+		colors.append(title, code)
+		color_list.add([title, code])
 		
 		set_current_color(title, code)
 	
@@ -93,7 +94,8 @@ func _on_Edit_pressed() -> void:
 
 
 func _colors_changed(value):
-	colors = value
+	colors.from_iterator(value)
+	print(colors)
 	color_list.re_add(colors)
 
 

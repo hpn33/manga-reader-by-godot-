@@ -24,8 +24,8 @@ func add(color):
 	new.connect("delete", self, '_delete_button', [new])
 
 
-func add_by_array(colors: Array):
-	for color in colors:
+func add_by_array(colors: GMap):
+	for color in colors.to_iterator():
 		add(color)
 
 
@@ -54,6 +54,6 @@ func _delete_button(target):
 	re_add()
 
 
-func re_add(colors: Array = owner.colors):
+func re_add(colors :GMap= owner.colors):
 	clear()
 	add_by_array(colors)
