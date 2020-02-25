@@ -46,6 +46,7 @@ use Obserever pattern to reacte when exact data changed
 
 
 ## TODO
+- [ ] improve label of image folder path animation ( change to tween )
 - [ ] undo delete color for back color to ex position on the color list
 - [x] undo for color panel
 - [ ] fix recent address sort
