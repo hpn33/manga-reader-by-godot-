@@ -1,6 +1,6 @@
 extends MenuButton
 
-onready var anim = $AnimationPlayer
+onready var tween = $Tween
 
 
 func _ready() -> void:
@@ -13,7 +13,7 @@ func _ready() -> void:
 
 func set_title(title: String):
 	text = title
-	anim.play("show")
+	show()
 
 
 func _id_pressed(id: int):
@@ -28,4 +28,20 @@ func _recent_changed(recents: Array):
 	for path in recents:
 		if text != path:
 			get_popup().add_item(path)
+
+
+func show():
+	tween.interpolate_property(self,
+	 'rect_position:y',
+	 20, 3,
+	 0.3,
+	 Tween.TRANS_QUAD, Tween.EASE_OUT)
+	
+	tween.interpolate_property(self,
+	 'modulate',
+	 Color('#00ffffff'), Color('#ffffff'),
+	 0.3,
+	 Tween.TRANS_QUAD, Tween.EASE_IN)
+	
+	tween.start()
 
