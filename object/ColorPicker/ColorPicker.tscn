@@ -111,18 +111,20 @@ margin_right = 123.0
 margin_bottom = 462.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-custom_constants/separation = 10
+custom_constants/separation = 12
 script = ExtResource( 6 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Label" parent="HBoxContainer/Actions/List" instance=ExtResource( 4 )]
+margin_top = -1.0
+margin_right = 123.0
 
 [node name="Label2" type="Label" parent="HBoxContainer/Actions/List"]
-margin_top = 24.0
+margin_top = 35.0
 margin_right = 123.0
-margin_bottom = 55.0
+margin_bottom = 66.0
 size_flags_horizontal = 3
 text = "change 'color1':
 '00a' -> 'bbc'"
@@ -130,9 +132,9 @@ align = 1
 valign = 1
 
 [node name="Label3" type="Label" parent="HBoxContainer/Actions/List"]
-margin_top = 65.0
+margin_top = 76.0
 margin_right = 123.0
-margin_bottom = 96.0
+margin_bottom = 107.0
 size_flags_horizontal = 3
 text = "new color
 'color3':'00a'"
@@ -140,9 +142,9 @@ align = 1
 valign = 1
 
 [node name="Label4" type="Label" parent="HBoxContainer/Actions/List"]
-margin_top = 106.0
+margin_top = 117.0
 margin_right = 123.0
-margin_bottom = 137.0
+margin_bottom = 148.0
 size_flags_horizontal = 3
 text = "delete color
 'color3':'00a'"

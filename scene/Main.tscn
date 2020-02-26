@@ -150,9 +150,9 @@ margin_bottom = 20.0
 size_flags_horizontal = 3
 
 [node name="Options" type="Button" parent="UI/TitleBar/ColorRect/HBoxContainer/left"]
-margin_right = 56.0
+margin_right = 52.0
 margin_bottom = 20.0
-text = "Option"
+text = "Colors"
 flat = true
 
 [node name="center" type="HBoxContainer" parent="UI/TitleBar/ColorRect/HBoxContainer"]

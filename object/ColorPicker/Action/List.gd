@@ -15,8 +15,8 @@ func clear():
 		remove_child(get_child(0))
 
 
-func add():
-	var new :Label= action_holder.instance()
+func add() -> ActionHolder:
+	var new :ActionHolder= action_holder.instance()
 	
 	add_child(new)
 	

@@ -2,14 +2,53 @@
 
 [ext_resource path="res://object/ColorPicker/Action/ActionHolder/ActionHolder.gd" type="Script" id=1]
 
-[node name="ActionHolder" type="Label"]
-margin_right = 123.0
-margin_bottom = 14.0
+[node name="ActionHolder" type="VBoxContainer"]
+margin_right = 170.0
+margin_bottom = 24.0
+rect_min_size = Vector2( 0, 25 )
 size_flags_horizontal = 3
-text = "active 'color1'"
-align = 1
-valign = 1
+size_flags_vertical = 4
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="MarginContainer2" type="MarginContainer" parent="."]
+margin_right = 170.0
+margin_bottom = 20.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 99.0
+custom_constants/margin_right = 5
+custom_constants/margin_top = 1
+custom_constants/margin_left = 10
+custom_constants/margin_bottom = 1
+
+[node name="Label" type="Label" parent="MarginContainer2"]
+margin_left = 10.0
+margin_top = 1.0
+margin_right = 165.0
+margin_bottom = 19.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 99.0
+text = "active: 'color1'"
+valign = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+margin_top = 24.0
+margin_right = 170.0
+margin_bottom = 25.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_constants/margin_right = 10
+custom_constants/margin_left = 10
+
+[node name="ColorRect" type="ColorRect" parent="MarginContainer"]
+margin_left = 10.0
+margin_right = 160.0
+margin_bottom = 1.0
+color = Color( 0.501961, 0.501961, 0.501961, 0.254902 )

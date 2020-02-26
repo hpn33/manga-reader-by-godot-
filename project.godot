@@ -10,6 +10,11 @@ config_version=4
 
 _global_script_classes=[ {
 "base": "VBoxContainer",
+"class": "ActionHolder",
+"language": "GDScript",
+"path": "res://object/ColorPicker/Action/ActionHolder/ActionHolder.gd"
+}, {
+"base": "VBoxContainer",
 "class": "ActionList",
 "language": "GDScript",
 "path": "res://object/ColorPicker/Action/List.gd"
@@ -55,6 +60,7 @@ _global_script_classes=[ {
 "path": "res://addons/hp.fsm/state_machine.gd"
 } ]
 _global_script_class_icons={
+"ActionHolder": "",
 "ActionList": "",
 "Box2D": "",
 "ColorList": "",
