@@ -49,7 +49,7 @@ use Obserever pattern to reacte when exact data changed
 - [ ] improve label of image folder path animation ( change to tween )
 - [ ] undo delete color for back color to ex position on the color list
 - [x] undo for color panel
-- [ ] fix recent address sort
+- [x] fix recent address sort
 - [x] delete color
 - [ ] improve movement
 - [x] make recent folder address
