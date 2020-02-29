@@ -6,6 +6,8 @@ Hierarchical State machine for the player.
 Initializes states and delegates engine callbacks (_physics_process, _unhandled_input) to the state.
 """
 
+export var debug := false
+
 export var initial_state: = NodePath()
 onready var current_state : State= get_node(initial_state) setget set_state
 
@@ -57,8 +59,8 @@ func transition_to(target_state_path: String, msg: Dictionary = {}) -> void:
 	assert(target_state.is_composite == false)
 	
 #	msg = {'pre': _state_name}
-	
-	print('%s:\t%s -> %s' % [parent.name, _state_name, target_state.name])
+	if debug:
+		print('%s:\t%s -> %s' % [parent.name, _state_name, target_state.name])
 	
 	if current_state:
 		current_state.exit()
