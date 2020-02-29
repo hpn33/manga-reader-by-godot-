@@ -9,6 +9,7 @@
 [ext_resource path="res://object/ColorPicker/Action/Undo.gd" type="Script" id=7]
 
 [node name="ColorPicker" type="PopupPanel"]
+visible = true
 margin_right = 563.0
 margin_bottom = 470.0
 rect_min_size = Vector2( 570, 470 )
@@ -29,10 +30,8 @@ __meta__ = {
 }
 
 [node name="ColorPicker" type="ColorPicker" parent="HBoxContainer"]
-margin_left = 4.0
-margin_top = 4.0
-margin_right = 4.0
-margin_bottom = 4.0
+margin_right = 308.0
+margin_bottom = 462.0
 size_flags_horizontal = 3
 edit_alpha = false
 presets_enabled = false
@@ -118,13 +117,13 @@ __meta__ = {
 }
 
 [node name="Label" parent="HBoxContainer/Actions/List" instance=ExtResource( 4 )]
-margin_top = -1.0
 margin_right = 123.0
+margin_bottom = 25.0
 
 [node name="Label2" type="Label" parent="HBoxContainer/Actions/List"]
-margin_top = 35.0
+margin_top = 37.0
 margin_right = 123.0
-margin_bottom = 66.0
+margin_bottom = 68.0
 size_flags_horizontal = 3
 text = "change 'color1':
 '00a' -> 'bbc'"
@@ -132,9 +131,9 @@ align = 1
 valign = 1
 
 [node name="Label3" type="Label" parent="HBoxContainer/Actions/List"]
-margin_top = 76.0
+margin_top = 80.0
 margin_right = 123.0
-margin_bottom = 107.0
+margin_bottom = 111.0
 size_flags_horizontal = 3
 text = "new color
 'color3':'00a'"
@@ -142,9 +141,9 @@ align = 1
 valign = 1
 
 [node name="Label4" type="Label" parent="HBoxContainer/Actions/List"]
-margin_top = 117.0
+margin_top = 123.0
 margin_right = 123.0
-margin_bottom = 148.0
+margin_bottom = 154.0
 size_flags_horizontal = 3
 text = "delete color
 'color3':'00a'"

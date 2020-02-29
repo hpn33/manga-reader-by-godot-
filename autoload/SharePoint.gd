@@ -63,6 +63,9 @@ func remove_value(key: String):
 func add_hook(key: String, target, method: String):
 	debug('add_hook:\t%s\t%s\t%s' % [key, target, method])
 	
+	if not target.has_method(method):
+		return
+	
 	# not exist: can add
 	if hook_keys.find(key) != -1:
 		var match_hook = match_by_key(key)
