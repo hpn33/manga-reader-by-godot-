@@ -72,14 +72,12 @@ func _snap_to_limits():
 	
 	position.x = clamp(position.x, limit_rect.position.x+offx, limit_rect.end.x-offx)
 	position.y = clamp(position.y, limit_rect.position.y+offy, limit_rect.end.y-offy)
-	
-	owner.fix_background()
+
 
 func _snap_zoom_limits():
 	zoom.x = clamp(zoom.x, min_zoom, max_zoom)
 	zoom.y = clamp(zoom.y, min_zoom, max_zoom)
-	
-	owner.fix_background()
+
 
 func set_limit_rect(rect: Rect2):
 	limit_rect = rect
@@ -87,10 +85,6 @@ func set_limit_rect(rect: Rect2):
 	offx =(limit_rect.size.x/2) * 0.20
 	offy =(limit_rect.size.y/2) * 0.0001
 	_snap_to_limits()
-
-
-func _on_Camera2D_item_rect_changed() -> void:
-	owner.fix_background()
 
 
 func _set_camera_limit(value: Rect2):

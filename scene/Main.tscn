@@ -217,4 +217,3 @@ script = ExtResource( 4 )
 [connection signal="pressed" from="UI/TitleBar/ColorRect/HBoxContainer/right/quit" to="UI/TitleBar" method="_on_quit_pressed"]
 [connection signal="timeout" from="UI/GuildText/Timer" to="UI/GuildText" method="_on_Timer_timeout"]
 [connection signal="dir_selected" from="UI/PopMenu/FileDialog" to="UI/PopMenu/FileDialog" method="_on_FileDialog_dir_selected"]
-[connection signal="item_rect_changed" from="Camera2D" to="Camera2D" method="_on_Camera2D_item_rect_changed"]

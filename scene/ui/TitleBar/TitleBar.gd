@@ -37,7 +37,6 @@ func _on_Options_pressed() -> void:
 
 func _on_maximize_pressed() -> void:
 	OS.window_maximized = !OS.window_maximized
-	owner.fix_background()
 
 
 func _target_dir_changed(path):
