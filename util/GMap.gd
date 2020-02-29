@@ -160,7 +160,10 @@ func find(key: String) -> int:
 	return keys.find(key)
 
 
-func can_find(key: String) -> bool:
+func can_find(key) -> bool:
+	if key == null: 
+		return false
+	
 	return find(key) != -1
 
 
