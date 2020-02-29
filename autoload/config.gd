@@ -9,6 +9,7 @@ var _path := 'user://config.cfg'
 
 var _default := {
 	active_color = 'default',
+	regular_view = false,
 	colors = [
 		['default', '1a1a1a'],
 		['color-1', '115853']
