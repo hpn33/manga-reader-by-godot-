@@ -1,5 +1,9 @@
 extends Sprite
 
+
+var debug := false
+
+
 var thread = null
 
 var file_path := ''
@@ -14,9 +18,10 @@ func _ready() -> void:
 	set_size()
 
 
-func init(_adapter, _file_path: String):
+func init(_adapter, _file_path: String, _debug: bool):
 	adapter = _adapter
 	file_path = _file_path
+	debug = _debug
 
 
 func loading():
@@ -74,6 +79,9 @@ func fix_offset():
 
 
 func _draw() -> void:
+	
+	if not debug:
+		return
 	
 	# draw texture box
 	var pos := Vector2(-texture.get_size().x /2 , margin.y/2)

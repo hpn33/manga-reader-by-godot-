@@ -1,6 +1,7 @@
 extends Node2D
 class_name ImageView
 
+export var debug := false
 
 onready var fsm = $state
 
@@ -97,6 +98,9 @@ func _process(delta: float) -> void:
 
 
 func _draw() -> void:
+
+	if not debug:
+		return
 
 	var rect = Rect2(Vector2(), size)
 
