@@ -1,5 +1,8 @@
 extends Camera2D
 
+
+export var debug := false
+
 var zoom_step := 1.1
 var min_zoom := 0.5
 var max_zoom := 10.0
@@ -16,8 +19,8 @@ var mouse_captured := false
 
 
 func _ready() -> void:
-	share.add_hook('camera_limit', self, '_set_camera_limit')
-
+	share.add_hook('camera_limit', self, 'set_limit_rect')
+	pass
 
 func _input(event):
 	if event.is_action_pressed("view_zoom_in"):
@@ -38,6 +41,7 @@ func _input(event):
 
 # use _process for smoother scrolling
 func _process(delta):
+	update()
 	
 	if Input.is_action_pressed("view_click_mouse"):
 		#smooth keyboard zoom
@@ -82,11 +86,29 @@ func _snap_zoom_limits():
 func set_limit_rect(rect: Rect2):
 	limit_rect = rect
 
-	offx =(limit_rect.size.x/2) * 0.20
+	offx =(limit_rect.size.x/2) * 0.0001
 	offy =(limit_rect.size.y/2) * 0.0001
 	_snap_to_limits()
 
 
-func _set_camera_limit(value: Rect2):
-	set_limit_rect(value)
+#func _set_camera_limit(value: Rect2):
+#	set_limit_rect(value)
+
+func _draw() -> void:
+	
+	if not debug:
+		return
+	
+	var vr = get_viewport_rect()
+	
+	
+	draw_line(Vector2(-vr.size.x/2, 0),Vector2(vr.size.x/2, 0), Color.white, 5)
+	
+	
+	draw_circle(Vector2.ZERO, 2, Color.brown)
+
+
+
+
+
 

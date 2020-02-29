@@ -1,14 +1,14 @@
 extends Node2D
 class_name ImageView
 
-export var debug := false
 
 onready var fsm = $state
+onready var camera2d = $"../Camera2D"
 
 export(PackedScene) var image_holder = preload("res://object/ImageHolder2D/ImageHolder2D.tscn")
 
-onready var camera2d = $"../Camera2D"
 
+export var debug := false
 
 var image_list := PoolStringArray()
 var image_textures := []
@@ -17,6 +17,7 @@ var image_size := []
 
 var size := Vector2()
 var margin := Vector2(20, 10)
+var offset := Vector2()
 
 
 func start(_image_list):
@@ -45,7 +46,13 @@ func set_size():
 		
 		size.y += child.size.y
 	
+	offset.x = box().x/2
+	
 	set_camera_limit()
+
+
+func box():
+	return size + margin
 
 
 func set_size_zero():
@@ -54,7 +61,7 @@ func set_size_zero():
 
 func sort():
 	var hp = 0
-	var center_x = size.x/2
+	offset.x = size.x/2
 	
 	for i in get_child_count():
 		
@@ -63,7 +70,7 @@ func sort():
 			continue
 		
 		# set center
-		child.position.x = center_x
+		child.position.x = offset.x
 		
 		# set vertical position
 		child.position.y = hp
@@ -73,7 +80,7 @@ func sort():
 
 func fix_pos_to_last(index: int, diff):
 	set_size()
-	var center_x = size.x/2
+	offset.x = size.x/2
 	
 	for i in get_child_count():
 		
@@ -82,15 +89,24 @@ func fix_pos_to_last(index: int, diff):
 		if child.name == 'state':
 			continue
 		
-		child.position.x = center_x
+		child.position.x = offset.x
 		
 		if i > index:
 			child.position.y += diff
+	
+	fix_position()
 
 
 func sorting():
 	set_size()
 	sort()
+	
+	fix_position()
+
+
+func fix_position():
+	position = -offset
+
 
 
 func _process(delta: float) -> void:
@@ -105,4 +121,5 @@ func _draw() -> void:
 	var rect = Rect2(Vector2(), size)
 
 	draw_rect(rect, Color.white, false, 10)
-
+	
+	draw_circle(Vector2.ZERO, 2, Color.plum)
