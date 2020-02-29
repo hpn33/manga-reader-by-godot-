@@ -46,7 +46,7 @@ use Obserever pattern to reacte when exact data changed
 
 
 ## TODO
-- [ ] improve label of image folder path animation ( change to tween )
+- [x] improve label of image folder path animation ( change to tween )
 - [ ] undo delete color for back color to ex position on the color list
 - [x] undo for color panel
 - [x] fix recent address sort
@@ -57,4 +57,4 @@ use Obserever pattern to reacte when exact data changed
 - [x] save image folder address on setting file
 - [x] signal system on config system (  ) for when a data changed ( by name SharePoint )
 - [x] fix image view for showing image
-- [ ] fix background responsiblity
+- [x] fix background responsiblity
