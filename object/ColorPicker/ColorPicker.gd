@@ -36,7 +36,6 @@ func get_color_code():
 	return color_picker.color.to_html()
 
 
-#var colors := []
 var colors := GMap.new()
 
 var current_color_title := 'None'
@@ -119,7 +118,7 @@ func set_current_color(_color_title, _color_code, add_action):
 	config.set_data('active_color', current_color_title)
 	config.save()
 	
-	share.set_value('background_color', _color_code)
+	set_background(_color_code)
 
 
 func check_button_title():
@@ -204,7 +203,9 @@ func save_colors():
 
 
 func _on_ColorPicker_color_changed(color: Color) -> void:
-	share.set_value('background_color', color.to_html())
+	set_background(color.to_html())
 
 
+func set_background(_color_code):
+	VisualServer.set_default_clear_color(Color('#' + _color_code))
 

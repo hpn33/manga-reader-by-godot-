@@ -1,8 +1,6 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=13 format=2]
 
-[ext_resource path="res://assets/sprite/default/dot.png" type="Texture" id=1]
 [ext_resource path="res://object/ImageView/ImageView.tscn" type="PackedScene" id=2]
-[ext_resource path="res://scene/background.gd" type="Script" id=3]
 [ext_resource path="res://scene/Camera2D.gd" type="Script" id=4]
 [ext_resource path="res://scene/ui/FileDialog.gd" type="Script" id=5]
 [ext_resource path="res://scene/ui/info.gd" type="Script" id=6]
@@ -107,9 +105,8 @@ margin_bottom = 20.0
 size_flags_horizontal = 3
 
 [node name="RecentMenu" type="MenuButton" parent="UI/TitleBar/ColorRect/HBoxContainer/center"]
-margin_top = 3.0
 margin_right = 300.0
-margin_bottom = 23.0
+margin_bottom = 20.0
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 9.0
 text = "choise some folder"
@@ -192,8 +189,8 @@ size_flags_horizontal = 3
 window_title = "Open a Directory"
 mode = 2
 access = 2
-current_dir = "H:/workspace/godot/manga-reader-by-godot-"
-current_path = "H:/workspace/godot/manga-reader-by-godot-/"
+current_dir = "c:/"
+current_path = "c:/"
 script = ExtResource( 5 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -204,13 +201,6 @@ margin_left = -629.383
 margin_top = 25.1753
 margin_right = -59.3833
 margin_bottom = 495.176
-
-[node name="background" type="Sprite" parent="."]
-modulate = Color( 0.101961, 0.101961, 0.101961, 1 )
-position = Vector2( 507.301, 287.604 )
-scale = Vector2( 1100, 800 )
-texture = ExtResource( 1 )
-script = ExtResource( 3 )
 
 [node name="ImagePlace" parent="." instance=ExtResource( 2 )]
 script = ExtResource( 11 )
