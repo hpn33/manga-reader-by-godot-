@@ -8,6 +8,7 @@ maked by Godot
 - [x] setting
 - [ ] config file on images location
 - [ ] pagination
+- [x] Regular View
 
 
 ### movement
@@ -34,6 +35,12 @@ for sorting image
 
 ### pagination
 navigate to another image by number
+
+### Regular view
+`control + R` for toggle view.
+* **beautiful background**
+* costing fps
+
 
 
 ## Logic System
