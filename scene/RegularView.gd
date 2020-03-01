@@ -31,26 +31,37 @@ func _draw() -> void:
 	
 	var zoom = camera.zoom.x
 	
+	
 	var step = 10
 	var bold_step = step * 10
+	var main_step = bold_step * 10
 	
 	var norm_c = Color('#30ffffff')
 	var bold_c = Color('#50ffffff')
+	var main_c = Color('#8fffffff')
 	
-	norm_c.a = norm_c.a / (zoom * (zoom * 2))
-	bold_c.a = bold_c.a / (zoom * (zoom * 2))
-	if norm_c.a > 0.18:
-		norm_c.a = 0.18
+	var power = (zoom * (zoom * 2))
+	
+	norm_c.a = norm_c.a / power
+	bold_c.a = bold_c.a / power
+	main_c.a = main_c.a / power
+	
+	
+	norm_c.a = min(norm_c.a, 0.18)
 	if norm_c.a < 0.05:
 		norm_c.a = 0
 	
-	if bold_c.a > 0.31:
-		bold_c.a = 0.31
+	bold_c.a = min(bold_c.a, 0.31)
 	if bold_c.a < 0.05:
 		bold_c.a = 0
 	
+	main_c.a = min(main_c.a, 0.56)
+	if main_c.a < 0.05:
+		main_c.a = 0
+	
 	var norm_w = 0.01 / zoom
 	var bold_w = 0.1 / zoom
+	var main_w = 0.7 / zoom
 	
 	
 	var vr = get_viewport_rect()
@@ -62,24 +73,22 @@ func _draw() -> void:
 	var xa = pos.x - xh
 	var xb = pos.x + xh
 	
+	var yh = (vr.size.y/2) * zoom
+	var ya = pos.y - yh
+	var yb = pos.y + yh	
 	
 	if norm_c.a != 0:
 		draw_x(xa, xb , pos, size, step, norm_c, norm_w)
-	
-	if bold_c.a != 0:
-		draw_x(xa, xb , pos, size, bold_step, bold_c, bold_w)
-	
-
-	var yh = (vr.size.y/2) * zoom
-	var ya = pos.y - yh
-	var yb = pos.y + yh
-	
-	if norm_c.a != 0:
 		draw_y(ya, yb , pos, size, step, norm_c, norm_w)
 	
 	if bold_c.a != 0:
+		draw_x(xa, xb , pos, size, bold_step, bold_c, bold_w)
 		draw_y(ya, yb , pos, size, bold_step, bold_c, bold_w)
 	
+	if main_c.a != 0:
+		draw_x(xa, xb , pos, size, main_step, main_c, main_w)
+		draw_y(ya, yb , pos, size, main_step, main_c, main_w)
+
 
 func draw_x(a, b, pos, size, step , color, width):
 	
@@ -93,5 +102,3 @@ func draw_y(a, b, pos, size, step , color, width):
 	for y in range(a, b):
 		if y % step == 0:
 			draw_line(Vector2(pos.x - size.x/2, y),  Vector2(pos.x + size.x/2, y), color, width)
-
-
