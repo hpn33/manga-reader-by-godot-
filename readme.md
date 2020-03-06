@@ -65,3 +65,6 @@ use Obserever pattern to reacte when exact data changed
 - [x] signal system on config system (  ) for when a data changed ( by name SharePoint )
 - [x] fix image view for showing image
 - [x] fix background responsiblity
+- [ ] set fullwidth screen on current image
+- [ ] system for navigate to any image by number
+- [ ] making short path to 100 char
