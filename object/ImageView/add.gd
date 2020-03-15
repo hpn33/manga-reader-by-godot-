@@ -32,11 +32,11 @@ func _has_image():
 
 func _add():
 	
-	for image_path in owner.image_list:
+	for image in owner.image_list:
 		
 		var new :Sprite= owner.image_holder.instance()
 		
-		new.init(owner, image_path, owner.debug)
+		new.init(owner, image.full_path(), owner.debug)
 		new.set_margin(10, 10)
 		
 		owner.add_child(new)

@@ -34,6 +34,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://autoload/config.gd"
 }, {
+"base": "Reference",
+"class": "FileInfo",
+"language": "GDScript",
+"path": "res://script/FileInfo.gd"
+}, {
 "base": "Node",
 "class": "GMap",
 "language": "GDScript",
@@ -70,6 +75,7 @@ _global_script_class_icons={
 "Box2D": "",
 "ColorList": "",
 "Config": "",
+"FileInfo": "",
 "GMap": "",
 "IOUtil": "",
 "ImageView": "",
@@ -89,6 +95,7 @@ config/icon="res://icon.png"
 data="*res://autoload/data.gd"
 config="*res://autoload/config.gd"
 share="*res://autoload/SharePoint.gd"
+util="*res://autoload/Util.gd"
 
 [display]
 

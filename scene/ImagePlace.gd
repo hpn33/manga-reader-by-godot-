@@ -27,66 +27,43 @@ func _target_dir_changed(value):
 	
 	path = value
 	
-	_find_image_path()
-	
+	_find_image()
 
 
-func _find_image_path() -> void:
+func _find_image():
 	
-	var image_list:= []
+	var image_list := []
 	
-	if iou.is_dir(path):
-		image_list = iou.list_by_type('png|jpg', path)
-	
-	else:
+	if not iou.is_dir(path):
 		print("An error occurred when trying to access the path.")
+		return
 	
+	image_list = iou.list_by_type('png|jpg', path)
+	
+	# splite title part
+#	for image in image_list:
+#		print(image.title,':',image.type)
 	
 	if can_sort:
-		image_list = sort_list(image_list)
+		image_list = bubble_sort(image_list)
 	
-#	for i in image_list:
-#		print(i)
-	
-	image_list = add_path_to_list(image_list)
 	
 	start(image_list)
 
 
-
-func sort_list(_list):
-	
-	var list = _list
-	
-	var i = list.size()
-	
-#	for i in list.size():
-#
-	
-	return list
-
-
-func add_path_to_list(_list):
-	var list = _list
-
-	for i in _list.size():
-		var index = i - 1 
-		list[index] = path + '/' + list[index]
-
-	return list
+func bubble_sort(array):
+	var index = len(array) - 1
+	while index >= 0:
+		
+		for j in range(index):
+			
+			if int(array[j].title) > int(array[j+1].title):
+				var temp = array[j]
+				array[j] = array[j+1]
+				array[j+1] = temp
+		
+		index -= 1
+	return array
 
 
 
-
-
-class PathHolder:
-	var path := ''
-	var title := ''
-	var type := ''
-	
-	func _init(_path, _title, _type):
-		path = _path
-		title = _title
-		type = _type
-	
-	

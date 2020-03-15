@@ -140,11 +140,24 @@ func list_by_type(_types, _path = path):
 	while (file_name != ""):
 		
 		if not directory.current_is_dir():
-			regex.compile("[*.](" + types + ")$")
+#			regex.compile("[*.](" + types + ")$")
+			regex.compile("(?<title>[\\w]*).(?<type>(" + types + "))$")
 			var result = regex.search(file_name)
 			
 			if result:
-				list.append(file_name)
+#				var file_info = [_path, result.get_string('title'), result.get_string('type')]
+				var file_info = FileInfo.new(
+					_path,
+					result.get_string('title'),
+					result.get_string('type'))
+				
+#				var file_info = {
+#					path = _path,
+#					title = result.get_string('title'),
+#					type = result.get_string('type')
+#				}
+				
+				list.append(file_info)
 			
 		file_name = directory.get_next()
 	

@@ -10,7 +10,7 @@ export(PackedScene) var image_holder = preload("res://object/ImageHolder2D/Image
 
 export var debug := false
 
-var image_list := PoolStringArray()
+var image_list := []
 var image_textures := []
 var image_size := []
 
@@ -22,7 +22,7 @@ var offset := Vector2()
 
 func start(_image_list):
 	image_list = _image_list
-
+	
 	fsm.transition_to('add')
 
 
