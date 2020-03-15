@@ -2,10 +2,10 @@ extends Node
 class_name SharePoint
 
 # debug -----------------------
-var debug := false
+var can_debug := false
 
 func debug(message: String) -> void:
-	if debug:
+	if can_debug:
 		print('SharePoint = %s\n' % message)
 # -----------------------------
 

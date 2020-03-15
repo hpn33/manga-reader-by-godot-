@@ -19,6 +19,21 @@ func _add_image():
 	_add()
 
 
+func _add():
+	
+	for image in owner.image_list:
+		
+		var new :Sprite= owner.image_holder.instance()
+		
+		new.init(owner, image.full_path())
+		new.set_margin(10, 10)
+		
+		owner.add_child(new)
+		
+		new.loading()
+	
+
+
 func _remove_children():
 	for child in owner.get_children():
 		
@@ -28,22 +43,3 @@ func _remove_children():
 
 func _has_image():
 	return owner.image_list.size() != 0
-
-
-func _add():
-	
-	for image in owner.image_list:
-		
-		var new :Sprite= owner.image_holder.instance()
-		
-		new.init(owner, image.full_path(), owner.debug)
-		new.set_margin(10, 10)
-		
-		owner.add_child(new)
-		
-		new.loading()
-	
-
-
-
-

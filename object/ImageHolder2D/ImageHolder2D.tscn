@@ -1,9 +1,23 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://icon.png" type="Texture" id=1]
 [ext_resource path="res://object/ImageHolder2D/ImageHolder2D.gd" type="Script" id=2]
+[ext_resource path="res://object/ImageHolder2D/loader.gd" type="Script" id=3]
 
 [node name="ImageHolder2D" type="Sprite"]
 texture = ExtResource( 1 )
 script = ExtResource( 2 )
+
+[node name="Label" type="Label" parent="."]
+margin_left = 33.25
+margin_top = 14.25
+margin_right = 73.25
+margin_bottom = 28.25
+text = "Title"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="loader" type="Node" parent="."]
+script = ExtResource( 3 )
 [connection signal="texture_changed" from="." to="." method="_on_ImageHolder2D_texture_changed"]

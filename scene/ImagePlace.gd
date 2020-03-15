@@ -1,24 +1,13 @@
 extends ImageView
 
 
-"""
-check path
-find image on path
-sort image's
-start showing image's
-
-"""
-
-
 var can_sort := true
 var path := ''
-var iou : IOUtil
+var iou := IOUtil.new()
 
 
 func _ready() -> void:
 	share.add_hook('target_dir', self, '_target_dir_changed')
-	
-	iou = IOUtil.new()
 
 
 func _target_dir_changed(value):
@@ -40,13 +29,8 @@ func _find_image():
 	
 	image_list = iou.list_by_type('png|jpg', path)
 	
-	# splite title part
-#	for image in image_list:
-#		print(image.title,':',image.type)
-	
 	if can_sort:
 		image_list = bubble_sort(image_list)
-	
 	
 	start(image_list)
 
@@ -64,6 +48,3 @@ func bubble_sort(array):
 		
 		index -= 1
 	return array
-
-
-

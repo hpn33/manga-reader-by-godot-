@@ -8,11 +8,11 @@ onready var label = $hBox/Label
 var color_panel
 
 
-func set_(_color_panel, color):
+func set_(_color_panel, _color):
 	color_panel = _color_panel
 	
-	self.title = color[0]
-	self.color_code = color[1]
+	self.title = _color[0]
+	self.color_code = _color[1]
 
 
 var title setget set_title, get_title

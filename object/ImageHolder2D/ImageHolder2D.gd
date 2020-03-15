@@ -1,12 +1,12 @@
 extends Sprite
 
 
-var debug := false
+var can_debug := false
 
+onready var loader = $loader
+onready var label = $Label
 
-var thread = null
-
-var file_path := ''
+var file_info : FileInfo
 var adapter
 
 
@@ -16,50 +16,18 @@ var margin := Vector2()
 
 func _ready() -> void:
 	set_size()
+	set_label(file_info)
 
 
-func init(_adapter, _file_path: String, _debug: bool):
+func init(_adapter, _file_info: FileInfo):
 	adapter = _adapter
-	file_path = _file_path
-	debug = _debug
+	file_info = _file_info
+	can_debug = adapter.can_debug
+
 
 
 func loading():
-	
-	_load_image(file_path)
-
-
-func _load_image(path):
-	
-	thread = Thread.new()
-	thread.start( self, "_thread_load", path)
-
-
-func _thread_load(path):
-	
-	var image = Image.new()
-	image.load(path)
-	var res = ImageTexture.new()
-	
-	res.create_from_image(image)
-	
-	# Send whathever we did (or not) get
-	call_deferred("_thread_done", res)
-
-
-func _thread_done(resource):
-	assert(resource)
-	
-	# Always wait for threads to finish, this is required on Windows
-	thread.wait_to_finish()
-	
-	var prev_size = size.y
-	
-	texture = resource
-	
-	var diff = size.y - prev_size
-	
-	adapter.fix_pos_to_last(get_position_in_parent(), diff)
+	loader.load_image(file_info.full_path())
 
 
 func set_margin(x, y):
@@ -78,9 +46,23 @@ func fix_offset():
 		offset.y = size.y / 2.0
 
 
+func set_label(text):
+	label.text = text
+
+
+func set_label_pos():
+	
+	var y = texture.get_size().y
+	var x = texture.get_size().x/2
+	
+	var offy = label.rect_size.y
+	
+	label.rect_position = Vector2(x, y-offy)
+
+
 func _draw() -> void:
 	
-	if not debug:
+	if not can_debug:
 		return
 	
 	# draw texture box

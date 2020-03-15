@@ -8,7 +8,7 @@ onready var camera2d = $"../Camera2D"
 export(PackedScene) var image_holder = preload("res://object/ImageHolder2D/ImageHolder2D.tscn")
 
 
-export var debug := false
+export var can_debug := false
 
 var image_list := []
 var image_textures := []
@@ -51,12 +51,12 @@ func set_size():
 	set_camera_limit()
 
 
-func box():
-	return size + margin
-
-
 func set_size_zero():
 	size = Vector2()
+
+
+func box():
+	return size + margin
 
 
 func sort():
@@ -115,7 +115,7 @@ func _process(delta: float) -> void:
 
 func _draw() -> void:
 
-	if not debug:
+	if not can_debug:
 		return
 
 	var rect = Rect2(Vector2(), size)

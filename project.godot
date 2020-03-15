@@ -95,7 +95,6 @@ config/icon="res://icon.png"
 data="*res://autoload/data.gd"
 config="*res://autoload/config.gd"
 share="*res://autoload/SharePoint.gd"
-util="*res://autoload/Util.gd"
 
 [display]
 
