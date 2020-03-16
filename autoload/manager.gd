@@ -5,26 +5,13 @@ const CONFIG_FILE := 'config.cfg'
 const CONFIG_PATH := '.config'
 
 
-func get_image_list(_path):
+func get_image_list():
 	
-	var regex = RegEx.new()
 	var image_list:= []
-	var dir := Directory.new()
 	
-	if dir.open(_path) == OK:
+	if ioutil.is_dir():
+		image_list = ioutil.list_by_type('png|jpg')
 		
-		dir.list_dir_begin()
-		var file_name = dir.get_next()
-		while (file_name != ""):
-			if not dir.current_is_dir():
-				
-				regex.compile('[*.](png|jpg)$')
-				var result = regex.search(file_name)
-				
-				if result:
-					image_list.append(_path + '/' + file_name)
-				
-			file_name = dir.get_next()
 	else:
 		print("An error occurred when trying to access the path.")
 	
@@ -48,7 +35,7 @@ func open(_path):
 	
 	
 	
-	var image_list = get_image_list(_path)
+	var image_list = get_image_list()
 	
 	share.set_value('image_list', image_list)
 
@@ -60,5 +47,6 @@ func make_config():
 	ioutil.make_dir(CONFIG_PATH)
 	ioutil.make_file(CONFIG_PATH + '/' + CONFIG_FILE)
 
-
+func check_config():
+	pass
 
