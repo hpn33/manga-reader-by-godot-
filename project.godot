@@ -45,6 +45,11 @@ _global_script_classes=[ {
 "path": "res://object/ImageView/ImageView.gd"
 }, {
 "base": "Node",
+"class": "Manager",
+"language": "GDScript",
+"path": "res://autoload/manager.gd"
+}, {
+"base": "Node",
 "class": "SharePoint",
 "language": "GDScript",
 "path": "res://autoload/SharePoint.gd"
@@ -67,6 +72,7 @@ _global_script_class_icons={
 "Config": "",
 "GMap": "",
 "ImageView": "",
+"Manager": "",
 "SharePoint": "",
 "State": "",
 "StateMachine": ""
@@ -83,6 +89,7 @@ config/icon="res://icon.png"
 data="*res://autoload/data.gd"
 config="*res://autoload/config.gd"
 share="*res://autoload/SharePoint.gd"
+manager="*res://autoload/manager.gd"
 
 [display]
 
