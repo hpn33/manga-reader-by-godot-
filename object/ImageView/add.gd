@@ -25,7 +25,7 @@ func _add():
 		
 		var new :Sprite= owner.image_holder.instance()
 		
-		new.init(owner, image.full_path())
+		new.init(owner, image)
 		new.set_margin(10, 10)
 		
 		owner.add_child(new)

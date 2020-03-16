@@ -16,7 +16,7 @@ var margin := Vector2()
 
 func _ready() -> void:
 	set_size()
-	set_label(file_info)
+	set_label(file_info.full_path())
 
 
 func init(_adapter, _file_info: FileInfo):
