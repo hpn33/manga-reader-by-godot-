@@ -39,6 +39,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://util/GMap.gd"
 }, {
+"base": "Resource",
+"class": "IOUtil",
+"language": "GDScript",
+"path": "res://autoload/IOUnit.gd"
+}, {
 "base": "Node2D",
 "class": "ImageView",
 "language": "GDScript",
@@ -66,6 +71,7 @@ _global_script_class_icons={
 "ColorList": "",
 "Config": "",
 "GMap": "",
+"IOUtil": "",
 "ImageView": "",
 "SharePoint": "",
 "State": "",
@@ -83,6 +89,7 @@ config/icon="res://icon.png"
 data="*res://autoload/data.gd"
 config="*res://autoload/config.gd"
 share="*res://autoload/SharePoint.gd"
+ioutil="*res://autoload/IOUnit.gd"
 
 [display]
 
