@@ -34,12 +34,17 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://autoload/config.gd"
 }, {
+"base": "Reference",
+"class": "FileInfo",
+"language": "GDScript",
+"path": "res://script/FileInfo.gd"
+}, {
 "base": "Node",
 "class": "GMap",
 "language": "GDScript",
 "path": "res://util/GMap.gd"
 }, {
-"base": "Resource",
+"base": "Node",
 "class": "IOUtil",
 "language": "GDScript",
 "path": "res://autoload/IOUnit.gd"
@@ -75,6 +80,7 @@ _global_script_class_icons={
 "Box2D": "",
 "ColorList": "",
 "Config": "",
+"FileInfo": "",
 "GMap": "",
 "IOUtil": "",
 "ImageView": "",
