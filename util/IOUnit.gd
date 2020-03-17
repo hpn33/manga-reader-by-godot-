@@ -1,10 +1,26 @@
-extends Resource
+extends Node
 class_name IOUtil
 
 
+
+## var
+
 var path := ''
+
 var directory := Directory.new()
+var file := File.new()
+
 var regex = RegEx.new()
+
+
+## method
+
+func be(_path):
+	path = _path
+
+
+func current():
+	return path
 
 
 func is_dir(_path = path):
@@ -27,8 +43,6 @@ func list(_path = path):
 		list.append(file_name)
 		
 		file_name = directory.get_next()
-	
-	clean()
 	
 	return list
 
@@ -53,8 +67,6 @@ func file_list(_path = path):
 			
 		file_name = directory.get_next()
 	
-	clean()
-	
 	return list
 
 
@@ -76,8 +88,6 @@ func dir_list(_path = path):
 			list.append(file_name)
 			
 		file_name = directory.get_next()
-	
-	clean()
 	
 	return list
 
@@ -104,8 +114,6 @@ func list_by_pattern(_pattern = '*',_path = path):
 				list.append(file_name)
 			
 		file_name = directory.get_next()
-	
-	clean()
 	
 	return list
 
@@ -140,28 +148,18 @@ func list_by_type(_types, _path = path):
 	while (file_name != ""):
 		
 		if not directory.current_is_dir():
-#			regex.compile("[*.](" + types + ")$")
 			regex.compile("(?<title>[\\w]*).(?<type>(" + types + "))$")
 			var result = regex.search(file_name)
 			
 			if result:
-#				var file_info = [_path, result.get_string('title'), result.get_string('type')]
 				var file_info = FileInfo.new(
 					_path,
 					result.get_string('title'),
 					result.get_string('type'))
 				
-#				var file_info = {
-#					path = _path,
-#					title = result.get_string('title'),
-#					type = result.get_string('type')
-#				}
-				
 				list.append(file_info)
 			
 		file_name = directory.get_next()
-	
-	clean()
 	
 	return list
 
@@ -170,10 +168,21 @@ func dir_exists(_path):
 	return directory.dir_exists(_path)
 
 
-func file_exists(_path):
-	return directory.file_exists(_path)
+func file_exists(file) -> bool:
+	return directory.file_exists(path + '/' + file)
 
 
-func clean():
-	directory = Directory.new()
-	regex = RegEx.new()
+func make_dir(_dir_name):
+	return directory.make_dir(path + '/' +_dir_name)
+
+func make_file(_file_name):
+	var result = file.open(path + '/' + _file_name, File.WRITE)
+	
+	file.close()
+	
+	return result == OK
+
+
+func remove(_target_name):
+	return directory.remove(path + '/' + _target_name)
+

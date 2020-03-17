@@ -28,7 +28,7 @@ func _make_first():
 		for key in default.keys():
 			cf.set_value(root_section, key, default[key])
 		
-		print(save())
+		save()
 
 
 func show_text():

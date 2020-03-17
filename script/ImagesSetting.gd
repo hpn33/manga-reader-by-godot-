@@ -26,8 +26,6 @@ func active():
 	
 	
 	self.init()
-	
-	show_text()
 
 
 func check_config():

@@ -5,7 +5,7 @@ var thread = null
 
 
 func load_image(path):
-	print(owner.name)
+	
 	thread = Thread.new()
 	thread.start( self, "_thread_load", path)
 
