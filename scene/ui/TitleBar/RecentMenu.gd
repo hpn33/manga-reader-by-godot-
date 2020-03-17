@@ -17,8 +17,9 @@ func set_title(title: String):
 
 
 func _id_pressed(id: int):
-	var item = get_popup().get_item_text(id)
-	share.set_value('target_dir', item)
+	var path = get_popup().get_item_text(id)
+	
+	manager.open(path)
 	
 	_recent_changed(share.get_value('recents')) 
 

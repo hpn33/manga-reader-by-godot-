@@ -8,7 +8,7 @@ var iou := IOUtil.new()
 
 func _ready() -> void:
 	share.add_hook('target_dir', self, '_target_dir_changed')
-
+	share.add_hook('image_list', self, 'start')
 
 func _target_dir_changed(value):
 	if path == value:
@@ -48,3 +48,4 @@ func bubble_sort(array):
 		
 		index -= 1
 	return array
+	
