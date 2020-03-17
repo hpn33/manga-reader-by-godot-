@@ -34,7 +34,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://autoload/config.gd"
 }, {
-"base": "Reference",
+"base": "Node",
 "class": "FileInfo",
 "language": "GDScript",
 "path": "res://script/FileInfo.gd"
@@ -47,7 +47,7 @@ _global_script_classes=[ {
 "base": "Node",
 "class": "IOUtil",
 "language": "GDScript",
-"path": "res://autoload/IOUnit.gd"
+"path": "res://script/IOUnit.gd"
 }, {
 "base": "Node2D",
 "class": "ImageView",
@@ -102,7 +102,6 @@ data="*res://autoload/data.gd"
 config="*res://autoload/config.gd"
 share="*res://autoload/SharePoint.gd"
 manager="*res://autoload/manager.gd"
-ioutil="*res://autoload/IOUnit.gd"
 
 [display]
 

@@ -4,6 +4,10 @@ class_name Manager
 const CONFIG_FILE := 'config.cfg'
 const CONFIG_PATH := '.config'
 
+var ioutil := IOUtil.new()
+
+#func _ready():
+#	 ioutil = IOUtil.new()
 
 func get_image_list():
 	
@@ -26,6 +30,10 @@ func open(_path):
 	# if not exist make that
 	if not config_exist():
 		make_config()
+	else:
+		remove_config()
+	
+	print(config_exist())
 	
 	# check change's
 #	check_config()
@@ -46,6 +54,12 @@ func config_exist():
 func make_config():
 	ioutil.make_dir(CONFIG_PATH)
 	ioutil.make_file(CONFIG_PATH + '/' + CONFIG_FILE)
+
+func remove_config():
+	# remove file
+	ioutil.remove(CONFIG_PATH + '/' + CONFIG_FILE)
+	# remove folder
+	ioutil.remove(CONFIG_PATH)
 
 func check_config():
 	pass

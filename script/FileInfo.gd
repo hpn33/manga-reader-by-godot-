@@ -1,4 +1,4 @@
-extends Reference
+extends Node
 class_name FileInfo
 
 

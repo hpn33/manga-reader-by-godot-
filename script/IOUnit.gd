@@ -185,3 +185,7 @@ func make_file(_file_name):
 	
 	return result == OK
 
+
+func remove(_target_name):
+	return directory.remove(path + '/' + _target_name)
+
