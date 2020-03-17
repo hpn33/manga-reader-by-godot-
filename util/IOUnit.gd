@@ -164,7 +164,7 @@ func list_by_type(_types, _path = path):
 	return list
 
 
-func dir_exists(_path):
+func dir_exists(_path = path):
 	return directory.dir_exists(_path)
 
 
