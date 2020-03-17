@@ -1,39 +1,26 @@
 extends Node
 class_name Manager
 
-const CONFIG_FILE := 'config.cfg'
-const CONFIG_PATH := '.config'
 
 var ioutil := IOUtil.new()
-
-#func _ready():
-#	 ioutil = IOUtil.new()
-
-func get_image_list():
-	
-	var image_list:= []
-	
-	if ioutil.is_dir():
-		image_list = ioutil.list_by_type('png|jpg')
-		
-	else:
-		print("An error occurred when trying to access the path.")
-	
-	return image_list
-
+var setting :ImagesSetting
 
 
 func open(_path):
-	# set path
+	
+	setting = ImagesSetting.new(_path)
+	
+	
+	# if path exist set it
+	if not ioutil.dir_exists(_path):
+		print("An error occurred when trying to access the path.")
+		return
+	
 	ioutil.be(_path)
 	
-	# if not exist make that
-	if not config_exist():
-		make_config()
-	else:
-		remove_config()
 	
-	print(config_exist())
+	setting.active()
+	
 	
 	# check change's
 #	check_config()
@@ -43,24 +30,10 @@ func open(_path):
 	
 	
 	
-	var image_list = get_image_list()
+	# get images
+	var image_list = ioutil.list_by_type('png|jpg')
 	
 	share.set_value('image_list', image_list)
 
 
-func config_exist():
-	return ioutil.file_exists(CONFIG_PATH + '/' + CONFIG_FILE)
-
-func make_config():
-	ioutil.make_dir(CONFIG_PATH)
-	ioutil.make_file(CONFIG_PATH + '/' + CONFIG_FILE)
-
-func remove_config():
-	# remove file
-	ioutil.remove(CONFIG_PATH + '/' + CONFIG_FILE)
-	# remove folder
-	ioutil.remove(CONFIG_PATH)
-
-func check_config():
-	pass
 
