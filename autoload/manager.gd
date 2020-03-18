@@ -22,7 +22,7 @@ func open(_path):
 	setting.active()
 	
 	# check change's
-#	check_change()
+	check_change()
 	
 #	set_sort()
 	
@@ -36,6 +36,7 @@ func open(_path):
 	var image_list = ioutil.list_by_type('png|jpg')
 	
 	share.set_value('image_list', image_list)
+	share.set_value('local_files', setting.get_data('names'))
 
 
 func first_set():
@@ -55,7 +56,7 @@ func check_change():
 	if set_names.size() == 0:
 		# set all image names
 		for n in loc_names:
-			set_names.append(n.title)
+			set_names.append(n)
 		
 		save('names', set_names)
 	
@@ -101,6 +102,9 @@ func check_change():
 #		index -= 1
 #	return array
 
+
+func get_list():
+	return setting.get_data('names')
 
 func save(key, value):
 	setting.set_data(key, value)

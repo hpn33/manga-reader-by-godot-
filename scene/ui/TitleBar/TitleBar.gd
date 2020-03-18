@@ -31,10 +31,6 @@ func _on_quit_pressed() -> void:
 	get_tree().quit()
 
 
-func _on_Options_pressed() -> void:
-	owner.ui.open_options()
-
-
 func _on_maximize_pressed() -> void:
 	OS.window_maximized = !OS.window_maximized
 
