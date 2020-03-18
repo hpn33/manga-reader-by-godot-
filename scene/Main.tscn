@@ -219,12 +219,21 @@ margin_left = 1144.31
 margin_top = 641.606
 margin_right = 1084.31
 margin_bottom = 569.606
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Tree" type="Tree" parent="UI/PopMenu/SortPanel"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-drop_mode_flags = 2
-select_mode = 2
+margin_left = 4.0
+margin_top = 4.0
+margin_right = -4.0
+margin_bottom = -4.0
+columns = 2
+hide_folding = true
+drop_mode_flags = 1
+select_mode = 1
 script = ExtResource( 3 )
 __meta__ = {
 "_edit_use_anchors_": false

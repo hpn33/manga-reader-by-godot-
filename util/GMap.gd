@@ -75,6 +75,10 @@ func set(key: String, new_value):
 	values[keys.find(key)] = new_value
 
 
+func insert(position: int, key, value):
+	keys.insert(position, key)
+	values.insert(position, value)
+
 
 
 #################################################
