@@ -24,11 +24,6 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://autoload/AppSetting.gd"
 }, {
-"base": "Node2D",
-"class": "Box2D",
-"language": "GDScript",
-"path": "res://object/Box2D/Box2D.gd"
-}, {
 "base": "VBoxContainer",
 "class": "ColorList",
 "language": "GDScript",
@@ -88,7 +83,6 @@ _global_script_class_icons={
 "ActionHolder": "",
 "ActionList": "",
 "AppSetting": "",
-"Box2D": "",
 "ColorList": "",
 "ConfigWraper": "",
 "FileInfo": "",
