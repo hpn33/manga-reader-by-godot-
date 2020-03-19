@@ -1,6 +1,14 @@
 extends Node
 class_name SharePoint
 
+
+"""
+TODO::
+
+add notify change
+add notify change for special target ( one or more )
+"""
+
 # debug -----------------------
 var can_debug := false
 

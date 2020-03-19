@@ -1,12 +1,19 @@
 extends Node
 class_name Manager
 
+enum {
+	none,
+	selected
+}
 
 var ioutil := IOUtil.new()
 var setting :ImagesSetting
 
+var path := ''
+
 
 func open(_path):
+	path = _path
 	
 	setting = ImagesSetting.new(_path)
 	
@@ -74,7 +81,7 @@ func check_change():
 			save('names', loc_names)
 	
 	
-	setting.show_text()
+#	setting.show_text()
 	pass
 
 
@@ -103,8 +110,9 @@ func check_change():
 #	return array
 
 
-func get_list():
+func files() -> Array:
 	return setting.get_data('names')
+
 
 func save(key, value):
 	setting.set_data(key, value)

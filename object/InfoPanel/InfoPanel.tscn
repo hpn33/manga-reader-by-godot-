@@ -1,0 +1,219 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://object/InfoPanel/Tree.gd" type="Script" id=1]
+[ext_resource path="res://object/InfoPanel/InfoPanel.gd" type="Script" id=2]
+[ext_resource path="res://object/InfoPanel/SortList.gd" type="Script" id=3]
+
+[node name="InfoPanel" type="PopupPanel"]
+visible = true
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = -60.0
+margin_bottom = -72.0001
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Tree" type="Tree" parent="."]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 4.0
+margin_top = 4.0
+margin_right = -4.0
+margin_bottom = -4.0
+columns = 2
+hide_folding = true
+drop_mode_flags = 1
+select_mode = 1
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 4.0
+margin_top = 4.0
+margin_right = -4.0
+margin_bottom = -4.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer"]
+margin_right = 956.0
+margin_bottom = 57.0
+size_flags_vertical = 3
+custom_constants/margin_right = 5
+custom_constants/margin_top = 5
+custom_constants/margin_left = 5
+custom_constants/margin_bottom = 5
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/MarginContainer"]
+margin_left = 5.0
+margin_top = 5.0
+margin_right = 951.0
+margin_bottom = 52.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/MarginContainer/HBoxContainer"]
+margin_right = 471.0
+margin_bottom = 47.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="LabelPath" type="Label" parent="VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer"]
+margin_right = 471.0
+margin_bottom = 14.0
+text = "Folder Location::"
+
+[node name="Path" type="Label" parent="VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer"]
+margin_top = 18.0
+margin_right = 471.0
+margin_bottom = 32.0
+text = "the location of image folder"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/MarginContainer/HBoxContainer"]
+margin_left = 475.0
+margin_right = 946.0
+margin_bottom = 47.0
+size_flags_horizontal = 3
+alignment = 2
+
+[node name="Refresh" type="Button" parent="VBoxContainer/MarginContainer/HBoxContainer/HBoxContainer"]
+margin_left = 411.0
+margin_right = 471.0
+margin_bottom = 47.0
+text = "Refresh"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+margin_top = 61.0
+margin_right = 956.0
+margin_bottom = 519.0
+size_flags_vertical = 3
+size_flags_stretch_ratio = 8.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/HBoxContainer"]
+margin_right = 476.0
+margin_bottom = 458.0
+size_flags_horizontal = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/HBoxContainer/VBoxContainer"]
+margin_right = 476.0
+margin_bottom = 56.0
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer"]
+margin_top = 21.0
+margin_right = 334.0
+margin_bottom = 35.0
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 5.0
+text = "File's"
+
+[node name="Label2" type="Label" parent="VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer"]
+margin_left = 338.0
+margin_top = 21.0
+margin_right = 404.0
+margin_bottom = 35.0
+size_flags_horizontal = 3
+text = "Count::"
+align = 2
+
+[node name="Count" type="Label" parent="VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer"]
+margin_left = 408.0
+margin_top = 21.0
+margin_right = 476.0
+margin_bottom = 35.0
+size_flags_horizontal = 3
+text = "000"
+align = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/HBoxContainer/VBoxContainer"]
+margin_top = 60.0
+margin_right = 476.0
+margin_bottom = 458.0
+size_flags_vertical = 3
+size_flags_stretch_ratio = 7.0
+custom_constants/margin_right = 5
+custom_constants/margin_top = 5
+custom_constants/margin_left = 5
+custom_constants/margin_bottom = 5
+
+[node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer/HBoxContainer/VBoxContainer/MarginContainer"]
+margin_left = 5.0
+margin_top = 5.0
+margin_right = 471.0
+margin_bottom = 393.0
+scroll_horizontal_enabled = false
+
+[node name="LocalFile" type="VBoxContainer" parent="VBoxContainer/HBoxContainer/VBoxContainer/MarginContainer/ScrollContainer"]
+margin_right = 466.0
+margin_bottom = 388.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="VBoxContainer/HBoxContainer"]
+margin_left = 480.0
+margin_right = 956.0
+margin_bottom = 458.0
+size_flags_horizontal = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/HBoxContainer/VBoxContainer2"]
+margin_right = 476.0
+margin_bottom = 56.0
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer/VBoxContainer2/HBoxContainer"]
+margin_top = 21.0
+margin_right = 334.0
+margin_bottom = 35.0
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 5.0
+text = "Sort"
+
+[node name="Label2" type="Label" parent="VBoxContainer/HBoxContainer/VBoxContainer2/HBoxContainer"]
+margin_left = 338.0
+margin_top = 21.0
+margin_right = 404.0
+margin_bottom = 35.0
+size_flags_horizontal = 3
+text = "Visible::"
+align = 2
+
+[node name="VisibleCount" type="Label" parent="VBoxContainer/HBoxContainer/VBoxContainer2/HBoxContainer"]
+margin_left = 408.0
+margin_top = 21.0
+margin_right = 476.0
+margin_bottom = 35.0
+size_flags_horizontal = 3
+text = "000"
+align = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/HBoxContainer/VBoxContainer2"]
+margin_top = 60.0
+margin_right = 476.0
+margin_bottom = 458.0
+size_flags_vertical = 3
+size_flags_stretch_ratio = 7.0
+custom_constants/margin_right = 5
+custom_constants/margin_top = 5
+custom_constants/margin_left = 5
+custom_constants/margin_bottom = 5
+
+[node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer/HBoxContainer/VBoxContainer2/MarginContainer"]
+margin_left = 5.0
+margin_top = 5.0
+margin_right = 471.0
+margin_bottom = 393.0
+scroll_horizontal_enabled = false
+
+[node name="SortList" type="VBoxContainer" parent="VBoxContainer/HBoxContainer/VBoxContainer2/MarginContainer/ScrollContainer"]
+margin_right = 466.0
+margin_bottom = 388.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource( 3 )
+[connection signal="pressed" from="VBoxContainer/MarginContainer/HBoxContainer/HBoxContainer/Refresh" to="." method="refresh"]
