@@ -113,6 +113,9 @@ func check_change():
 func files() -> Array:
 	return setting.get_data('names')
 
+func sort_list() -> Array:
+	return setting.get_data('sort')
+
 
 func save(key, value):
 	setting.set_data(key, value)
