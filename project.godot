@@ -34,7 +34,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://util/ConfigWraper.gd"
 }, {
-"base": "Node",
+"base": "Reference",
 "class": "FileInfo",
 "language": "GDScript",
 "path": "res://util/FileInfo.gd"

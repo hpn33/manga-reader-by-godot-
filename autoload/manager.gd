@@ -27,6 +27,7 @@ func open(_path):
 	
 	setting.active()
 	
+	
 	# check change's
 	check_change()
 	
@@ -42,7 +43,7 @@ func open(_path):
 	var image_list = ioutil.list_by_type('png|jpg')
 	
 	share.set_value('image_list', image_list)
-	share.set_value('local_files', setting.get_data('names'))
+	share.set_value('local_files', setting.files)
 
 
 
@@ -53,16 +54,24 @@ func open(_path):
 func check_change():
 	var files :Dictionary= setting.files
 	
-	var loc_names := []
+#	var loc_names := []
+#	for n in ioutil.list_by_type('png|jpg'):
+#		loc_names.append(n.title)
+	
+	var loc_files := []
 	for n in ioutil.list_by_type('png|jpg'):
-		loc_names.append(n.title)
-	
-	
+		
+		var item = {
+			title = n.title,
+			type = n.type
+		}
+		
+		loc_files.append(item)
 	
 	
 	if files.empty():
 		# set all image names
-		for n in loc_names:
+		for n in loc_files:
 			files[files.size()] = n
 		
 		save('files', files)
@@ -72,13 +81,13 @@ func check_change():
 		var mach := true
 		
 		for f in files:
-			if loc_names.find(f) == -1:
+			if loc_files.find(f) == -1:
 				mach = false
 				break
 		
 		# if names was change then save new names
 		if not mach:
-			save('names', loc_names)
+			save('files', loc_files)
 	
 	
 #	setting.show_text()
@@ -111,10 +120,10 @@ func check_change():
 
 
 func files() -> Array:
-	return setting.get_data('names')
+	return setting.files
 
 func sort_list() -> Array:
-	return setting.get_data('sort')
+	return setting.sort
 
 
 func save(key, value):
