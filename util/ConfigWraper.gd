@@ -50,13 +50,27 @@ func save(): cf.save(path)
 func load(): cf.load(path)
 
 
-func get_data(key, default = null):
-	return cf.get_value(root_section, key, default)
+func get_data(key, _default = null):
+	return cf.get_value(root_section, key, _default)
 
 
 func set_data(key, value):
 	cf.set_value(root_section, key, value)
 
 
+func _get(property):
+	
+	# can make use a function
+	for fun in get_method_list():
+		if(fun["flags"] == METHOD_FLAG_FROM_SCRIPT+1):
+			if property == fun['name']:
+				return call(property)
+	
+	# if has a key can use get_data function
+	if cf.has_section_key(root_section, property):
+		return get_data(property)
+	
+	# else work by default
+	return ._get(property)
 
 

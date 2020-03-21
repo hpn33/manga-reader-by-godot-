@@ -1,10 +1,12 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://object/InfoPanel/Tree.gd" type="Script" id=1]
 [ext_resource path="res://object/InfoPanel/InfoPanel.gd" type="Script" id=2]
 [ext_resource path="res://object/InfoPanel/SortList.gd" type="Script" id=3]
+[ext_resource path="res://object/InfoPanel/buttongroup.tres" type="ButtonGroup" id=4]
 
 [node name="InfoPanel" type="PopupPanel"]
+visible = true
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_right = -60.0
@@ -82,10 +84,22 @@ size_flags_horizontal = 3
 alignment = 2
 
 [node name="Refresh" type="Button" parent="VBoxContainer/MarginContainer/HBoxContainer/HBoxContainer"]
-margin_left = 411.0
-margin_right = 471.0
+margin_left = 325.0
+margin_right = 385.0
 margin_bottom = 47.0
 text = "Refresh"
+
+[node name="Save" type="Button" parent="VBoxContainer/MarginContainer/HBoxContainer/HBoxContainer"]
+margin_left = 389.0
+margin_right = 430.0
+margin_bottom = 47.0
+text = "Save"
+
+[node name="Use" type="Button" parent="VBoxContainer/MarginContainer/HBoxContainer/HBoxContainer"]
+margin_left = 434.0
+margin_right = 471.0
+margin_bottom = 47.0
+text = "Use"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
 margin_top = 61.0
@@ -104,25 +118,24 @@ margin_right = 476.0
 margin_bottom = 56.0
 size_flags_vertical = 3
 
-[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer"]
-margin_top = 21.0
-margin_right = 334.0
-margin_bottom = 35.0
-size_flags_horizontal = 3
-size_flags_stretch_ratio = 5.0
+[node name="FileCheck" type="CheckBox" parent="VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer"]
+margin_right = 61.0
+margin_bottom = 56.0
+pressed = true
+group = ExtResource( 4 )
 text = "File's"
 
 [node name="Label2" type="Label" parent="VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer"]
-margin_left = 338.0
+margin_left = 65.0
 margin_top = 21.0
-margin_right = 404.0
+margin_right = 268.0
 margin_bottom = 35.0
 size_flags_horizontal = 3
 text = "Count::"
 align = 2
 
 [node name="Count" type="Label" parent="VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer"]
-margin_left = 408.0
+margin_left = 272.0
 margin_top = 21.0
 margin_right = 476.0
 margin_bottom = 35.0
@@ -165,25 +178,23 @@ margin_right = 476.0
 margin_bottom = 56.0
 size_flags_vertical = 3
 
-[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer/VBoxContainer2/HBoxContainer"]
-margin_top = 21.0
-margin_right = 334.0
-margin_bottom = 35.0
-size_flags_horizontal = 3
-size_flags_stretch_ratio = 5.0
-text = "Sort"
+[node name="SortCheck" type="CheckBox" parent="VBoxContainer/HBoxContainer/VBoxContainer2/HBoxContainer"]
+margin_right = 53.0
+margin_bottom = 56.0
+group = ExtResource( 4 )
+text = "sort"
 
 [node name="Label2" type="Label" parent="VBoxContainer/HBoxContainer/VBoxContainer2/HBoxContainer"]
-margin_left = 338.0
+margin_left = 57.0
 margin_top = 21.0
-margin_right = 404.0
+margin_right = 264.0
 margin_bottom = 35.0
 size_flags_horizontal = 3
 text = "Visible::"
 align = 2
 
 [node name="VisibleCount" type="Label" parent="VBoxContainer/HBoxContainer/VBoxContainer2/HBoxContainer"]
-margin_left = 408.0
+margin_left = 268.0
 margin_top = 21.0
 margin_right = 476.0
 margin_bottom = 35.0

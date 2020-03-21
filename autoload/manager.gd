@@ -13,10 +13,9 @@ var path := ''
 
 
 func open(_path):
+	# init
 	path = _path
-	
 	setting = ImagesSetting.new(_path)
-	
 	ioutil.be(_path)
 	
 	# if path exist set it
@@ -46,12 +45,13 @@ func open(_path):
 	share.set_value('local_files', setting.get_data('names'))
 
 
-func first_set():
-	setting.active()
+
+#func first_set():
+#	setting.active()
 
 
 func check_change():
-	var set_names :Array= setting.get_data('names')
+	var files :Dictionary= setting.files
 	
 	var loc_names := []
 	for n in ioutil.list_by_type('png|jpg'):
@@ -60,19 +60,19 @@ func check_change():
 	
 	
 	
-	if set_names.size() == 0:
+	if files.empty():
 		# set all image names
 		for n in loc_names:
-			set_names.append(n)
+			files[files.size()] = n
 		
-		save('names', set_names)
+		save('files', files)
 	
 	else:
 		# check change
 		var mach := true
 		
-		for n in set_names:
-			if loc_names.find(n) == -1:
+		for f in files:
+			if loc_names.find(f) == -1:
 				mach = false
 				break
 		

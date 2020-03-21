@@ -4,9 +4,10 @@ extends Tree
 var list := GMap.new()
 
 func _ready():
-	share.add_hook('local_files', self, 'refresh')
+#	share.add_hook('local_files', self, 'refresh')
 	
-	refresh()
+#	refresh()
+	pass
 
 func refresh(local_files = list):
 	
