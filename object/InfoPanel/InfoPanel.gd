@@ -12,6 +12,8 @@ onready var visible_label := $VBoxContainer/HBoxContainer/VBoxContainer2/HBoxCon
 
 """
 
+* auto save button
+
 # buttons
 - button for saving sort_list
 - button (use) for acting change on image viewer
@@ -49,13 +51,13 @@ func refresh(files = manager.files()):
 
 
 
-func show_local_files(files: Dictionary):
+func show_local_files(files):
 	for child in vbox_local_file.get_children():
 		vbox_local_file.remove_child(child)
 	
-	for index in files:
+	for file in files:
 		var label = Label.new()
-		label.text = files[index].title
+		label.text = file.title
 		
 		
 		vbox_local_file.add_child(label)
@@ -69,11 +71,13 @@ func show_path_folder():
 	path_label.text = manager.path
 
 
-func show_sort_list(list:Dictionary):
+func show_sort_list(list):
 	
-	for index in list:
-		var label = Label.new()
-		label.text = list[index].title
-		
-		vbox_sort_list.add_child(label)
+	vbox_sort_list.refresh(list)
+	
+#	for item in list.values():
+#		var label = Label.new()
+#		label.text = item.title
+#
+#		vbox_sort_list.add_child(label)
 	

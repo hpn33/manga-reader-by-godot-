@@ -69,6 +69,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://autoload/SharePoint.gd"
 }, {
+"base": "HBoxContainer",
+"class": "SortItem",
+"language": "GDScript",
+"path": "res://object/InfoPanel/SortItem/SortItem.gd"
+}, {
 "base": "Node",
 "class": "State",
 "language": "GDScript",
@@ -92,6 +97,7 @@ _global_script_class_icons={
 "ImagesSetting": "",
 "Manager": "",
 "SharePoint": "",
+"SortItem": "",
 "State": "",
 "StateMachine": ""
 }

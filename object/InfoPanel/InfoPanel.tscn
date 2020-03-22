@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://object/InfoPanel/Tree.gd" type="Script" id=1]
 [ext_resource path="res://object/InfoPanel/InfoPanel.gd" type="Script" id=2]
 [ext_resource path="res://object/InfoPanel/SortList.gd" type="Script" id=3]
 [ext_resource path="res://object/InfoPanel/buttongroup.tres" type="ButtonGroup" id=4]
+[ext_resource path="res://object/InfoPanel/SortItem/SortItem.tscn" type="PackedScene" id=5]
 
 [node name="InfoPanel" type="PopupPanel"]
 anchor_right = 1.0
@@ -225,4 +226,38 @@ margin_bottom = 388.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 script = ExtResource( 3 )
+
+[node name="SortItem" parent="VBoxContainer/HBoxContainer/VBoxContainer2/MarginContainer/ScrollContainer/SortList" instance=ExtResource( 5 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 466.0
+margin_bottom = 24.0
+
+[node name="SortItem2" parent="VBoxContainer/HBoxContainer/VBoxContainer2/MarginContainer/ScrollContainer/SortList" instance=ExtResource( 5 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 28.0
+margin_right = 466.0
+margin_bottom = 52.0
+
+[node name="SortItem3" parent="VBoxContainer/HBoxContainer/VBoxContainer2/MarginContainer/ScrollContainer/SortList" instance=ExtResource( 5 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 56.0
+margin_right = 466.0
+margin_bottom = 80.0
+
+[node name="SortItem4" parent="VBoxContainer/HBoxContainer/VBoxContainer2/MarginContainer/ScrollContainer/SortList" instance=ExtResource( 5 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 84.0
+margin_right = 466.0
+margin_bottom = 108.0
+
+[node name="SortItem5" parent="VBoxContainer/HBoxContainer/VBoxContainer2/MarginContainer/ScrollContainer/SortList" instance=ExtResource( 5 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 112.0
+margin_right = 466.0
+margin_bottom = 136.0
 [connection signal="pressed" from="VBoxContainer/MarginContainer/HBoxContainer/HBoxContainer/Refresh" to="." method="refresh"]

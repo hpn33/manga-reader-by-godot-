@@ -7,7 +7,7 @@ enum {
 }
 
 var ioutil := IOUtil.new()
-var setting :ImagesSetting
+var setting := ImagesSetting.new()
 
 var path := ''
 
@@ -15,7 +15,7 @@ var path := ''
 func open(_path):
 	# init
 	path = _path
-	setting = ImagesSetting.new(_path)
+	setting.be(_path)
 	ioutil.be(_path)
 	
 	# if path exist set it
@@ -51,21 +51,24 @@ func open(_path):
 
 
 func check_change():
-	var files :Dictionary= setting.files
+	var files :Array= setting.files
 	
 #	var loc_names := []
 #	for n in ioutil.list_by_type('png|jpg'):
 #		loc_names.append(n.title)
 	
-	var loc_files := {}
+	var loc_files := []
+	var index := 0
 	for n in ioutil.list_by_type('png|jpg'):
 		
 		var item = {
+			id = index,
 			title = n.title,
 			type = n.type
 		}
 		
-		loc_files[loc_files.size()] = item
+		loc_files.append(item)
+		index += 1
 	
 	
 	if files.empty():
@@ -79,7 +82,7 @@ func check_change():
 		var mach := true
 		
 		for f in files:
-			if loc_files.values().find(f) == -1:
+			if loc_files.find(f) == -1:
 				mach = false
 				break
 		
@@ -94,14 +97,18 @@ func check_change():
 
 func set_sort():
 
-	var sort :Dictionary= setting.sort
+	var sort :Array= setting.sort
 
 	if sort.empty():
 		
-		sort = setting.files.duplicate()
-		
-		for index in sort:
-			sort[index]['visiable'] = true
+		for file in setting.files:
+			
+			var item := {
+				id = file.id,
+				visiable = true
+			}
+			
+			sort.append(item)
 		
 		save('sort', sort)
 
@@ -121,10 +128,10 @@ func set_sort():
 #	return array
 
 
-func files() -> Dictionary:
+func files() -> Array:
 	return setting.files
 
-func sort_list() -> Dictionary:
+func sort_list() -> Array:
 	return setting.sort
 
 

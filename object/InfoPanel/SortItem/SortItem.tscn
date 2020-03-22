@@ -1,0 +1,29 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://object/InfoPanel/SortItem/SortItem.gd" type="Script" id=1]
+
+[node name="SortItem" type="HBoxContainer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Check" type="CheckBox" parent="."]
+margin_right = 102.0
+margin_bottom = 600.0
+size_flags_horizontal = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Title" type="Label" parent="."]
+margin_left = 106.0
+margin_top = 293.0
+margin_right = 1024.0
+margin_bottom = 307.0
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 9.0
+text = "Title"
+[connection signal="pressed" from="Check" to="." method="_on_Check_pressed"]
