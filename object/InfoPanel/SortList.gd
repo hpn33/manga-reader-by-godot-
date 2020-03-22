@@ -12,6 +12,7 @@ var list := []
 
 #	refresh()
 
+
 func refresh(_list = list):
 	
 	clear()
@@ -61,6 +62,10 @@ func update_item(index, visiable):
 	list[index].visiable = visiable
 	
 	manager.save('sort', list)
+	
+	owner.show_count_sort()
+
+
 
 
 func clear():

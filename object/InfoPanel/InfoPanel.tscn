@@ -7,6 +7,7 @@
 [ext_resource path="res://object/InfoPanel/SortItem/SortItem.tscn" type="PackedScene" id=5]
 
 [node name="InfoPanel" type="PopupPanel"]
+visible = true
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_right = -60.0
@@ -261,3 +262,4 @@ margin_top = 112.0
 margin_right = 466.0
 margin_bottom = 136.0
 [connection signal="pressed" from="VBoxContainer/MarginContainer/HBoxContainer/HBoxContainer/Refresh" to="." method="refresh"]
+[connection signal="pressed" from="VBoxContainer/MarginContainer/HBoxContainer/HBoxContainer/Save" to="." method="_on_Save_pressed"]

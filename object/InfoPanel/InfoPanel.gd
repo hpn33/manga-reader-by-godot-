@@ -32,6 +32,7 @@ and make option for repire that
 
 """
 
+
 func _ready():
 	
 	share.add_hook('local_files', self, 'refresh')
@@ -48,6 +49,7 @@ func refresh(files = manager.files()):
 	show_count_files(files.size())
 	
 	show_sort_list(manager.sort_list())
+	show_count_sort()
 
 
 
@@ -72,12 +74,22 @@ func show_path_folder():
 
 
 func show_sort_list(list):
-	
 	vbox_sort_list.refresh(list)
+
+
+func show_count_sort():
+	visible_label.text = str(visiable_count())
+
+
+func visiable_count():
+	var count := 0
 	
-#	for item in list.values():
-#		var label = Label.new()
-#		label.text = item.title
-#
-#		vbox_sort_list.add_child(label)
+	for item in manager.sort_list():
+		if item.visiable:
+			count += 1
 	
+	return count
+
+
+func _on_Save_pressed():
+	manager.save('sort', manager.sort_list())
