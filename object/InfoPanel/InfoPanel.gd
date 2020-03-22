@@ -3,10 +3,12 @@ extends PopupPanel
 
 onready var path_label := $VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/Path
 
+onready var file_check := $VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer/FileCheck
 onready var vbox_local_file := $VBoxContainer/HBoxContainer/VBoxContainer/MarginContainer/ScrollContainer/LocalFile
 onready var count_label := $VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer/Count
 
 
+onready var sort_check := $VBoxContainer/HBoxContainer/VBoxContainer2/HBoxContainer/SortCheck
 onready var vbox_sort_list := $VBoxContainer/HBoxContainer/VBoxContainer2/MarginContainer/ScrollContainer/SortList
 onready var visible_label := $VBoxContainer/HBoxContainer/VBoxContainer2/HBoxContainer/VisibleCount
 
@@ -33,18 +35,30 @@ and make option for repire that
 """
 
 
+var button_group = ButtonGroup.new()
+
+
 func _ready():
 	
-	share.add_hook('local_files', self, 'refresh')
+	share.add_hook('image_list', self, 'refresh')
+	
+	sort_check.group = button_group
+	file_check.group = button_group
+	
+	for button in button_group.get_buttons():
+		button.connect('pressed', self, '_button_pressed', [button])
+	
+	
 
 
 
 
 
-func refresh(files = manager.files()):
+func refresh(_files = manager.files()):
 	
 	show_path_folder()
 	
+	var files = manager.files()
 	show_local_files(files)
 	show_count_files(files.size())
 	
@@ -93,3 +107,13 @@ func visiable_count():
 
 func _on_Save_pressed():
 	manager.save('sort', manager.sort_list())
+
+
+func _on_Use_pressed():
+	manager.show()
+
+
+func _button_pressed(obj):
+	manager.option = button_group.get_pressed_button().text
+	
+	

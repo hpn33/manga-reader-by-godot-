@@ -1,15 +1,57 @@
 extends Node
 class_name Manager
 
+
 enum {
 	none,
 	selected
 }
 
+
 var ioutil := IOUtil.new()
 var setting := ImagesSetting.new()
 
 var path := ''
+var option := 'Local'
+
+
+func show(_option = option):
+	
+	if path == "":
+		return
+	
+	option = _option
+	
+	
+	var list := []
+
+	if option == 'Local':
+		for file in files():
+			list.append(FileInfo.new(path, file.title, file.type))
+		
+	elif option == 'Sort':
+		
+		var files :Array= files()
+		var c_file
+		
+		for item in sort_list():
+			
+			if not item.visiable:
+				continue
+			
+			for index in files.size():
+				if item.id == files[index].id:
+					c_file = files[index]
+					files.remove(index)
+					break
+			
+			
+			if c_file:
+				list.append(FileInfo.new(path, c_file.title, c_file.type))
+	
+	
+	
+	share.set_value('image_list', list)
 
 
 func open(_path):
@@ -38,11 +80,11 @@ func open(_path):
 	
 	
 	# get images
-#	var image_list = setting.get_name_list()
-	var image_list = ioutil.list_by_type('png|jpg')
+#	var image_list = ioutil.list_by_type('png|jpg')
 	
-	share.set_value('image_list', image_list)
-	share.set_value('local_files', setting.files)
+#	share.set_value('image_list', image_list)
+	
+	show()
 
 
 

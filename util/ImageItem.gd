@@ -1,4 +1,4 @@
-class_name FileInfo
+class_name ImageItem
 
 
 var path := ''
@@ -14,14 +14,3 @@ func _init(_path, _title, _type):
 func full_path():
 	return path + '/' + title + '.'+ type
 	
-
-
-func to_dic() -> Dictionary:
-	return {
-		title = self.title,
-		type = self.type
-	}
-
-
-func import(dic: Dictionary):
-	pass

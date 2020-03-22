@@ -1,35 +1,17 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://object/InfoPanel/Tree.gd" type="Script" id=1]
 [ext_resource path="res://object/InfoPanel/InfoPanel.gd" type="Script" id=2]
 [ext_resource path="res://object/InfoPanel/SortList.gd" type="Script" id=3]
-[ext_resource path="res://object/InfoPanel/buttongroup.tres" type="ButtonGroup" id=4]
 [ext_resource path="res://object/InfoPanel/SortItem/SortItem.tscn" type="PackedScene" id=5]
 
+[sub_resource type="ButtonGroup" id=1]
+
 [node name="InfoPanel" type="PopupPanel"]
-visible = true
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_right = -60.0
 margin_bottom = -72.0001
 script = ExtResource( 2 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Tree" type="Tree" parent="."]
-visible = false
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = 4.0
-margin_top = 4.0
-margin_right = -4.0
-margin_bottom = -4.0
-columns = 2
-hide_folding = true
-drop_mode_flags = 1
-select_mode = 1
-script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -123,8 +105,8 @@ size_flags_vertical = 3
 margin_right = 61.0
 margin_bottom = 56.0
 pressed = true
-group = ExtResource( 4 )
-text = "File's"
+group = SubResource( 1 )
+text = "Local"
 
 [node name="Label2" type="Label" parent="VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer"]
 margin_left = 65.0
@@ -182,8 +164,8 @@ size_flags_vertical = 3
 [node name="SortCheck" type="CheckBox" parent="VBoxContainer/HBoxContainer/VBoxContainer2/HBoxContainer"]
 margin_right = 53.0
 margin_bottom = 56.0
-group = ExtResource( 4 )
-text = "sort"
+group = SubResource( 1 )
+text = "Sort"
 
 [node name="Label2" type="Label" parent="VBoxContainer/HBoxContainer/VBoxContainer2/HBoxContainer"]
 margin_left = 57.0
@@ -263,3 +245,4 @@ margin_right = 466.0
 margin_bottom = 136.0
 [connection signal="pressed" from="VBoxContainer/MarginContainer/HBoxContainer/HBoxContainer/Refresh" to="." method="refresh"]
 [connection signal="pressed" from="VBoxContainer/MarginContainer/HBoxContainer/HBoxContainer/Save" to="." method="_on_Save_pressed"]
+[connection signal="pressed" from="VBoxContainer/MarginContainer/HBoxContainer/HBoxContainer/Use" to="." method="_on_Use_pressed"]
