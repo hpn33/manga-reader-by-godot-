@@ -6,7 +6,6 @@
 [ext_resource path="res://object/InfoPanel/buttongroup.tres" type="ButtonGroup" id=4]
 
 [node name="InfoPanel" type="PopupPanel"]
-visible = true
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_right = -60.0

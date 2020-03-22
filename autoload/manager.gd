@@ -24,7 +24,6 @@ func open(_path):
 		return
 	
 	
-	
 	setting.active()
 	
 	
@@ -58,7 +57,7 @@ func check_change():
 #	for n in ioutil.list_by_type('png|jpg'):
 #		loc_names.append(n.title)
 	
-	var loc_files := []
+	var loc_files := {}
 	for n in ioutil.list_by_type('png|jpg'):
 		
 		var item = {
@@ -66,22 +65,21 @@ func check_change():
 			type = n.type
 		}
 		
-		loc_files.append(item)
+		loc_files[loc_files.size()] = item
 	
 	
 	if files.empty():
-		# set all image names
-		for n in loc_files:
-			files[files.size()] = n
 		
-		save('files', files)
+		save('files', loc_files)
+		
+		set_sort()
 	
 	else:
 		# check change
 		var mach := true
 		
 		for f in files:
-			if loc_files.find(f) == -1:
+			if loc_files.values().find(f) == -1:
 				mach = false
 				break
 		
@@ -94,14 +92,18 @@ func check_change():
 	pass
 
 
-#func set_sort():
-#
-#	var sort = setting.get_date('sort')
-#
-#	if sort.size() == 0:
-#		sort = bubble_sort(setting.get_data('names'))
-#
-#		save('sort', sort)
+func set_sort():
+
+	var sort :Dictionary= setting.sort
+
+	if sort.empty():
+		
+		sort = setting.files.duplicate()
+		
+		for index in sort:
+			sort[index]['visiable'] = true
+		
+		save('sort', sort)
 
 
 #func bubble_sort(array):
@@ -119,10 +121,10 @@ func check_change():
 #	return array
 
 
-func files() -> Array:
+func files() -> Dictionary:
 	return setting.files
 
-func sort_list() -> Array:
+func sort_list() -> Dictionary:
 	return setting.sort
 
 

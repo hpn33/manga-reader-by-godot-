@@ -13,7 +13,7 @@ func _init(_path):
 	
 	default = {
 		files = {},
-		sort = []
+		sort = {}
 	}
 	
 	

@@ -49,13 +49,14 @@ func refresh(files = manager.files()):
 
 
 
-func show_local_files(files):
+func show_local_files(files: Dictionary):
 	for child in vbox_local_file.get_children():
 		vbox_local_file.remove_child(child)
 	
-	for title in files:
+	for index in files:
 		var label = Label.new()
-		label.text = title
+		label.text = files[index].title
+		
 		
 		vbox_local_file.add_child(label)
 
@@ -68,10 +69,11 @@ func show_path_folder():
 	path_label.text = manager.path
 
 
-func show_sort_list(sort_list):
-	for item in sort_list:
+func show_sort_list(list:Dictionary):
+	
+	for index in list:
 		var label = Label.new()
-		label.text = item
+		label.text = list[index].title
 		
 		vbox_sort_list.add_child(label)
 	
