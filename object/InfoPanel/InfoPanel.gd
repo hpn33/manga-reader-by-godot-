@@ -46,74 +46,58 @@ func _ready():
 	file_check.group = button_group
 	
 	for button in button_group.get_buttons():
-		button.connect('pressed', self, '_button_pressed', [button])
+		button.connect('pressed', self, '_button_pressed')
+
+
+
+
+func refresh(list = []):
 	
-	
-
-
-
-
-
-func refresh(_files = manager.files()):
-	
-	show_path_folder()
-	
-	var files = manager.files()
-	show_local_files(files)
-	show_count_files(files.size())
-	
-	show_sort_list(manager.sort_list())
-	show_count_sort()
-
-
-
-func show_local_files(files):
-	for child in vbox_local_file.get_children():
-		vbox_local_file.remove_child(child)
-	
-	for file in files:
-		var label = Label.new()
-		label.text = file.title
-		
-		
-		vbox_local_file.add_child(label)
-
-
-func show_count_files(count):
-	count_label.text = str(count)
-
-
-func show_path_folder():
+	# show_path_folder
 	path_label.text = manager.path
+	
+	set_active_list_button()
+	
+	# file list
+	vbox_local_file.refresh()
+	count_label.text = str(manager.file_list().size())
+	
+	# sort list
+	vbox_sort_list.refresh()
+	show_count_sort()
+	
 
 
-func show_sort_list(list):
-	vbox_sort_list.refresh(list)
+func set_active_list_button():
+	
+	# set active list
+	for button in button_group.get_buttons():
+		if button.text == manager.active_list():
+			button.pressed = true
+			break
 
 
 func show_count_sort():
-	visible_label.text = str(visiable_count())
-
-
-func visiable_count():
-	var count := 0
-	
-	for item in manager.sort_list():
-		if item.visiable:
-			count += 1
-	
-	return count
+	visible_label.refresh()
 
 
 func _on_Save_pressed():
-	manager.save('sort', manager.sort_list())
-
+	manager.save('sort_list', vbox_sort_list.list)
 
 func _on_Use_pressed():
 	manager.show()
 
+func _button_pressed():
+	manager.set_active_list(button_group.get_pressed_button().text)
 
-func _button_pressed(obj):
-	manager.option = button_group.get_pressed_button().text
-	
-	
+
+
+
+func _on_InfoPanel_about_to_show():
+	refresh()
+
+
+func _on_number_pressed():
+	vbox_sort_list.sort_by_number()
+
+

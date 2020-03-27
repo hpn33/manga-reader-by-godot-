@@ -8,12 +8,6 @@ const CONFIG_PATH := '.mrconfig'
 var ioutil := IOUtil.new()
 
 func _init():
-#	path = _path + '/' + CONFIG_PATH + '/' + CONFIG_FILE
-#
-#	default = {
-#		files = [],
-#		sort = []
-#	}
 	be()
 
 
@@ -22,9 +16,12 @@ func be(_path = path):
 	path = _path + '/' + CONFIG_PATH + '/' + CONFIG_FILE
 	
 	default = {
-		files = [],
-		sort = []
+		active_list = 'File',
+		file_list = [],
+		sort_list = []
 	}
+	
+	shortget = default.keys()
 	
 	ioutil.be(_path)
 
@@ -38,7 +35,7 @@ func active():
 		ioutil.make_dir(CONFIG_PATH)
 	
 	
-	self.init()
+	return self.init()
 
 
 

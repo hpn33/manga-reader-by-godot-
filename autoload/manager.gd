@@ -2,62 +2,26 @@ extends Node
 class_name Manager
 
 
-enum {
-	none,
-	selected
-}
+"""
+TODO:
 
+- when files change than update sort list 
+
+"""
+
+#signal opened
 
 var ioutil := IOUtil.new()
 var setting := ImagesSetting.new()
 
 var path := ''
-var option := 'Local'
-
-
-func show(_option = option):
-	
-	if path == "":
-		return
-	
-	option = _option
-	
-	
-	var list := []
-
-	if option == 'Local':
-		for file in files():
-			list.append(FileInfo.new(path, file.title, file.type))
-		
-	elif option == 'Sort':
-		
-		var files :Array= files()
-		var c_file
-		
-		for item in sort_list():
-			
-			if not item.visiable:
-				continue
-			
-			for index in files.size():
-				if item.id == files[index].id:
-					c_file = files[index]
-					files.remove(index)
-					break
-			
-			
-			if c_file:
-				list.append(FileInfo.new(path, c_file.title, c_file.type))
-	
-	
-	
-	share.set_value('image_list', list)
 
 
 func open(_path):
+	
+	
 	# init
 	path = _path
-	setting.be(_path)
 	ioutil.be(_path)
 	
 	# if path exist set it
@@ -66,38 +30,58 @@ func open(_path):
 		return
 	
 	
-	setting.active()
+	setting.be(_path)
+	print('config connected:: ', setting.active() == OK)
 	
 	
 	# check change's
 	check_change()
 	
-#	set_sort()
+	# use config
+	# ....
 	
-	# use config's
-#	read_config()
-	
-	
-	
-	# get images
-#	var image_list = ioutil.list_by_type('png|jpg')
-	
-#	share.set_value('image_list', image_list)
-	
-	show()
+#	show()
 
 
 
-#func first_set():
-#	setting.active()
+func show():
+	print('::show')
+	
+	if path == "":
+		print('need a path')
+		return
+	
+	
+	var list := []
+	var files :Array= manager.file_list().duplicate()
+
+	if manager.active_list() == 'File':
+		for file in files:
+			list.append(FileInfo.new(path, file.title, file.type))
+		
+	elif manager.active_list() == 'Sort':
+		
+		for item in manager.sort_list():
+			
+			if not item.visiable:
+				continue
+			
+			for index in files.size():
+				if item.id == files[index].id:
+					
+					list.append(FileInfo.new(path, files[index].title, files[index].type))
+					files.remove(index)
+					
+					break
+	
+	share.set_value('image_list', list)
+
+
+
 
 
 func check_change():
-	var files :Array= setting.files
-	
-#	var loc_names := []
-#	for n in ioutil.list_by_type('png|jpg'):
-#		loc_names.append(n.title)
+	var files := file_list()
 	
 	var loc_files := []
 	var index := 0
@@ -115,35 +99,32 @@ func check_change():
 	
 	if files.empty():
 		
-		save('files', loc_files)
+		save('file_list', loc_files)
 		
 		set_sort()
 	
 	else:
 		# check change
-		var mach := true
+		var mach := false
 		
 		for f in files:
-			if loc_files.find(f) == -1:
-				mach = false
-				break
-		
-		# if names was change then save new names
-		if not mach:
-			save('files', loc_files)
-	
-	
-#	setting.show_text()
-	pass
+			for lf in loc_files:
+				if f.title == lf.title:
+					mach = true
+					break
+			
+			if not mach:
+				save('file_list', loc_files)
+
 
 
 func set_sort():
 
-	var sort :Array= setting.sort
+	var sort := sort_list()
 
 	if sort.empty():
 		
-		for file in setting.files:
+		for file in file_list():
 			
 			var item := {
 				id = file.id,
@@ -152,7 +133,7 @@ func set_sort():
 			
 			sort.append(item)
 		
-		save('sort', sort)
+		save('sort_list', sort)
 
 
 #func bubble_sort(array):
@@ -170,13 +151,21 @@ func set_sort():
 #	return array
 
 
-func files() -> Array:
-	return setting.files
+func file_list() -> Array:
+	return setting.file_list
 
 func sort_list() -> Array:
-	return setting.sort
+	return setting.sort_list
+
+func active_list() -> String:
+	return setting.active_list
+
+
+func set_active_list(name: String) -> void:
+	save('active_list', name)
 
 
 func save(key, value):
 	setting.set_data(key, value)
 	setting.save()
+

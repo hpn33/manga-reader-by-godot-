@@ -8,7 +8,10 @@ onready var image_place = $ImagePlace
 
 
 func _ready() -> void:
-	config.init()
+	if not config.init() == OK:
+		print('can\'t loaded global config file ')
+		return
+	
 #	config.rebuild()
 	config.load()
 	
@@ -16,5 +19,4 @@ func _ready() -> void:
 	share.set_value('colors', config.get_data('colors'))
 	share.set_value('recents', config.get_data('recents'))
 	
-
 

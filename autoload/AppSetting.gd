@@ -5,7 +5,7 @@ class_name AppSetting
 func _init():
 	default = {
 		active_color = 'default',
-		regular_view = false,
+		regular_view = true,
 		colors = [
 			['default', '1a1a1a'],
 			['color-1', '115853']
@@ -13,4 +13,4 @@ func _init():
 		recents = []
 	}
 	
-	root_section = 'setting'
+	section_name = 'setting'

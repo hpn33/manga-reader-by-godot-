@@ -9,7 +9,9 @@ var path := 'user://config.cfg'
 
 var default := {}
 
-var root_section := 'root'
+var section_name := 'root'
+
+var shortget := []
 
 
 var cf := ConfigFile.new()
@@ -17,7 +19,7 @@ var cf := ConfigFile.new()
 
 func init():
 	_make_first()
-	self.load()
+	return self.load()
 	emit_signal("init")
 
 
@@ -26,7 +28,7 @@ func _make_first():
 	if cf.load(path) != OK:
 		# making config file
 		for key in default.keys():
-			cf.set_value(root_section, key, default[key])
+			cf.set_value(section_name, key, default[key])
 		
 		save()
 
@@ -41,36 +43,49 @@ func show_text():
 func rebuild():
 	
 	for key in default.keys():
-		cf.set_value(root_section, key, default[key])
+		cf.set_value(section_name, key, default[key])
 	
 	save()
 
 
 func save(): cf.save(path)
-func load(): cf.load(path)
+func load(): return cf.load(path)
 
 
 func get_data(key, _default = null):
-	return cf.get_value(root_section, key, _default)
+	return cf.get_value(section_name, key, _default)
 
 
 func set_data(key, value):
-	cf.set_value(root_section, key, value)
+	cf.set_value(section_name, key, value)
 
 
 func _get(property):
+	
+#	print_stack()
+#	print(property)
+	
 	
 	# can make use a function
 	for fun in get_method_list():
 		if(fun["flags"] == METHOD_FLAG_FROM_SCRIPT+1):
 			if property == fun['name']:
+#				print('is func')
 				return call(property)
 	
+	
 	# if has a key can use get_data function
-	if cf.has_section_key(root_section, property):
-		return get_data(property)
+	if cf.has_section_key(section_name, property):
+		if shortget.find(property) != -1:
+#			print(section_name, ': ', cf.get_section_keys(section_name))
+#			print(get_data(property))
+			return get_data(property)
 	
 	# else work by default
-	return ._get(property)
+	return ._get(property) 
 
+
+
+#func get_section_name():
+#	return 'root'
 
