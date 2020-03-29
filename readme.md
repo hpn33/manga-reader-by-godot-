@@ -75,5 +75,5 @@ backlog: like model binding is can extend to a script and save setting
 - [ ] scroll bar
 - [ ] undo delete color for back color to ex position on the color list
 - [ ] improve movement
-- [ ] config file on image folder ( for sorting images and set custom setting )
+- [x] config file on image folder ( for sorting images and set custom setting )
 
