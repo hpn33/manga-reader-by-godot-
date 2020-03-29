@@ -2,9 +2,6 @@ extends Node
 class_name ConfigWraper
 
 
-signal init
-
-
 var path := 'user://config.cfg'
 
 var default := {}
@@ -20,7 +17,6 @@ var cf := ConfigFile.new()
 func init():
 	_make_first()
 	return self.load()
-	emit_signal("init")
 
 
 func _make_first():

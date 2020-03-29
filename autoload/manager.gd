@@ -53,15 +53,15 @@ func show():
 	
 	
 	var list := []
-	var files :Array= manager.file_list().duplicate()
+	var files :Array= file_list().duplicate()
 
-	if manager.active_list() == 'File':
+	if active_list() == 'File':
 		for file in files:
 			list.append(FileInfo.new(path, file.title, file.type))
 		
-	elif manager.active_list() == 'Sort':
+	elif active_list() == 'Sort':
 		
-		for item in manager.sort_list():
+		for item in sort_list():
 			
 			if not item.visiable:
 				continue

@@ -16,12 +16,12 @@ func full_path():
 	
 
 
-func to_dic() -> Dictionary:
-	return {
-		title = self.title,
-		type = self.type
-	}
+#func to_dic() -> Dictionary:
+#	return {
+#		title = self.title,
+#		type = self.type
+#	}
 
 
-func import(dic: Dictionary):
-	pass
+#func import(dic: Dictionary):
+#	pass

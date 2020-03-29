@@ -168,8 +168,8 @@ func dir_exists(_path = path):
 	return directory.dir_exists(_path)
 
 
-func file_exists(file) -> bool:
-	return directory.file_exists(path + '/' + file)
+func file_exists(_file) -> bool:
+	return directory.file_exists(path + '/' + _file)
 
 
 func make_dir(_dir_name):

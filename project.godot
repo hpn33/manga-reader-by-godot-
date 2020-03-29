@@ -67,7 +67,7 @@ _global_script_classes=[ {
 "base": "Node",
 "class": "Manager",
 "language": "GDScript",
-"path": "res://autoload/manager/manager.gd"
+"path": "res://autoload/manager.gd"
 }, {
 "base": "Node",
 "class": "SharePoint",
@@ -119,11 +119,20 @@ config/icon="res://icon.png"
 data="*res://autoload/data.gd"
 config="*res://autoload/AppSetting.gd"
 share="*res://autoload/SharePoint.gd"
-manager="*res://autoload/manager/manager.gd"
+manager="*res://autoload/manager.gd"
+
+[debug]
+
+gdscript/warnings/unused_argument=false
+gdscript/warnings/return_value_discarded=false
 
 [display]
 
 window/size/borderless=true
+
+[editor_plugins]
+
+enabled=PoolStringArray( "todo" )
 
 [input]
 
