@@ -125,7 +125,7 @@ func call_hooks(key: String, value):
 	
 	for index in match_hooks:
 		var hook = hooks[index]
-		print(key, hook[0], hook[1])
+#		print(key, hook[0], hook[1])
 		funcref(hook[0], hook[1]).call_func(value)
 
 

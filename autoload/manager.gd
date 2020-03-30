@@ -45,7 +45,6 @@ func open(_path):
 
 
 func show():
-	print('::show')
 	
 	if path == "":
 		print('need a path')

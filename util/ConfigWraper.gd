@@ -58,9 +58,6 @@ func set_data(key, value):
 
 func _get(property):
 	
-#	print_stack()
-#	print(property)
-	
 	
 	# can make use a function
 	for fun in get_method_list():
@@ -77,8 +74,15 @@ func _get(property):
 #			print(get_data(property))
 			return get_data(property)
 	
+	var result = null
+	
+	for p in get_property_list():
+		if p.name == property:
+			result = ._get(property)
+			break
+	
 	# else work by default
-	return ._get(property) 
+	return result
 
 
 

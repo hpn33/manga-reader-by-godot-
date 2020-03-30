@@ -26,13 +26,6 @@ func start(_image_list):
 	fsm.transition_to('add')
 
 
-func set_camera_limit():
-	
-	var rect = Rect2(position, size)
-	
-	share.set_value('camera_limit', rect)
-
-
 func set_size():
 	
 	size.y = 0
@@ -48,7 +41,7 @@ func set_size():
 	
 	offset.x = box().x/2
 	
-	set_camera_limit()
+	share.set_value('camera_limit', Rect2(position, size))
 
 
 func set_size_zero():
