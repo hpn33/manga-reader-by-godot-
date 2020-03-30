@@ -14,6 +14,12 @@ Maked by Godot
 
 
 ### Movement
+
+- [x] full reset view `control + shift + R`
+- [x] center of view `control + R`
+- [ ] go to the first
+- [ ] go to the end
+
 - [x] movement with keyboard
 * normal move `WASD` or `arrow keys`
 * long move with `page down` and `page up`
