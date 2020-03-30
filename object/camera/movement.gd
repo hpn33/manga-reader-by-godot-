@@ -1,28 +1,46 @@
 extends Node
 
-
+# TODO: 
+# setting option for speed
 
 const speed := 10
 
+
+var target := Vector2()
+var y_size : float
+
+
+func _ready():
+	
+	y_size = get_tree().root.get_viewport().size.y
+	
+	owner.position = target
 
 
 func _input(event):
 	
 	# long movement
-	var direction := int(event.is_action_pressed("page_down")) - int(event.is_action_pressed("page_up"))
+	var _direction := int(event.is_action_pressed("page_down")) - int(event.is_action_pressed("page_up"))
 	
-	if direction != 0:
-		owner.position.y += get_tree().root.get_viewport().size.y * 0.85 * owner.zoom.y * direction
+	if _direction != 0:
+		target.y += y_size * 0.85 * owner.zoom.y * _direction
 
 
+
+var direction := Vector2()
 
 func _process(delta):
 	
 	
-	var y := int(Input.is_action_pressed("down")) - int(Input.is_action_pressed("up"))
-	var x := int(Input.is_action_pressed("right")) - int(Input.is_action_pressed("left"))
+	direction.x = int(Input.is_action_pressed("right")) - int(Input.is_action_pressed("left"))
+	direction.y = int(Input.is_action_pressed("down")) - int(Input.is_action_pressed("up"))
+
+	if direction.length_squared() > 0:
+		target += direction.normalized() * speed * owner.zoom
+		if owner.limit_rect: target = owner._snap_to_limits(target)
 	
 	
-	owner.position.y += speed * owner.zoom.y * y
-	owner.position.x += speed * owner.zoom.x * x
-	
+	# final
+	owner.position = lerp(owner.position, target, 25 * delta)
+
+

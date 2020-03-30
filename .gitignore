@@ -4,3 +4,6 @@ addons/dscn_io/
 addons/todo/
 .import/
 .mr/
+
+todo.cache.ini
+todo.config.ini

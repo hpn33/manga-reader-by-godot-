@@ -6,16 +6,24 @@ Maked by Godot
 ## Feture
 - [x] movement
 - [x] setting
-- [ ] config file on images location
+- [x] config file on images location
 - [ ] pagination
 - [x] Regular View
 - [ ] file system
-- [x] color panel
+- [x] color panels
 
 
 ### Movement
-- [x] movement with mouse ( need improve )
-- [x] movement with keyboard ( need improve )
+- [x] movement with keyboard
+* normal move `WASD` or `arrow keys`
+* long move with `page down` and `page up`
+
+- [x] movement with mouse
+movement with `left click`
+zoom with `scroll`
+
+
+
 
 ### Setting
 * setting file
@@ -74,6 +82,6 @@ backlog: like model binding is can extend to a script and save setting
 - [ ] add vertical mode
 - [ ] scroll bar
 - [ ] undo delete color for back color to ex position on the color list
-- [ ] improve movement
+- [x] improve movement
 - [x] config file on image folder ( for sorting images and set custom setting )
 
