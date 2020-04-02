@@ -37,7 +37,7 @@ func _process(delta):
 
 	if direction.length_squared() > 0:
 		target += direction.normalized() * speed * owner.zoom
-		if owner.limit_rect: target = owner._snap_to_limits(target)
+		if owner.limit_rect: target = owner.snap_to_limits(target)
 	
 	
 	# final

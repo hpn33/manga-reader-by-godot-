@@ -26,7 +26,7 @@ func set_limit_rect(rect: Rect2):
 
 
 
-func _snap_to_limits(target = position):
+func snap_to_limits(target = position):
 	
 	target.x = clamp(target.x, limit_rect.position.x+off.x, limit_rect.end.x-off.x)
 	target.y = clamp(target.y, limit_rect.position.y+off.y, limit_rect.end.y-off.y)
@@ -34,6 +34,15 @@ func _snap_to_limits(target = position):
 	return target
 
 
+func goto_line():
+	pass
+
+func goto_persend(persend):
+	var perhundred = limit_rect.end.y / 100
+	var pos = perhundred * persend
+	
+	position.y = pos
+	position = snap_to_limits(position)
 
 
 func _process(delta):

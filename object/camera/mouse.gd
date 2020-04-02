@@ -24,7 +24,7 @@ func _input(event):
 		owner.position -= event.relative * owner.zoom
 		movement.target = owner.position
 		
-		owner._snap_to_limits()
+		owner.snap_to_limits()
 	
 
 

@@ -40,7 +40,7 @@ func open(_path):
 	# use config
 	# ....
 	
-#	show()
+	show()
 
 
 
