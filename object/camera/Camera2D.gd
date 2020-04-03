@@ -4,6 +4,8 @@ extends Camera2D
 export var debug := false
 
 
+onready var image_place = $"../ImagePlace"
+
 ## Rectangle used to limit camera panning.
 ## Note that the built in camera limits do not work: they don't actually constrain the position of the camera.
 ## They only stop the view from moving. For the player, this makes the camera appear to "stick" at the edges of the map, 
@@ -14,6 +16,7 @@ var limit_rect = Rect2(Vector2(), Vector2.ONE * 100)
 func _ready() -> void:
 	
 	share.add_hook('camera_limit', self, 'set_limit_rect')
+	share.add_hook('scroll', self, 'set_scroll')
 
 
 
@@ -34,15 +37,22 @@ func snap_to_limits(target = position):
 	return target
 
 
-func goto_line():
+func goto_num():
 	pass
 
-func goto_persend(persend):
+
+func moved():
+	var perhundred = image_place.size.y / 100.0
+	
+	share.set_value('scroll', position.y / perhundred)
+
+
+func set_scroll(scroll):
 	var perhundred = limit_rect.end.y / 100
-	var pos = perhundred * persend
+	var pos = perhundred * scroll
 	
 	position.y = pos
-	position = snap_to_limits(position)
+	position = snap_to_limits()
 
 
 func _process(delta):

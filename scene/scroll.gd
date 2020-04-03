@@ -6,7 +6,11 @@ var active = false
 
 onready var select = $select
 
-onready var camera = $"../../Camera2D"
+
+func _ready():
+	share.add_hook('scroll', self, 'set_scroll')
+	
+	select.rect_size.y = perhundred()
 
 
 func position_perhundred():
@@ -24,11 +28,9 @@ func _process(delta):
 	
 	if Input.is_action_pressed("view_click_mouse"):
 		
-		select.rect_size.y = perhundred()
 		select.rect_position.y = get_local_mouse_position().y
 		
-		
-		camera.goto_persend(position_perhundred())
+		share.set_value('scroll', position_perhundred())
 
 
 func _on_scroll_mouse_entered():
@@ -36,3 +38,7 @@ func _on_scroll_mouse_entered():
 
 func _on_scroll_mouse_exited():
 	active = false
+
+
+func set_scroll(scroll):
+	select.rect_position.y = perhundred() * scroll
