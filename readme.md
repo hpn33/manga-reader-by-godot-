@@ -11,6 +11,7 @@ Maked by Godot
 - [x] Regular View
 - [ ] file system
 - [x] color panels
+- [ ] scroll bar
 
 
 ### Movement
@@ -65,6 +66,16 @@ navigate to another image by number
 - [ ] bookmark path
 
 
+### Color Panel
+for set color for background
+* store and edit colors
+* undo
+
+
+### Scroll Bar
+- [ ] show summery view of image's
+- [ ] ?
+
 
 ## Logic System
 * **SharePoint**: Observer System for control data
@@ -90,4 +101,6 @@ backlog: like model binding is can extend to a script and save setting
 - [ ] undo delete color for back color to ex position on the color list
 - [x] improve movement
 - [x] config file on image folder ( for sorting images and set custom setting )
+- [ ] load on thread or courotine
+- [ ] refresh enything that need when opening new folder
 
