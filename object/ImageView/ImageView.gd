@@ -11,8 +11,8 @@ export(PackedScene) var image_holder = preload("res://object/ImageHolder2D/Image
 export var can_debug := false
 
 var image_list := []
-var image_textures := []
-var image_size := []
+#var image_textures := []
+#var image_size := []
 
 
 var size := Vector2()
@@ -99,6 +99,11 @@ func sorting():
 
 func fix_position():
 	position = -offset
+
+
+func perhundred() -> float:
+	return size.y / 100.0
+
 
 
 

@@ -2,6 +2,7 @@ extends Node
 class_name Manager
 
 
+signal showed
 """
 TODO:
 
@@ -74,6 +75,7 @@ func show():
 					break
 	
 	share.set_value('image_list', list)
+	emit_signal("showed")
 
 
 

@@ -2,10 +2,8 @@ extends Node
 
 
 onready var camera = $Camera2D
-onready var ui = $UI
-onready var image_place = $ImagePlace
 
-#   ُTODO= dfjksjfjj
+#   ُTODO = dfjksjfjj
 # warning: sfd
 
 """
@@ -18,6 +16,7 @@ todos
 
 
 func _ready() -> void:
+	
 	if not config.init() == OK:
 		print('can\'t loaded global config file ')
 		return
@@ -29,4 +28,3 @@ func _ready() -> void:
 	share.set_value('colors', config.get_data('colors'))
 	share.set_value('recents', config.get_data('recents'))
 	
-

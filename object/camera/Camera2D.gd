@@ -15,9 +15,17 @@ var limit_rect = Rect2(Vector2(), Vector2.ONE * 100)
 
 func _ready() -> void:
 	
+	manager.connect("showed", self, 'init')
+	
 	share.add_hook('camera_limit', self, 'set_limit_rect')
 	share.add_hook('scroll', self, 'set_scroll')
 
+
+func init():
+	position = snap_to_limits(Vector2.ZERO)
+	$movement.target = Vector2.ZERO
+	
+	moved()
 
 
 var off := Vector2()
@@ -37,18 +45,16 @@ func snap_to_limits(target = position):
 	return target
 
 
-func goto_num():
+func goto_num(index):
 	pass
 
 
 func moved():
-	var perhundred = image_place.size.y / 100.0
-	
-	share.set_value('scroll', position.y / perhundred)
+	share.set_value('scroll', position.y / image_place.perhundred())
 
 
 func set_scroll(scroll):
-	var perhundred = limit_rect.end.y / 100
+	var perhundred = limit_rect.end.y / 100.0
 	var pos = perhundred * scroll
 	
 	position.y = pos
