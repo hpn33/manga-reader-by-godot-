@@ -5,8 +5,6 @@ Maked by Godot
 
 ## Feture
 - [x] setting
-- [x] config file on images location
-- [ ] pagination
 - [x] Regular View
 - [ ] file system
 - [x] color panels
