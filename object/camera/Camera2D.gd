@@ -50,7 +50,12 @@ func goto_num(index):
 
 
 func moved():
-	share.set_value('scroll', position.y / image_place.perhundred())
+	var scroll = 0
+	
+	if position.y != 0 and image_place.perhundred() != 0:
+		scroll = position.y / image_place.perhundred()
+	
+	share.set_value('scroll', scroll)
 
 
 func set_scroll(scroll):
