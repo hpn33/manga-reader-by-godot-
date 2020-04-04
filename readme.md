@@ -102,5 +102,7 @@ backlog: like model binding is can extend to a script and save setting
 - [x] improve movement
 - [x] config file on image folder ( for sorting images and set custom setting )
 - [ ] load on thread or courotine
-- [ ] refresh enything that need when opening new folder
+- [x] refresh anything that need when opening new folder
+- [ ] clean code for scrolling
+- [ ] clean code on imagePlace and imageHolder
 
