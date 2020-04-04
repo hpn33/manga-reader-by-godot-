@@ -12,18 +12,25 @@ onready var image_place = $"../ImagePlace"
 ## which is bad.
 var limit_rect = Rect2(Vector2(), Vector2.ONE * 100)
 
-
 func _ready() -> void:
 	
 	manager.connect("showed", self, 'init')
 	
 	share.add_hook('camera_limit', self, 'set_limit_rect')
 	share.add_hook('scroll', self, 'set_scroll')
+	
+	Console.addCommand('goto', self, 'goto_index')\
+		.setDescription('Going to image number "Number %index%!"')\
+		.addArgument('index', TYPE_INT)\
+		.register()
 
 
 func init():
-	position = snap_to_limits(Vector2.ZERO)
-	$movement.target = Vector2.ZERO
+	
+	var pos = Vector2(0, off_height())
+	
+	$movement.target = pos
+	position = pos
 	
 	moved()
 
@@ -45,8 +52,29 @@ func snap_to_limits(target = position):
 	return target
 
 
-func goto_num(index):
-	pass
+func goto_index(index):
+	if not images_size() > 0:
+		print('no image set')
+		return
+	
+	
+	if index <= 0 or index > images_size():
+		print('index [', index ,'] out of range [0 : ',images_size(), ']')
+		return
+	
+	print('index ', index, ' ', images_size())
+	
+	
+	position.y = image_place.child_height(index) + off_height()
+	
+	position = snap_to_limits(position)
+	$movement.target = position
+	
+	moved()
+	
+
+func images_size() -> int:
+	return image_place.get_child_count() - 1
 
 
 func moved():
@@ -64,6 +92,14 @@ func set_scroll(scroll):
 	
 	position.y = pos
 	position = snap_to_limits()
+
+
+func viewport_height() -> float:
+	return get_tree().root.get_viewport().size.y
+
+
+func off_height():
+	return (viewport_height() / 2) * zoom.y * 0.9
 
 
 func _process(delta):

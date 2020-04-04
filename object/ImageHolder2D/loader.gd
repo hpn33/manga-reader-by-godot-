@@ -32,10 +32,6 @@ func _thread_done(resource):
 	
 	owner.texture = resource
 	
-	var diff = owner.size.y - prev_size
-	
-	owner.adapter.fix_pos_to_last(owner.get_position_in_parent(), diff)
-	
-	owner.set_label_pos()
+	owner.loaded(owner.size.y - prev_size)
 	
 

@@ -3,7 +3,7 @@ class_name ImageView
 
 
 onready var fsm = $state
-onready var camera2d = $"../Camera2D"
+onready var camera = $"../Camera2D"
 
 export(PackedScene) var image_holder = preload("res://object/ImageHolder2D/ImageHolder2D.tscn")
 
@@ -18,6 +18,9 @@ var image_list := []
 var size := Vector2()
 var margin := Vector2(20, 10)
 var offset := Vector2()
+
+
+
 
 
 func start(_image_list):
@@ -88,6 +91,9 @@ func fix_pos_to_last(index: int, diff):
 			child.position.y += diff
 	
 	fix_position()
+	
+	camera.moved()
+	
 
 
 func sorting():
@@ -105,6 +111,15 @@ func perhundred() -> float:
 	return size.y / 100.0
 
 
+# not count state
+func child_height(index):
+	
+	for i in range(1, get_child_count()):
+		if i == index:
+			return get_child(index).position.y
+	
+	return null
+	
 
 
 func _process(delta: float) -> void:

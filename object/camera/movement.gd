@@ -7,12 +7,9 @@ const speed := 10
 
 
 var target := Vector2()
-var y_size : float
 
 
 func _ready():
-	
-	y_size = get_tree().root.get_viewport().size.y
 	
 	owner.position = target
 
@@ -23,7 +20,7 @@ func _input(event):
 	var _direction := int(event.is_action_pressed("page_down")) - int(event.is_action_pressed("page_up"))
 	
 	if _direction != 0:
-		target.y += y_size * 0.85 * owner.zoom.y * _direction
+		target.y += owner.viewport_height * 0.85 * owner.zoom.y * _direction
 		owner.moved()
 
 

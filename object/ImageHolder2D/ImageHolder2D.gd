@@ -30,6 +30,18 @@ func loading():
 	loader.load_image(file_info.full_path())
 
 
+func loaded(diff):
+	adapter.fix_pos_to_last(get_position_in_parent(), diff)
+	
+	# set label position
+	var y = texture.get_size().y
+	var x = texture.get_size().x/2
+	
+	var offy = label.rect_size.y
+	
+	label.rect_position = Vector2(x, y-offy)
+
+
 func set_margin(x, y):
 	margin.x = x
 	margin.y = y
@@ -48,16 +60,6 @@ func fix_offset():
 
 func set_label(text):
 	label.text = text
-
-
-func set_label_pos():
-	
-	var y = texture.get_size().y
-	var x = texture.get_size().x/2
-	
-	var offy = label.rect_size.y
-	
-	label.rect_position = Vector2(x, y-offy)
 
 
 func _draw() -> void:

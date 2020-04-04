@@ -2,6 +2,7 @@ extends Node
 
 
 onready var camera = $Camera2D
+onready var ui = $UI
 
 #   ُTODO = dfjksjfjj
 # warning: sfd
