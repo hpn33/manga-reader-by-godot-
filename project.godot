@@ -120,6 +120,7 @@ data="*res://autoload/data.gd"
 config="*res://autoload/AppSetting.gd"
 share="*res://autoload/SharePoint.gd"
 manager="*res://autoload/manager.gd"
+Console="*res://addons/quentincaffeino-console/src/Console.tscn"
 
 [debug]
 
@@ -129,6 +130,10 @@ gdscript/warnings/return_value_discarded=false
 [display]
 
 window/size/borderless=true
+
+[editor_plugins]
+
+enabled=PoolStringArray( "godot-console", "quentincaffeino-console" )
 
 [input]
 
@@ -207,6 +212,11 @@ full_reset={
 regular={
 "deadzone": 0.01,
 "events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":82,"unicode":0,"echo":false,"script":null)
+ ]
+}
+console_toggle={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":true,"meta":false,"command":true,"pressed":false,"scancode":16777218,"unicode":0,"echo":false,"script":null)
  ]
 }
 
