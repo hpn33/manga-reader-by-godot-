@@ -21,11 +21,11 @@ func _input(event):
 	if mouse_captured && event is InputEventMouseMotion:
 
 		#like we're grabbing the map
-		owner.position -= event.relative * owner.zoom
-		movement.target = owner.position
+		get_parent().position -= event.relative * get_parent().zoom
+		movement.target = get_parent().position
 		
-		owner.position = owner.snap_to_limits()
-		owner.moved()
+		get_parent().position = get_parent().snap_to_limits()
+		get_parent().moved()
 	
 
 

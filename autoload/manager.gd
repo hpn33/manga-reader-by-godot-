@@ -2,7 +2,7 @@ extends Node
 class_name Manager
 
 
-signal showed
+signal showing
 """
 TODO:
 
@@ -45,14 +45,45 @@ func open(_path):
 
 func show():
 	
-	if path == "":
-		print('need a path')
-		return
+#	if path == "":
+#		print('need a path')
+#		return
 	
+	
+#	var list := []
+#	var files :Array= file_list().duplicate()
+
+#	if active_list() == 'File':
+#		for file in files:
+#			list.append(FileInfo.new(path, file.title, file.type))
+#
+#	elif active_list() == 'Sort':
+#
+#		for item in sort_list():
+#
+#			if not item.visiable:
+#				continue
+#
+#			for index in files.size():
+#				if item.id == files[index].id:
+#
+#					list.append(FileInfo.new(path, files[index].title, files[index].type))
+#					files.remove(index)
+#
+#					break
+	
+#	navigate.refresh(list.size())
+#	share.set_value('image_list', list)
+	emit_signal("showing")
+
+
+
+
+func show_list():
 	
 	var list := []
 	var files :Array= file_list().duplicate()
-
+	
 	if active_list() == 'File':
 		for file in files:
 			list.append(FileInfo.new(path, file.title, file.type))
@@ -72,10 +103,7 @@ func show():
 					
 					break
 	
-	share.set_value('image_list', list)
-	emit_signal("showed")
-
-
+	return list
 
 
 

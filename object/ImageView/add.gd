@@ -1,5 +1,7 @@
 extends State
 
+var image_holder :PackedScene= preload("res://object/ImageHolder2D/ImageHolder2D.tscn")
+
 
 func enter(msg: Dictionary = {}) -> void:
 	_add_image()
@@ -11,7 +13,7 @@ func _add_image():
 	 
 	_remove_children()
 	
-	owner.set_size_zero()
+	get_parent().get_parent().set_size_zero()
 	
 	if not _has_image():
 		return
@@ -21,25 +23,25 @@ func _add_image():
 
 func _add():
 	
-	for image in owner.image_list:
+	for image in get_parent().get_parent().image_list:
 		
-		var new :Sprite= owner.image_holder.instance()
+		var new :Sprite= image_holder.instance()
 		
-		new.init(owner, image)
+		new.init(get_parent().get_parent(), image)
 		new.set_margin(10, 10)
 		
-		owner.add_child(new)
+		get_parent().get_parent().add_child(new)
 		
 		new.loading()
 	
 
 
 func _remove_children():
-	for child in owner.get_children():
+	for child in get_parent().get_parent().get_children():
 		
-		if child.name != 'state':
-			owner.remove_child(child)
+		if not child.name in ['state', 'Camera2D', 'CanvasLayer']:
+			get_parent().get_parent().remove_child(child)
 
 
 func _has_image():
-	return owner.image_list.size() != 0
+	return get_parent().get_parent().image_list.size() != 0

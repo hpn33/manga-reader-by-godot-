@@ -3,6 +3,6 @@ extends State
 
 func enter(msg: Dictionary = {}) -> void:
 	
-	owner.sorting()
+	get_parent().get_parent().sorting()
 	change_state('idle')
 

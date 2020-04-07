@@ -13,15 +13,31 @@ var count = 0
 
 
 func _ready():
-	share.add_hook('image_list', self, 'image_list_changed')
-
-
-func image_list_changed(list: Array):
-	index = 1
-	count = list.size()
-	all_index_label.text = str(count)
 	
-	refresh()
+	navigate.connect("changed", self, 'navigate_changed')
+	navigate.connect("refresh", self, 'navigate_refreshed')
+	
+#	share.add_hook('image_list', self, 'image_list_changed')
+
+
+func navigate_refreshed():
+	index = 1
+	count = navigate.count
+	
+	index_label.text = str(index)
+	all_index_label.text = str(count)
+
+
+func navigate_changed():
+	pass
+
+
+#func image_list_changed(list: Array):
+#	index = 1
+#	count = list.size()
+#	all_index_label.text = str(count)
+#
+#	refresh()
 
 
 func _on_First_pressed():

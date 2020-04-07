@@ -12,7 +12,7 @@ var zooming := false
 
 
 func _ready():
-	zoom_target = owner.zoom
+	zoom_target = get_parent().zoom
 
 
 func _input(event):
@@ -40,7 +40,7 @@ func _process(delta):
 		zooming = false
 	
 	# final
-	owner.zoom = lerp(owner.zoom, zoom_target, 20 * delta)
+	get_parent().zoom = lerp(get_parent().zoom, zoom_target, 20 * delta)
 
 
 func _snap_zoom_limits():
@@ -50,11 +50,11 @@ func _snap_zoom_limits():
 
 
 func zoom_in():
-	zoom_target = owner.zoom / zoom_step
+	zoom_target = get_parent().zoom / zoom_step
 	_snap_zoom_limits()
 
 
 func zoom_out():
-	zoom_target = owner.zoom * zoom_step
+	zoom_target = get_parent().zoom * zoom_step
 	_snap_zoom_limits()
 

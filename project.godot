@@ -121,6 +121,7 @@ config="*res://autoload/AppSetting.gd"
 share="*res://autoload/SharePoint.gd"
 manager="*res://autoload/manager.gd"
 Console="*res://addons/quentincaffeino-console/src/Console.tscn"
+navigate="*res://autoload/navigate.gd"
 
 [debug]
 

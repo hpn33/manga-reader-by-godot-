@@ -4,19 +4,17 @@ extends Camera2D
 export var debug := false
 
 
-onready var image_place = $"../ImagePlace"
-
 ## Rectangle used to limit camera panning.
 ## Note that the built in camera limits do not work: they don't actually constrain the position of the camera.
 ## They only stop the view from moving. For the player, this makes the camera appear to "stick" at the edges of the map, 
 ## which is bad.
-var limit_rect = Rect2(Vector2(), Vector2.ONE * 100)
+
+#var limit_rect = Rect2(Vector2(), Vector2.ONE * 100)
 
 func _ready() -> void:
 	
-	manager.connect("showed", self, 'init')
+#	manager.connect("showed", self, 'init')
 	
-	share.add_hook('camera_limit', self, 'set_limit_rect')
 	share.add_hook('scroll', self, 'set_scroll')
 	
 	Console.addCommand('goto', self, 'goto_index')\
@@ -35,24 +33,25 @@ func init():
 	moved()
 
 
-var off := Vector2()
-func set_limit_rect(rect: Rect2):
-	limit_rect = rect
-
-	off.x =(limit_rect.size.x/2) * 0.0001
-	off.y =(limit_rect.size.y/2) * 0.0001
+#var off := Vector2()
+#func set_limit_rect(rect: Rect2):
+#	limit_rect = rect
+#
+#	off.x =(limit_rect.size.x/2) * 0.0001
+#	off.y =(limit_rect.size.y/2) * 0.0001
 
 
 
 func snap_to_limits(target = position):
 	
-	target.x = clamp(target.x, limit_rect.position.x+off.x, limit_rect.end.x-off.x)
-	target.y = clamp(target.y, limit_rect.position.y+off.y, limit_rect.end.y-off.y)
+	target.x = clamp(target.x, get_parent().limit_rect.position.x, get_parent().limit_rect.end.x)
+	target.y = clamp(target.y, get_parent().limit_rect.position.y, get_parent().limit_rect.end.y)
 	
 	return target
 
 
 func goto_index(index):
+	
 	if not images_size() > 0:
 		print('no image set')
 		return
@@ -64,8 +63,9 @@ func goto_index(index):
 	
 	print('index ', index, ' ', images_size())
 	
+	return
 	
-	position.y = image_place.child_height(index) + off_height()
+	position.y = get_parent().child_height(index) + off_height()
 	
 	position = snap_to_limits(position)
 	$movement.target = position
@@ -74,20 +74,20 @@ func goto_index(index):
 	
 
 func images_size() -> int:
-	return image_place.get_child_count() - 1
+	return get_parent().get_child_count() - 1
 
 
 func moved():
 	var scroll = 0
 	
-	if position.y != 0 and image_place.perhundred() != 0:
-		scroll = position.y / image_place.perhundred()
+	if position.y != 0 and get_parent().perhundred() != 0:
+		scroll = position.y / get_parent().perhundred()
 	
 	share.set_value('scroll', scroll)
 
 
 func set_scroll(scroll):
-	var perhundred = limit_rect.end.y / 100.0
+	var perhundred = get_parent().limit_rect.end.y / 100.0
 	var pos = perhundred * scroll
 	
 	position.y = pos

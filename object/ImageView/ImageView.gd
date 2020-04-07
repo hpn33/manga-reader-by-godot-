@@ -2,10 +2,8 @@ extends Node2D
 class_name ImageView
 
 
-onready var fsm = $state
-onready var camera = $"../Camera2D"
-
-export(PackedScene) var image_holder = preload("res://object/ImageHolder2D/ImageHolder2D.tscn")
+onready var proces = $Process
+onready var camera = $Camera2D
 
 
 export var can_debug := false
@@ -19,14 +17,25 @@ var size := Vector2()
 var margin := Vector2(20, 10)
 var offset := Vector2()
 
+var box := Rect2()
+
+var limit_rect := Rect2(Vector2(), Vector2.ONE * 100)
 
 
+var gourded_node := []
 
-
-func start(_image_list):
-	image_list = _image_list
+func _ready():
+	manager.connect("showing", self, 'showing')
+#	share.add_hook('image_list', self, 'start')
 	
-	fsm.transition_to('add')
+	for child in get_children():
+		gourded_node.append(child.name)
+
+
+func showing():
+	image_list = manager.show_list()
+	
+	proces.start()
 
 
 func set_size():
@@ -35,7 +44,7 @@ func set_size():
 	for i in get_child_count():
 		var child = get_children()[i]
 		
-		if child.name == 'state':
+		if child.name in gourded_node:
 			continue
 		
 		size.x = max(size.x, child.size.x)
@@ -43,9 +52,6 @@ func set_size():
 		size.y += child.size.y
 	
 	offset.x = box().x/2
-	
-	share.set_value('camera_limit', Rect2(position, size))
-
 
 func set_size_zero():
 	size = Vector2()
@@ -62,7 +68,7 @@ func sort():
 	for i in get_child_count():
 		
 		var child = get_children()[i]
-		if child.name == 'state':
+		if child.name in gourded_node:
 			continue
 		
 		# set center
@@ -82,7 +88,7 @@ func fix_pos_to_last(index: int, diff):
 		
 		var child = get_children()[i]
 		
-		if child.name == 'state':
+		if child.name in gourded_node:
 			continue
 		
 		child.position.x = offset.x
@@ -112,11 +118,12 @@ func perhundred() -> float:
 
 
 # not count state
-func child_height(index):
+func child_height(_index):
+	var index = _index + 1
+	print(index)
 	
-	for i in range(1, get_child_count()):
-		if i == index:
-			return get_child(index).position.y
+	if index >= 2 or index < get_child_count():
+		return get_child(index).position.y
 	
 	return null
 	
