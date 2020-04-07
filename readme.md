@@ -111,4 +111,5 @@ backlog: like model binding is can extend to a script and save setting
 - [x] refresh anything that need when opening new folder
 - [ ] clean code for scrolling
 - [ ] clean code on imagePlace and imageHolder
+- [ ] clean and add ability of navigate to core of program
 
