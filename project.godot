@@ -133,7 +133,7 @@ window/size/borderless=true
 
 [editor_plugins]
 
-enabled=PoolStringArray( "godot-console", "quentincaffeino-console" )
+enabled=PoolStringArray( "quentincaffeino-console" )
 
 [input]
 

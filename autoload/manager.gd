@@ -10,8 +10,6 @@ TODO:
 
 """
 
-#signal opened
-
 var ioutil := IOUtil.new()
 var setting := ImagesSetting.new()
 
