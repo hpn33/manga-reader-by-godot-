@@ -1,6 +1,6 @@
 extends Node2D
 
-onready var camera = $'../ImagePlace/Camera2D'
+onready var camera = $'../ImageView/Camera2D'
 
 var active := false
 

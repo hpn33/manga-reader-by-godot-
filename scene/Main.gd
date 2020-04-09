@@ -1,7 +1,7 @@
 extends Node
 
 
-onready var camera = $'ImagePlace/Camera2D'
+onready var camera = $'ImageView/Camera2D'
 onready var ui = $UI
 
 #   ُTODO = dfjksjfjj

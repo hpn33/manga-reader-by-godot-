@@ -1,15 +1,15 @@
 [gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://object/ImageView/ImageView.gd" type="Script" id=1]
-[ext_resource path="res://object/camera/movement.gd" type="Script" id=2]
-[ext_resource path="res://scene/Navigate.gd" type="Script" id=3]
-[ext_resource path="res://object/camera/Camera2D.gd" type="Script" id=4]
-[ext_resource path="res://scene/scroll.gd" type="Script" id=5]
-[ext_resource path="res://object/camera/reset.gd" type="Script" id=6]
-[ext_resource path="res://object/camera/mouse.gd" type="Script" id=7]
-[ext_resource path="res://object/camera/zoom.gd" type="Script" id=8]
+[ext_resource path="res://object/ImageView/camera/movement.gd" type="Script" id=2]
+[ext_resource path="res://object/ImageView/Navigate.gd" type="Script" id=3]
+[ext_resource path="res://object/ImageView/camera/Camera2D.gd" type="Script" id=4]
+[ext_resource path="res://object/ImageView/scroll.gd" type="Script" id=5]
+[ext_resource path="res://object/ImageView/camera/reset.gd" type="Script" id=6]
+[ext_resource path="res://object/ImageView/camera/mouse.gd" type="Script" id=7]
+[ext_resource path="res://object/ImageView/camera/zoom.gd" type="Script" id=8]
 
-[node name="ImagePlace" type="Node2D"]
+[node name="ImageView" type="Node2D"]
 script = ExtResource( 1 )
 can_debug = true
 size = Vector2( 50, 50 )

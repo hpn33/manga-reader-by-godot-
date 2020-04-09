@@ -18,7 +18,9 @@ func _ready():
 
 
 
-var image_holder :PackedScene= preload("res://object/ImageHolder/ImageHolder.tscn")
+#var image_holder :PackedScene= preload("res://object/ImageHolder2D/ImageHolder2D.tscn")
+#var image_holder :PackedScene= preload("res://object/ImageHolder2D/ImageHolder2D.tscn")
+#var image_holder = preload("res://object/ImageHolder2D/ImageHolder2D.tscn")
 
 func show():
 	image_list = manager.show_list()
@@ -42,12 +44,13 @@ func show():
 	# add
 	for image in image_list:
 		
-		var new :Sprite= image_holder.instance()
+#		var new :Sprite= image_holder.instance()
 		
-		new.init(self, image)
-		new.set_margin(10, 10)
+#		new.init(self, image)
+#		new.set_margin(10, 10)
 		
-		add_child(new)
+#		add_child(new)
+		pass
 	
 	# sort
 	sorting()

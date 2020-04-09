@@ -1,6 +1,6 @@
 extends Node
 
-signal changed
+#signal changed
 signal refresh
 
 

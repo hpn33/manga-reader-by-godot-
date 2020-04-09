@@ -19,7 +19,7 @@ func get_sprite() -> Sprite:
 
 
 
-export(bool) var centered := false setget set_centered
+export(bool) var centered := true setget set_centered
 func set_centered(_centered):
 	centered = _centered
 	
