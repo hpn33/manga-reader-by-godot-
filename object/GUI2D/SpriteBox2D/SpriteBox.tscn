@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://icon.png" type="Texture" id=1]
+[ext_resource path="res://object/GUI2D/SpriteBox2D/SpriteBox.gd" type="Script" id=2]
+[ext_resource path="res://object/GUI2D/SpriteBox2D/Box2D.gd" type="Script" id=3]
+[ext_resource path="res://object/GUI2D/SpriteBox/Sprite.gd" type="Script" id=4]
+
+[node name="SpriteBox" type="Node2D"]
+script = ExtResource( 2 )
+
+[node name="Box2D" type="Node2D" parent="."]
+script = ExtResource( 3 )
+can_debug = false
+size = Vector2( 64, 64 )
+margin = Vector2( 0, 0 )
+padding = Vector2( 0, 0 )
+offset = Vector2( 0, 0 )
+pivot = Vector2( 0, 0 )
+vertical_pivot_align = 0
+horizental_pivot_align = 0
+
+[node name="Sprite" type="Sprite" parent="Box2D"]
+texture = ExtResource( 1 )
+centered = false
+script = ExtResource( 4 )
+[connection signal="texture_changed" from="Box2D/Sprite" to="." method="_on_Sprite_texture_changed"]

@@ -1,5 +1,5 @@
 tool
-extends Box2D
+extends VBox2D
 class_name ImageView
 
 
@@ -8,21 +8,17 @@ onready var camera = $Camera2D
 
 var image_list := []
 
-#var limit_rect := Rect2(Vector2(), Vector2.ONE * 100)
-
-
 var gourded_node := []
 
 func _ready():
 	manager.connect("showing", self, 'show')
-#	share.add_hook('image_list', self, 'start')
 	
 	for child in get_children():
 		gourded_node.append(child.name)
 
 
 
-var image_holder :PackedScene= preload("res://object/ImageHolder2D/ImageHolder2D.tscn")
+var image_holder :PackedScene= preload("res://object/ImageHolder/ImageHolder.tscn")
 
 func show():
 	image_list = manager.show_list()
@@ -52,8 +48,6 @@ func show():
 		new.set_margin(10, 10)
 		
 		add_child(new)
-		
-#		new.loading()
 	
 	# sort
 	sorting()
@@ -87,9 +81,6 @@ func set_size():
 #	offset.x = box().x/2
 	
 
-
-#func box():
-#	return size + margin
 
 
 func sort():
@@ -158,20 +149,3 @@ func child_height(_index):
 	
 	return null
 	
-
-
-#func _process(delta: float) -> void:
-#	update()
-
-
-#func _draw() -> void:
-#
-#	if not can_debug:
-#		return
-#
-#	var rect = Rect2(Vector2(), size)
-#
-#	draw_rect(rect, Color.white, false, 2)
-#
-#	draw_circle(Vector2.ZERO, 2, Color.plum)
-

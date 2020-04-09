@@ -27,7 +27,7 @@ _global_script_classes=[ {
 "base": "Node2D",
 "class": "Box2D",
 "language": "GDScript",
-"path": "res://object/Box2D/Box2D.gd"
+"path": "res://object/GUI2D/Box2D/Box2D.gd"
 }, {
 "base": "VBoxContainer",
 "class": "ColorList",
@@ -59,7 +59,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://util/ImageItem.gd"
 }, {
-"base": "Box2D",
+"base": "VBox2D",
 "class": "ImageView",
 "language": "GDScript",
 "path": "res://object/ImageView/ImageView.gd"
@@ -84,6 +84,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://object/InfoPanel/SortItem/SortItem.gd"
 }, {
+"base": "Node2D",
+"class": "SpriteBox",
+"language": "GDScript",
+"path": "res://object/GUI2D/SpriteBox2D/SpriteBox.gd"
+}, {
 "base": "Node",
 "class": "State",
 "language": "GDScript",
@@ -93,6 +98,11 @@ _global_script_classes=[ {
 "class": "StateMachine",
 "language": "GDScript",
 "path": "res://addons/hp.fsm/state_machine.gd"
+}, {
+"base": "Box2D",
+"class": "VBox2D",
+"language": "GDScript",
+"path": "res://object/GUI2D/VBox2D/VBox2D.gd"
 } ]
 _global_script_class_icons={
 "ActionHolder": "",
@@ -110,8 +120,10 @@ _global_script_class_icons={
 "Manager": "",
 "SharePoint": "",
 "SortItem": "",
+"SpriteBox": "",
 "State": "",
-"StateMachine": ""
+"StateMachine": "",
+"VBox2D": ""
 }
 
 [application]
