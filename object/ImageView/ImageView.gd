@@ -1,41 +1,74 @@
-extends Node2D
+tool
+extends Box2D
 class_name ImageView
 
 
-onready var proces = $Process
 onready var camera = $Camera2D
 
 
-export var can_debug := false
-
 var image_list := []
-#var image_textures := []
-#var image_size := []
 
-
-var size := Vector2()
-var margin := Vector2(20, 10)
-var offset := Vector2()
-
-var box := Rect2()
-
-var limit_rect := Rect2(Vector2(), Vector2.ONE * 100)
+#var limit_rect := Rect2(Vector2(), Vector2.ONE * 100)
 
 
 var gourded_node := []
 
 func _ready():
-	manager.connect("showing", self, 'showing')
+	manager.connect("showing", self, 'show')
 #	share.add_hook('image_list', self, 'start')
 	
 	for child in get_children():
 		gourded_node.append(child.name)
 
 
-func showing():
+
+var image_holder :PackedScene= preload("res://object/ImageHolder2D/ImageHolder2D.tscn")
+
+func show():
 	image_list = manager.show_list()
 	
-	proces.start()
+	# remove_children
+	for child in get_children():
+		
+		if child.name in gourded_node:
+			return
+		
+		remove_child(child)
+	
+	# 
+	size = Vector2()
+	
+	
+	# check exist image
+	if not image_list.size() != 0:
+		return
+	
+	# add
+	for image in image_list:
+		
+		var new :Sprite= image_holder.instance()
+		
+		new.init(self, image)
+		new.set_margin(10, 10)
+		
+		add_child(new)
+		
+#		new.loading()
+	
+	# sort
+	sorting()
+	
+	# load
+	for child in get_children():
+		
+		if child.name in gourded_node:
+			return
+		
+		child.loading()
+	
+
+
+
 
 
 func set_size():
@@ -51,19 +84,17 @@ func set_size():
 		
 		size.y += child.size.y
 	
-	offset.x = box().x/2
-
-func set_size_zero():
-	size = Vector2()
+#	offset.x = box().x/2
+	
 
 
-func box():
-	return size + margin
+#func box():
+#	return size + margin
 
 
 func sort():
 	var hp = 0
-	offset.x = size.x/2
+#	offset.x = size.x/2
 	
 	for i in get_child_count():
 		
@@ -129,17 +160,18 @@ func child_height(_index):
 	
 
 
-func _process(delta: float) -> void:
-	update()
+#func _process(delta: float) -> void:
+#	update()
 
 
-func _draw() -> void:
+#func _draw() -> void:
+#
+#	if not can_debug:
+#		return
+#
+#	var rect = Rect2(Vector2(), size)
+#
+#	draw_rect(rect, Color.white, false, 2)
+#
+#	draw_circle(Vector2.ZERO, 2, Color.plum)
 
-	if not can_debug:
-		return
-
-	var rect = Rect2(Vector2(), size)
-
-	draw_rect(rect, Color.white, false, 10)
-	
-	draw_circle(Vector2.ZERO, 2, Color.plum)

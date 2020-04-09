@@ -1,0 +1,123 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://object/ImageView/ImageView.gd" type="Script" id=1]
+[ext_resource path="res://object/camera/movement.gd" type="Script" id=2]
+[ext_resource path="res://scene/Navigate.gd" type="Script" id=3]
+[ext_resource path="res://object/camera/Camera2D.gd" type="Script" id=4]
+[ext_resource path="res://scene/scroll.gd" type="Script" id=5]
+[ext_resource path="res://object/camera/reset.gd" type="Script" id=6]
+[ext_resource path="res://object/camera/mouse.gd" type="Script" id=7]
+[ext_resource path="res://object/camera/zoom.gd" type="Script" id=8]
+
+[node name="ImagePlace" type="Node2D"]
+script = ExtResource( 1 )
+can_debug = true
+size = Vector2( 50, 50 )
+offset = Vector2( 25, 0 )
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2( 510.807, 299.326 )
+current = true
+script = ExtResource( 4 )
+
+[node name="movement" type="Node" parent="Camera2D"]
+script = ExtResource( 2 )
+
+[node name="zoom" type="Node" parent="Camera2D"]
+script = ExtResource( 8 )
+
+[node name="reset" type="Node" parent="Camera2D"]
+script = ExtResource( 6 )
+
+[node name="mouse" type="Node" parent="Camera2D"]
+script = ExtResource( 7 )
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="scroll" type="Control" parent="CanvasLayer"]
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -36.0
+margin_top = 20.0
+margin_bottom = -1.0
+script = ExtResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/scroll"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 1
+color = Color( 1, 1, 1, 0.054902 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="select" type="ColorRect" parent="CanvasLayer/scroll"]
+margin_right = 36.0
+margin_bottom = 40.0
+color = Color( 0.760784, 0.760784, 0.760784, 0.262745 )
+
+[node name="Navigate" type="VBoxContainer" parent="CanvasLayer"]
+anchor_bottom = 1.0
+margin_top = 20.0
+margin_right = 42.0
+margin_bottom = -3.0
+alignment = 1
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="First" type="Button" parent="CanvasLayer/Navigate"]
+margin_top = 215.0
+margin_right = 42.0
+margin_bottom = 235.0
+text = "First"
+
+[node name="Prev" type="Button" parent="CanvasLayer/Navigate"]
+margin_top = 239.0
+margin_right = 42.0
+margin_bottom = 259.0
+text = "Prev"
+
+[node name="Current" type="Label" parent="CanvasLayer/Navigate"]
+margin_top = 263.0
+margin_right = 42.0
+margin_bottom = 277.0
+text = "0"
+align = 1
+
+[node name="Label" type="Label" parent="CanvasLayer/Navigate"]
+margin_top = 281.0
+margin_right = 42.0
+margin_bottom = 295.0
+text = "---"
+align = 1
+
+[node name="All" type="Label" parent="CanvasLayer/Navigate"]
+margin_top = 299.0
+margin_right = 42.0
+margin_bottom = 313.0
+text = "0"
+align = 1
+
+[node name="Next" type="Button" parent="CanvasLayer/Navigate"]
+margin_top = 317.0
+margin_right = 42.0
+margin_bottom = 337.0
+text = "Next"
+
+[node name="End" type="Button" parent="CanvasLayer/Navigate"]
+margin_top = 341.0
+margin_right = 42.0
+margin_bottom = 361.0
+text = "End"
+[connection signal="mouse_entered" from="CanvasLayer/scroll" to="CanvasLayer/scroll" method="_on_scroll_mouse_entered"]
+[connection signal="mouse_exited" from="CanvasLayer/scroll" to="CanvasLayer/scroll" method="_on_scroll_mouse_exited"]
+[connection signal="pressed" from="CanvasLayer/Navigate/First" to="CanvasLayer/Navigate" method="_on_First_pressed"]
+[connection signal="pressed" from="CanvasLayer/Navigate/Prev" to="CanvasLayer/Navigate" method="_on_Prev_pressed"]
+[connection signal="pressed" from="CanvasLayer/Navigate/Next" to="CanvasLayer/Navigate" method="_on_Next_pressed"]
+[connection signal="pressed" from="CanvasLayer/Navigate/End" to="CanvasLayer/Navigate" method="_on_End_pressed"]

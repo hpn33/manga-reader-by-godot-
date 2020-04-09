@@ -13,8 +13,6 @@ export var debug := false
 
 func _ready() -> void:
 	
-#	manager.connect("showed", self, 'init')
-	
 	share.add_hook('scroll', self, 'set_scroll')
 	
 	Console.addCommand('goto', self, 'goto_index')\
