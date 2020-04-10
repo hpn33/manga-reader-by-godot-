@@ -45,6 +45,7 @@ func add_child(node: Node, legible_unique_name: bool = false):
 	
 	.add_child(node)
 
+
 func sort_children():
 	var y = 0
 	for child in get_children():
@@ -76,6 +77,7 @@ func sort_to_last(index: int, diff):
 
 
 func resize():
+	
 	var y = 0
 	var x = 0
 	
@@ -83,5 +85,17 @@ func resize():
 		x = max(x, child.size.x)
 		y += child.size.y
 	
-	size.x = x
-	size.y = y
+	
+	if x == 0:
+		size = Vector2.ONE * 100
+	else:
+		size = Vector2(x, y)
+	
+	
+	
+	# re pivot
+	set_horizental_pivot()
+	set_vertical_pivot()
+
+	
+	

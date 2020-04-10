@@ -34,10 +34,11 @@ func snap_to_limits_util(target = position):
 	
 	return target
 
-func snap_to_limits():
+func snap_to_limits(fix_position = false):
 	position = snap_to_limits_util()
 	
-	$movement.target = position
+	if fix_position:
+		$movement.target = position
 	
 	moved()
 
@@ -59,6 +60,11 @@ func set_scroll(scroll):
 	
 	position.y = pos
 	position = snap_to_limits_util()
+
+
+
+
+
 
 
 func viewport_height() -> float:

@@ -20,7 +20,8 @@ func _input(event):
 	var _direction := int(event.is_action_pressed("page_down")) - int(event.is_action_pressed("page_up"))
 	
 	if _direction != 0:
-		target.y += get_parent().viewport_height * 0.85 * get_parent().zoom.y * _direction
+		target.y += get_parent().viewport_height() * 0.85 * get_parent().zoom.y * _direction
+		target = get_parent().snap_to_limits_util(target)
 		get_parent().moved()
 
 
@@ -35,7 +36,10 @@ func _process(delta):
 
 	if direction.length_squared() > 0:
 		target += direction.normalized() * speed * get_parent().zoom
-		if get_parent().get_parent().limit_rect: target = get_parent().snap_to_limits_util(target)
+		
+#		if owner.limit_rect: 
+		target = get_parent().snap_to_limits_util(target)
+		
 		get_parent().moved()
 	
 	
