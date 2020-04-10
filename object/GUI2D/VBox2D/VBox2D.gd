@@ -30,33 +30,38 @@ func get_x_position() -> float:
 	return 0.0
 
 
-func add_child(node: Node, legible_unique_name: bool = false):
-	print(node)
-	if not node is Box2D:
-		.add_child(node)
-		return
-
-	var y = 0
-	for child in get_children():
-		y += child.out_rect().size.y
+#func add_child(node: Node, legible_unique_name: bool = false):
+#	print(node)
+#	if not node is Box2D:
+#		.add_child(node)
+#		return
 	
-	node.position.y = y
-	node.position.x = get_x_position()
-	
-	.add_child(node)
+#	print(node)
+#
+#	var y = 0
+#	for child in get_children():
+#		y += child.out_rect().size.y
+#
+#	node.position.y = y
+#	node.position.x = get_x_position()
+#
+#	.add_child(node)
 
 
 func sort_children():
 	var y = 0
 	for child in get_children():
 		
-		if not child is Box2D:
-			continue
+#		if not child is Box2D:
+#			continue
 		
 		child.position.y = y
 		child.position.x = get_x_position()
 		
-		y += child.out_rect().size.y
+#		y += child.out_rect().size.y
+		y += child.height()
+	
+	resize()
 
 
 func sort_to_last(index: int, diff):
@@ -82,15 +87,13 @@ func resize():
 	var x = 0
 	
 	for child in get_children():
-		x = max(x, child.size.x)
-		y += child.size.y
-	
+		x = max(x, child.width())
+		y += child.height()
 	
 	if x == 0:
 		size = Vector2.ONE * 100
 	else:
 		size = Vector2(x, y)
-	
 	
 	
 	# re pivot

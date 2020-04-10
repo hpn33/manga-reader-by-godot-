@@ -19,21 +19,30 @@ func render(image_list):
 		return
 	
 	# add
-#	for image in image_list:
-#
-#		var new :Node2D= image_holder.instance()
-#
-#		new.init(self, image)
-#		new.margin = Vector2.ONE * 10
-#
-#		add_child(new)
+	for image in image_list:
+
+		var new :Node2D= image_holder.instance()
+
+		new.init(self, image)
+		new.margin = Vector2.ONE * 10
+
+		
+		var y = 0
+		
+		for child in get_children():
+			y += child.height()
+		
+		new.position.y = y 
+		
+		add_child(new)
+		
 	
 	# sort
 	sort_children()
 	
 	# load
-	for child in get_children():
-		child.loading()
+#	for child in get_children():
+#		child.loading()
 
 
 

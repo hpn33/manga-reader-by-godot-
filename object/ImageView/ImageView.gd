@@ -29,7 +29,7 @@ func _ready():
 func show():
 	image_list = manager.show_list()
 	
-	viewer.render(image_list)
+	self.viewer.render(image_list)
 
 
 

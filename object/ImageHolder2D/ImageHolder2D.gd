@@ -8,8 +8,8 @@ var can_debug := false
 onready var loader = $loader
 onready var label = $Label
 
-onready var sprite :Sprite= $SpriteBox/Box2D/Sprite setget , get_sprite
-func get_sprite():
+onready var sprite :Sprite= $SpriteBox/Sprite setget , get_sprite
+func get_sprite() -> Sprite:
 	if sprite == null:
 		sprite = get_child(0).get_child(0)
 	
@@ -24,7 +24,7 @@ var margin := Vector2()
 
 
 func _ready() -> void:
-	set_size()
+#	set_size()
 	set_label(file_info.full_path())
 
 
@@ -51,20 +51,20 @@ func loaded(diff):
 	label.rect_position = Vector2(x, y-offy)
 
 
-func set_margin(x, y):
-	margin.x = x
-	margin.y = y
-	set_size()
+#func set_margin(x, y):
+#	margin.x = x
+#	margin.y = y
+#	set_size()
 
 
-func set_size():
-	size = get_sprite().texture.get_size() + margin
-	fix_offset()
+#func set_size():
+#	size = get_sprite().texture.get_size() + margin
+#	fix_offset()
 
 
-func fix_offset():
-	if size.y != 0:
-		get_sprite().offset.y = size.y / 2.0
+#func fix_offset():
+#	if size.y != 0:
+#		get_sprite().offset.y = size.y / 2.0
 
 
 func set_label(text):
@@ -98,12 +98,16 @@ func set_label(text):
 #
 
 
+func height():
+	return self.sprite.texture.get_size().y
+
+
+func width():
+	return self.sprite.texture.get_size().x
 
 
 
 
-
-
-func _on_ImageHolder2D_texture_changed() -> void:
-	set_size()
+#func _on_ImageHolder2D_texture_changed() -> void:
+#	set_size()
 

@@ -8,6 +8,10 @@
 script = ExtResource( 3 )
 
 [node name="SpriteBox" parent="." instance=ExtResource( 1 )]
+can_debug = true
+
+[node name="Sprite" parent="SpriteBox" index="0"]
+offset = Vector2( 0, 32 )
 
 [node name="Label" type="Label" parent="."]
 margin_left = 33.25

@@ -3,7 +3,7 @@ extends Box2D
 class_name SpriteBox
 
 
-onready var sprite :Sprite= $Box2D/Sprite setget , get_sprite
+onready var sprite :Sprite= $Sprite setget , get_sprite
 func get_sprite() -> Sprite:
 	if sprite == null:
 		sprite = get_child(0)
