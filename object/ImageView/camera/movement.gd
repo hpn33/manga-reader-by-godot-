@@ -35,7 +35,7 @@ func _process(delta):
 
 	if direction.length_squared() > 0:
 		target += direction.normalized() * speed * get_parent().zoom
-		if get_parent().get_parent().limit_rect: target = get_parent().snap_to_limits(target)
+		if get_parent().get_parent().limit_rect: target = get_parent().snap_to_limits_util(target)
 		get_parent().moved()
 	
 	

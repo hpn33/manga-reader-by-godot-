@@ -31,19 +31,19 @@ func get_x_position() -> float:
 
 
 func add_child(node: Node, legible_unique_name: bool = false):
-	
+	print(node)
 	if not node is Box2D:
+		.add_child(node)
 		return
 
 	var y = 0
 	for child in get_children():
 		y += child.out_rect().size.y
 	
-	.add_child(node)
-	
 	node.position.y = y
 	node.position.x = get_x_position()
-
+	
+	.add_child(node)
 
 func sort_children():
 	var y = 0
@@ -58,3 +58,30 @@ func sort_children():
 		y += child.out_rect().size.y
 
 
+func sort_to_last(index: int, diff):
+	
+	for i in get_child_count():
+		
+		var child = get_children()[i]
+		
+		child.position.x = offset.x
+		
+		if i > index:
+			child.position.y += diff
+	
+#	camera.moved()
+	
+
+
+
+
+func resize():
+	var y = 0
+	var x = 0
+	
+	for child in get_children():
+		x = max(x, child.size.x)
+		y += child.size.y
+	
+	size.x = x
+	size.y = y

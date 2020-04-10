@@ -9,7 +9,7 @@ onready var select = $select
 
 func _ready():
 	
-	navigate.connect("changed", self, 'navigate_changed')
+#	navigate.connect("changed", self, 'navigate_changed')
 	
 	
 	share.add_hook('scroll', self, 'set_scroll')
@@ -17,8 +17,8 @@ func _ready():
 	select.rect_size.y = perhundred()
 
 
-func navigate_changed():
-	pass
+#func navigate_changed():
+#	pass
 
 
 func position_perhundred():

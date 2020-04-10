@@ -11,7 +11,7 @@ onready var label = $Label
 onready var sprite :Sprite= $SpriteBox/Box2D/Sprite setget , get_sprite
 func get_sprite():
 	if sprite == null:
-		sprite = get_child(0).get_child(0).get_child(0)
+		sprite = get_child(0).get_child(0)
 	
 	return sprite
 

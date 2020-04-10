@@ -4,21 +4,14 @@ extends Camera2D
 export var debug := false
 
 
-## Rectangle used to limit camera panning.
-## Note that the built in camera limits do not work: they don't actually constrain the position of the camera.
-## They only stop the view from moving. For the player, this makes the camera appear to "stick" at the edges of the map, 
-## which is bad.
-
-#var limit_rect = Rect2(Vector2(), Vector2.ONE * 100)
-
 func _ready() -> void:
 	
 	share.add_hook('scroll', self, 'set_scroll')
 	
-	Console.addCommand('goto', self, 'goto_index')\
-		.setDescription('Going to image number "Number %index%!"')\
-		.addArgument('index', TYPE_INT)\
-		.register()
+#	Console.addCommand('goto', self, 'goto_index')\
+#		.setDescription('Going to image number "Number %index%!"')\
+#		.addArgument('index', TYPE_INT)\
+#		.register()
 
 
 func init():
@@ -31,48 +24,24 @@ func init():
 	moved()
 
 
-#var off := Vector2()
-#func set_limit_rect(rect: Rect2):
-#	limit_rect = rect
-#
-#	off.x =(limit_rect.size.x/2) * 0.0001
-#	off.y =(limit_rect.size.y/2) * 0.0001
 
-
-
-func snap_to_limits(target = position):
+func snap_to_limits_util(target = position):
 	
-	target.x = clamp(target.x, get_parent().limit_rect.position.x, get_parent().limit_rect.end.x)
-	target.y = clamp(target.y, get_parent().limit_rect.position.y, get_parent().limit_rect.end.y)
+	var limit_rect = owner.limit_rect
+	
+	target.x = clamp(target.x, limit_rect.position.x, limit_rect.end.x)
+	target.y = clamp(target.y, limit_rect.position.y, limit_rect.end.y)
 	
 	return target
 
-
-func goto_index(index):
+func snap_to_limits():
+	position = snap_to_limits_util()
 	
-	if not images_size() > 0:
-		print('no image set')
-		return
-	
-	
-	if index <= 0 or index > images_size():
-		print('index [', index ,'] out of range [0 : ',images_size(), ']')
-		return
-	
-	print('index ', index, ' ', images_size())
-	
-	return
-	
-	position.y = get_parent().child_height(index) + off_height()
-	
-	position = snap_to_limits(position)
 	$movement.target = position
 	
 	moved()
-	
 
-func images_size() -> int:
-	return get_parent().get_child_count() - 1
+
 
 
 func moved():
@@ -85,11 +54,11 @@ func moved():
 
 
 func set_scroll(scroll):
-	var perhundred = get_parent().limit_rect.end.y / 100.0
+	var perhundred = owner.limit_rect.end.y / 100.0
 	var pos = perhundred * scroll
 	
 	position.y = pos
-	position = snap_to_limits()
+	position = snap_to_limits_util()
 
 
 func viewport_height() -> float:
@@ -98,6 +67,16 @@ func viewport_height() -> float:
 
 func off_height():
 	return (viewport_height() / 2) * zoom.y * 0.9
+
+
+
+
+
+
+
+
+
+
 
 
 func _process(delta):

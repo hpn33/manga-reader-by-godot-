@@ -64,11 +64,6 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://util/ImageItem.gd"
 }, {
-"base": "VBox2D",
-"class": "ImageView",
-"language": "GDScript",
-"path": "res://object/ImageView/ImageView.gd"
-}, {
 "base": "ConfigWraper",
 "class": "ImagesSetting",
 "language": "GDScript",
@@ -89,7 +84,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://object/InfoPanel/SortItem/SortItem.gd"
 }, {
-"base": "Node2D",
+"base": "Box2D",
 "class": "SpriteBox",
 "language": "GDScript",
 "path": "res://object/GUI2D/SpriteBox2D/SpriteBox2D.gd"
@@ -121,7 +116,6 @@ _global_script_class_icons={
 "IOUtil": "",
 "ImageHolder2D": "",
 "ImageItem": "",
-"ImageView": "",
 "ImagesSetting": "",
 "Manager": "",
 "SharePoint": "",
@@ -140,12 +134,9 @@ config/icon="res://icon.png"
 
 [autoload]
 
-data="*res://autoload/data.gd"
 config="*res://autoload/AppSetting.gd"
 share="*res://autoload/SharePoint.gd"
 manager="*res://autoload/manager.gd"
-Console="*res://addons/quentincaffeino-console/src/Console.tscn"
-navigate="*res://autoload/navigate.gd"
 
 [debug]
 
@@ -158,7 +149,7 @@ window/size/borderless=true
 
 [editor_plugins]
 
-enabled=PoolStringArray( "quentincaffeino-console" )
+enabled=PoolStringArray(  )
 
 [input]
 
