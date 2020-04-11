@@ -57,5 +57,5 @@ func goto_index(index):
 	
 	camera.position.y = viewer.child_height(index) + camera.off_height()
 	
-	camera.snap_to_limits(true)
+	camera.snap_to_limits()
 	

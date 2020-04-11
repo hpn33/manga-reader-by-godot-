@@ -21,7 +21,6 @@ func _input(event):
 		#like we're grabbing the view
 		
 		var pos = get_parent().position - event.relative * get_parent().zoom
-#		movement.reinit(pos)
 		get_parent().setting(pos)
 	
 
