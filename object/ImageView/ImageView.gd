@@ -33,8 +33,17 @@ func show():
 
 
 
+onready var scroll = $CanvasLayer/scroll
+onready var navigate = $CanvasLayer/Navigate
+
+
+func refresh():
+#	scroll.init()
+	
+	navigate.init()
+
 func perhundred() -> float:
-	return self.viewer.size.y / 100.0
+	return self.viewer.perhundred()
 
 
 
@@ -46,16 +55,11 @@ func goto_index(index):
 		print('no image set')
 		return
 	
-	
 	if index <= 0 or index > count:
 		print('index [', index ,'] out of range [0 : ',count, ']')
 		return
 	
 	print('index ', index, ' ', count)
 	
-	return
-	
-	camera.position.y = viewer.child_height(index) + camera.off_height()
-	
-	camera.snap_to_limits()
+	camera.goto(self.viewer.child_position(index))
 	

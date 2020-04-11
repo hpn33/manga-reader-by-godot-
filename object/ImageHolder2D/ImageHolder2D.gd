@@ -109,12 +109,12 @@ func set_label(text):
 
 func height():
 #	return self.sprite.texture.get_size().y
-	return self.sprite_box.out_rect().size.y
+	return self.sprite_box.height()
 
 
 func width():
 #	return self.sprite.texture.get_size().x
-	return self.sprite_box.out_rect().size.x
+	return self.sprite_box.width()
 
 
 func set_offset_half_top():

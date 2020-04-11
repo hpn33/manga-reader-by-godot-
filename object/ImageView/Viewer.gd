@@ -34,18 +34,27 @@ func render(image_list):
 	# sort
 	sort_children()
 	
+	owner.refresh()
+	
 	# load
 #	for child in get_children():
 #		child.loading()
 
 
 
+
+func perhundred() -> float:
+	return height() / 100.0
+
+
+
+
 # not count state
-func child_height(_index):
-	var index = _index + 1
-	print(index)
+func child_position(_index):
+	print('child height: ', _index, '/', get_child_count())
 	
-	if index >= 2 or index < get_child_count():
+	var index = _index - 1
+	if index >= 0 and index < get_child_count():
 		return get_child(index).position.y
 	
 	return null

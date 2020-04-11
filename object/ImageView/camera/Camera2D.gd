@@ -79,6 +79,12 @@ func set_scroll(scroll):
 
 
 
+func goto(pos):
+	
+#	position.y = pos + off_height()
+	position.y = pos
+	
+	snap_to_limits()
 
 
 

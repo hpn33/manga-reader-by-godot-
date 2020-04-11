@@ -8,8 +8,8 @@ onready var index_label = $"Current"
 onready var all_index_label = $"All"
 
 
-var index = 0
-var count = 0
+var index := 0
+var count := 0
 
 
 func _ready():
@@ -38,6 +38,13 @@ func _ready():
 #	all_index_label.text = str(count)
 #
 #	refresh()
+
+func init():
+	index = 1
+	count = owner.viewer.get_child_count()
+	all_index_label.text = str(count)
+	
+	refresh()
 
 
 func _on_First_pressed():
@@ -68,3 +75,12 @@ func _on_End_pressed():
 func refresh():
 	index_label.text = str(index)
 	owner.goto_index(index)
+
+
+func _on_LineEdit_text_changed(new_text):
+	var i = int(new_text)
+	
+	if i > 0 and i <= count:
+		index = i
+	
+	refresh()

@@ -21,6 +21,12 @@ func _ready():
 #	pass
 
 
+func init():
+	pass
+
+
+
+
 func position_perhundred():
 	return get_local_mouse_position().y / perhundred()
 

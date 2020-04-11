@@ -86,8 +86,6 @@ func repivot():
 	set_horizental_pivot()
 	set_vertical_pivot()
 
-func resize():
-	pass
 
 
 
@@ -109,6 +107,15 @@ func in_rect() -> Rect2:
 	rect.size -= padding
 	
 	return rect
+
+
+
+func width() -> float:
+	return out_rect().size.x
+
+
+func height() -> float:
+	return out_rect().size.y
 
 
  
