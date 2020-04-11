@@ -13,10 +13,12 @@ var count := 0
 
 
 func _ready():
-	pass
+	share.add_hook('current_index', self, 'set_current_index')
+	
 #	navigate.connect("changed", self, 'navigate_changed')
 #	navigate.connect("refresh", self, 'navigate_refreshed')
 	
+#	share.add_hook('image_list', self, 'image_list_changed')
 #	share.add_hook('image_list', self, 'image_list_changed')
 
 
@@ -48,39 +50,62 @@ func init():
 
 
 func _on_First_pressed():
+	
+	if count == 0:
+		return
+	
 	index = 1
 	
 	refresh()
 
 
 func _on_Prev_pressed():
+	
+	if count == 0:
+		return
+	
 	index = clamp(index - 1, 1, count)
 	
 	refresh()
 
 
 func _on_Next_pressed():
+	
+	if count == 0:
+		return
+	
 	index = clamp(index + 1, 1, count)
 	
 	refresh()
 
 
 func _on_End_pressed():
+	
+	if count == 0:
+		return
+	
 	index = count
 	
 	refresh()
 
 
 
-func refresh():
+func refresh(can_go:= true):
 	index_label.text = str(index)
-	owner.goto_index(index)
+	
+#	owner.point_change(self)
+	
+	if can_go:
+		owner.goto_index(index)
 
 
-func _on_LineEdit_text_changed(new_text):
-	var i = int(new_text)
+func set_current_index(_index):
 	
-	if i > 0 and i <= count:
-		index = i
+	if _index == 0:
+		return
 	
-	refresh()
+	index = _index + 1
+	
+	refresh(false)
+
+

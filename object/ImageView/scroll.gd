@@ -9,16 +9,9 @@ onready var select = $select
 
 func _ready():
 	
-#	navigate.connect("changed", self, 'navigate_changed')
-	
-	
 	share.add_hook('scroll', self, 'set_scroll')
 	
 	select.rect_size.y = perhundred()
-
-
-#func navigate_changed():
-#	pass
 
 
 func init():
@@ -42,7 +35,7 @@ func _process(delta):
 	
 	if Input.is_action_pressed("view_click_mouse"):
 		
-		select.rect_position.y = get_local_mouse_position().y
+		set_select_position(get_local_mouse_position().y)
 		
 		share.set_value('scroll', position_perhundred())
 
@@ -55,4 +48,14 @@ func _on_scroll_mouse_exited():
 
 
 func set_scroll(scroll):
-	select.rect_position.y = perhundred() * scroll
+	set_select_position(perhundred() * scroll)
+
+
+func set_select_position(_height):
+	select.rect_position.y = _height
+	
+
+
+
+
+

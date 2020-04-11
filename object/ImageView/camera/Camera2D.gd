@@ -46,8 +46,10 @@ func moved():
 	if position.y != 0 and get_parent().perhundred() != 0:
 		scroll = position.y / get_parent().perhundred()
 	
+#	owner.point_change(self)
+	
+	share.set_value('current_index', owner.current_index)
 	share.set_value('scroll', scroll)
-
 
 
 

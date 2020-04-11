@@ -49,15 +49,35 @@ func perhundred() -> float:
 
 
 
-# not count state
+# get index take height
 func child_position(_index):
-	print('child height: ', _index, '/', get_child_count())
+#	print('child height: ', _index, '/', get_child_count())
+	
+	if get_children().empty():
+		return
 	
 	var index = _index - 1
-	if index >= 0 and index < get_child_count():
-		return get_child(index).position.y
 	
-	return null
+	var _height
+	
+	if index >= 0 and index < get_child_count():
+		_height = get_child(index).position.y
+	
+	return _height
+
+
+func find_child_by_position(camera_height):
+	
+	if get_children().empty():
+		return 0
+	
+	for child in get_children():
+		
+		if child.position.y <= camera_height and camera_height <= child.position.y + child.height():
+			
+			return child.get_position_in_parent()
+	
+	return 0
 
 
 

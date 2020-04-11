@@ -13,7 +13,7 @@ func get_viewer():
 
 var limit_rect := Rect2() setget , get_limit_rect
 func get_limit_rect() -> Rect2:
-	return self.viewer.main_rect()
+	return self.viewer.out_rect()
 
 
 
@@ -47,7 +47,7 @@ func perhundred() -> float:
 
 
 
-func goto_index(index):
+func goto_index(_index):
 	
 	var count = viewer.get_child_count()
 	
@@ -55,11 +55,30 @@ func goto_index(index):
 		print('no image set')
 		return
 	
-	if index <= 0 or index > count:
-		print('index [', index ,'] out of range [0 : ',count, ']')
+	if _index <= 0 or _index > count:
+		print('index [', _index ,'] out of range [0 : ',count, ']')
 		return
 	
-	print('index ', index, ' ', count)
+	print('index ', _index, ' ', count)
 	
-	camera.goto(self.viewer.child_position(index))
+	camera.goto(self.viewer.child_position(_index))
+
+
+
+
+
+var current_index := 0 setget , get_current_index
+func get_current_index() -> int:
+	return viewer.find_child_by_position(get_camera_position())
+
+
+var camera_position := 0.0 setget , get_camera_position
+func get_camera_position() -> float:
+	return camera.position.y
+
+
+
+
+
 	
+
