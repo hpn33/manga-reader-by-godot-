@@ -17,12 +17,12 @@ func get_sprite_box() -> SpriteBox:
 	return sprite_box
 
 
-onready var sprite :Sprite= $SpriteBox/Sprite setget , get_sprite
-func get_sprite() -> Sprite:
-	if sprite == null:
-		sprite = get_child(0).get_child(0)
-	
-	return sprite
+#onready var sprite :Sprite= $SpriteBox/Sprite setget , get_sprite
+#func get_sprite() -> Sprite:
+#	if sprite == null:
+#		sprite = get_child(0).get_child(0)
+#
+#	return sprite
 
 var file_info : FileInfo
 var adapter
@@ -32,6 +32,7 @@ func _ready() -> void:
 #	set_size()
 	set_label(file_info.full_path())
 #	size = self.sprite.texture.get_size()
+	set_offset_half_top()
 	
 	
 
@@ -51,8 +52,10 @@ func loaded(diff):
 	adapter.fix_pos_to_last(get_position_in_parent(), diff)
 	
 	# set label position
-	var y = get_sprite().texture.get_size().y
-	var x = get_sprite().texture.get_size().x/2
+#	var y = get_sprite().texture.get_size().y
+	var y = height()
+#	var x = get_sprite().texture.get_size().x/2
+	var x = width()/2
 	
 	var offy = label.rect_size.y
 	
@@ -113,6 +116,9 @@ func width():
 #	return self.sprite.texture.get_size().x
 	return self.sprite_box.out_rect().size.x
 
+
+func set_offset_half_top():
+	self.sprite_box.offset.y = height()/2
 
 
 #func _on_ImageHolder2D_texture_changed() -> void:

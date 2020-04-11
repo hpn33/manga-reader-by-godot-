@@ -1,9 +1,6 @@
 extends Camera2D
 
 
-export var debug := false
-
-
 func _ready() -> void:
 	
 	share.add_hook('scroll', self, 'set_scroll')
@@ -14,14 +11,12 @@ func _ready() -> void:
 #		.register()
 
 
-func init():
-	
-	var pos = Vector2(0, off_height())
-	
-	$movement.target = pos
-	position = pos
-	
-	moved()
+
+
+
+
+
+
 
 
 
@@ -34,7 +29,7 @@ func snap_to_limits_util(target = position):
 	
 	return target
 
-func snap_to_limits(fix_position = false):
+func snap_to_limits(fix_position = true):
 	position = snap_to_limits_util()
 	
 	if fix_position:
@@ -52,6 +47,27 @@ func moved():
 		scroll = position.y / get_parent().perhundred()
 	
 	share.set_value('scroll', scroll)
+
+
+
+
+func setting(vector:= Vector2(), fix_position = true):
+	position = vector
+	
+	snap_to_limits(fix_position)
+
+
+
+
+func init():
+	setting(Vector2(0, off_height()), true)
+
+
+
+
+
+
+
 
 
 func set_scroll(scroll):
@@ -81,26 +97,6 @@ func off_height():
 
 
 
-
-
-
-
-func _process(delta):
-	update()
-
-
-func _draw() -> void:
-	
-	if not debug:
-		return
-	
-	var vr = get_viewport_rect()
-	
-	
-	draw_line(Vector2(-vr.size.x/2, 0),Vector2(vr.size.x/2, 0), Color.white, 5)
-	
-	
-	draw_circle(Vector2.ZERO, 2, Color.brown)
 
 
 

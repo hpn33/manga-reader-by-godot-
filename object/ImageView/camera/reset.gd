@@ -1,18 +1,16 @@
 extends Node
 
 onready var zoom = $'../zoom'
+onready var movement = $'../movement'
 
 
 func _input(event):
+	
 	if event.is_action_pressed('reset'):
-		base_reset()
-		owner.position.x = 0
+		zoom.reset()
+		movement.reset_x()
 	
 	if event.is_action_pressed("full_reset"):
-		base_reset()
-		owner.position = Vector2()
-
-
-func base_reset():
-	zoom.zoom_target = Vector2.ONE
-	owner.zoom = Vector2.ONE
+		zoom.reset()
+		movement.reset()
+	

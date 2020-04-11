@@ -3,8 +3,6 @@ extends Node
 
 onready var movement = $'../movement'
 
-var pan_speed := 800
-
 var mouse_captured := false
 
 
@@ -20,11 +18,11 @@ func _input(event):
 
 	if mouse_captured && event is InputEventMouseMotion:
 
-		#like we're grabbing the map
-		get_parent().position -= event.relative * get_parent().zoom
-		movement.target = get_parent().position
+		#like we're grabbing the view
 		
-		get_parent().snap_to_limits()
+		var pos = get_parent().position - event.relative * get_parent().zoom
+#		movement.reinit(pos)
+		get_parent().setting(pos)
 	
 
 

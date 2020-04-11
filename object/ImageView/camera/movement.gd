@@ -47,3 +47,10 @@ func _process(delta):
 	get_parent().position = lerp(get_parent().position, target, 25 * delta)
 
 
+func reset():
+	get_parent().setting()
+
+func reset_x():
+	get_parent().setting(Vector2(0, target.y))
+
+

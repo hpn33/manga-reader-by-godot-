@@ -43,6 +43,20 @@ func _process(delta):
 	get_parent().zoom = lerp(get_parent().zoom, zoom_target, 20 * delta)
 
 
+
+
+func reset():
+	zoom_target = Vector2.ONE
+	get_parent().zoom = Vector2.ONE
+
+
+
+
+
+
+
+
+
 func _snap_zoom_limits():
 	
 	zoom_target.x = clamp(zoom_target.x, min_zoom, max_zoom)

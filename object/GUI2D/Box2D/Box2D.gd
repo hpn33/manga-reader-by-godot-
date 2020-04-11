@@ -31,7 +31,7 @@ func set_offset(_offset):
 	offset = _offset
 	
 	for child in get_children():
-		child.position = -offset
+		child.position = offset
 
 
 export(Vector2) var pivot := Vector2()
@@ -92,7 +92,7 @@ func resize():
 
 
 func main_rect() -> Rect2:
-	return Rect2(pivot-offset, size)
+	return Rect2(pivot+offset, size)
 
 func out_rect() -> Rect2:
 	var rect = main_rect()
