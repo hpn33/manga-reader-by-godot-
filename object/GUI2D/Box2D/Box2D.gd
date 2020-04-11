@@ -5,12 +5,35 @@ class_name Box2D
 
 export var can_debug := false
 
-export(Vector2) var size := Vector2()
 
-export(Vector2) var margin := Vector2()
+export(Vector2) var size := Vector2() setget set_size
+func set_size(_size):
+	size = _size
+	
+	repivot()
+
+
+
+export(Vector2) var margin := Vector2() setget set_margin
+func set_margin(_margin: Vector2):
+	margin = _margin
+	
+	repivot()
+
+
+
 export(Vector2) var padding := Vector2()
 
-export(Vector2) var offset := Vector2()
+
+
+export(Vector2) var offset := Vector2() setget set_offset
+func set_offset(_offset):
+	offset = _offset
+	
+	for child in get_children():
+		child.position = -offset
+
+
 export(Vector2) var pivot := Vector2()
 
 
@@ -58,7 +81,13 @@ func set_horizental_pivot():
 
 
 
+# reset horizental & vertical pivot
+func repivot():
+	set_horizental_pivot()
+	set_vertical_pivot()
 
+func resize():
+	pass
 
 
 
@@ -100,11 +129,11 @@ func _draw() -> void:
 	draw_circle(Vector2.ZERO, 1.5, Color.plum)
 
 
-	# main board
-	draw_rect(main_rect(), Color.white, false, 1)
-
 	# out board
-	draw_rect(out_rect(), Color.white, false, 1)
+	draw_rect(out_rect(), Color.red, false, 1)
 
 	# in board
-	draw_rect(in_rect(), Color.white, false, 1)
+	draw_rect(in_rect(), Color.orange, false, 1)
+	
+	# main board
+	draw_rect(main_rect(), Color.green, false, 1)

@@ -2,7 +2,7 @@ extends VBoxContainer
 
 
 #onready var image_place = $"../../ImagePlace"
-onready var camera = $"../../Camera2D"
+#onready var camera = $"../../Camera2D"
 
 onready var index_label = $"Current"
 onready var all_index_label = $"All"
@@ -67,4 +67,4 @@ func _on_End_pressed():
 
 func refresh():
 	index_label.text = str(index)
-	camera.goto_index(index)
+	owner.goto_index(index)

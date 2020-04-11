@@ -25,9 +25,20 @@ func set_centered(_centered):
 		set_vertical_pivot_align(VERTICAL_PIVOT_ALIGN.UP)
 	
 	get_sprite().centered = centered
+	
+	resize()
+
+
+
+
+
+
+func resize():
+	set_size(get_sprite().texture.get_size())
+
+
 
 
 
 func _on_Sprite_texture_changed():
-	size = get_sprite().texture.get_size()
-
+	resize()

@@ -6,6 +6,9 @@
 
 [node name="SpriteBox2D" type="Node2D"]
 script = ExtResource( 2 )
+can_debug = true
+size = Vector2( 64, 64 )
+pivot = Vector2( -32, -32 )
 vertical_pivot_align = 1
 horizental_pivot_align = 1
 

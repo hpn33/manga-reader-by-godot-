@@ -3,10 +3,19 @@ extends Node2D
 class_name ImageHolder2D
 
 
-var can_debug := false
+export var can_debug := false
 
 onready var loader = $loader
 onready var label = $Label
+
+
+onready var sprite_box : SpriteBox = $SpriteBox setget , get_sprite_box
+func get_sprite_box() -> SpriteBox:
+	if sprite_box == null:
+		sprite_box = get_child(0)
+	
+	return sprite_box
+
 
 onready var sprite :Sprite= $SpriteBox/Sprite setget , get_sprite
 func get_sprite() -> Sprite:
@@ -19,13 +28,12 @@ var file_info : FileInfo
 var adapter
 
 
-var size := Vector2()
-var margin := Vector2()
-
-
 func _ready() -> void:
 #	set_size()
 	set_label(file_info.full_path())
+#	size = self.sprite.texture.get_size()
+	
+	
 
 
 func init(_adapter, _file_info: FileInfo):
@@ -51,10 +59,8 @@ func loaded(diff):
 	label.rect_position = Vector2(x, y-offy)
 
 
-#func set_margin(x, y):
-#	margin.x = x
-#	margin.y = y
-#	set_size()
+func set_margin(_margin: Vector2):
+	$SpriteBox.set_margin(_margin)
 
 
 #func set_size():
@@ -99,12 +105,13 @@ func set_label(text):
 
 
 func height():
-	return self.sprite.texture.get_size().y
+#	return self.sprite.texture.get_size().y
+	return self.sprite_box.out_rect().size.y
 
 
 func width():
-	return self.sprite.texture.get_size().x
-
+#	return self.sprite.texture.get_size().x
+	return self.sprite_box.out_rect().size.x
 
 
 

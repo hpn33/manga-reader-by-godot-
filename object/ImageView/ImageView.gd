@@ -2,7 +2,7 @@ tool
 extends Node2D
 
 onready var camera = $Camera2D
-onready var viewer = $VBox2D setget , get_viewer
+onready var viewer = $Viewer setget , get_viewer
 func get_viewer():
 	if viewer == null:
 		viewer = get_child(0)
@@ -55,7 +55,7 @@ func goto_index(index):
 	
 	return
 	
-	position.y = viewer.child_height(index) + camera.off_height()
+	camera.position.y = viewer.child_height(index) + camera.off_height()
 	
 	camera.snap_to_limits(true)
 	

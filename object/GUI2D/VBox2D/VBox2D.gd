@@ -48,6 +48,12 @@ func get_x_position() -> float:
 #	.add_child(node)
 
 
+func remove_children():
+	# remove_children
+	for child in get_children():
+		remove_child(child)
+
+
 func sort_children():
 	var y = 0
 	for child in get_children():
@@ -97,8 +103,10 @@ func resize():
 	
 	
 	# re pivot
-	set_horizental_pivot()
-	set_vertical_pivot()
+	repivot()
 
-	
-	
+
+
+func reset():
+	remove_children()
+	resize()

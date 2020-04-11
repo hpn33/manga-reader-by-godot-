@@ -7,16 +7,15 @@ var image_holder :PackedScene= preload("res://object/ImageHolder2D/ImageHolder2D
 
 func render(image_list):
 	
-	# remove_children
-	for child in get_children():
-		remove_child(child)
-	
-	# 
-	resize()
 	
 	# check exist image
 	if image_list.empty():
 		return
+	
+	
+	# remove children and resize
+	reset()
+	
 	
 	# add
 	for image in image_list:
@@ -24,18 +23,13 @@ func render(image_list):
 		var new :Node2D= image_holder.instance()
 
 		new.init(self, image)
-		new.margin = Vector2.ONE * 10
-
+		new.set_margin(Vector2.ONE * 10)
 		
-		var y = 0
-		
-		for child in get_children():
-			y += child.height()
-		
-		new.position.y = y 
+		new.position.y = in_rect().size.y
 		
 		add_child(new)
 		
+		resize()
 	
 	# sort
 	sort_children()
