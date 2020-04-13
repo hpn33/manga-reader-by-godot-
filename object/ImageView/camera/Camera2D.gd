@@ -1,22 +1,6 @@
 extends Camera2D
 
 
-func _ready() -> void:
-	
-	share.add_hook('scroll', self, 'set_scroll')
-	
-#	Console.addCommand('goto', self, 'goto_index')\
-#		.setDescription('Going to image number "Number %index%!"')\
-#		.addArgument('index', TYPE_INT)\
-#		.register()
-
-
-
-
-
-
-
-
 
 
 
@@ -29,28 +13,21 @@ func snap_to_limits_util(target = position):
 	
 	return target
 
-func snap_to_limits(fix_position = true):
+func snap_to_limits(fix_position = true, can_moving = true):
 	position = snap_to_limits_util()
 	
 	if fix_position:
 		$movement.target = position
 	
-	moved()
+	
+	if can_moving:
+		moved()
 
 
 
 
 func moved():
-	var scroll = 0
-	
-	if position.y != 0 and get_parent().perhundred() != 0:
-		scroll = position.y / get_parent().perhundred()
-	
-#	owner.point_change(self)
-	
-	share.set_value('current_index', owner.current_index)
-	share.set_value('scroll', scroll)
-
+	owner.notify(self)
 
 
 func setting(vector:= Vector2(), fix_position = true):
@@ -67,17 +44,33 @@ func init():
 
 
 
+func get_scroll() -> float:
+	return get_scroll_by_position(position.y)
+
+
+func get_scroll_by_position(height):
+	var scroll := 0.0
+	
+	if height != 0 and owner.perhundred() != 0:
+		scroll = height / owner.perhundred()
+
+	return scroll
 
 
 
-
-
-func set_scroll(scroll):
+func set_pos():
 	var perhundred = owner.limit_rect.end.y / 100.0
-	var pos = perhundred * scroll
+	var pos = perhundred * owner.get_scroll(self)
 	
 	position.y = pos
-	position = snap_to_limits_util()
+	
+	snap_to_limits(true, false)
+
+
+func set_pos_by_index():
+	position.y = owner.get_index_position()
+	
+	snap_to_limits(true, false)
 
 
 
@@ -99,15 +92,12 @@ func off_height():
 	return (viewport_height() / 2) * zoom.y * 0.9
 
 
-
-
-
-
-
-
-
-
-
-
+func notify(last):
+	
+	if last.name == 'Navigate':
+		set_pos_by_index()
+		pass
+	elif last.name == 'scroll_bar':
+		set_pos()
 
 

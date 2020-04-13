@@ -34,7 +34,7 @@ func render(image_list):
 	# sort
 	sort_children()
 	
-	owner.refresh()
+	owner.reset()
 	
 	# load
 #	for child in get_children():
@@ -50,15 +50,14 @@ func perhundred() -> float:
 
 
 # get index take height
-func child_position(_index):
-#	print('child height: ', _index, '/', get_child_count())
+func child_position(_index: int):
 	
 	if get_children().empty():
 		return
 	
-	var index = _index - 1
+	var index :int= _index - 1
 	
-	var _height
+	var _height := 0.0
 	
 	if index >= 0 and index < get_child_count():
 		_height = get_child(index).position.y
@@ -66,10 +65,10 @@ func child_position(_index):
 	return _height
 
 
-func find_child_by_position(camera_height):
+func find_child_index(camera_height):
 	
 	if get_children().empty():
-		return 0
+		return -1
 	
 	for child in get_children():
 		
@@ -77,7 +76,7 @@ func find_child_by_position(camera_height):
 			
 			return child.get_position_in_parent()
 	
-	return 0
+	return -1
 
 
 

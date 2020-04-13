@@ -14,7 +14,7 @@ func _ready():
 	get_parent().position = target
 
 
-func _input(event):
+func _unhandled_input(event):
 	
 	# long movement
 	var _direction := int(event.is_action_pressed("page_down")) - int(event.is_action_pressed("page_up"))

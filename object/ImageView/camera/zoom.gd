@@ -15,7 +15,7 @@ func _ready():
 	zoom_target = get_parent().zoom
 
 
-func _input(event):
+func _unhandled_input(event):
 	
 	# zoom click
 	if event.is_action("zoom_in"):

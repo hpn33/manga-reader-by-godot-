@@ -20,7 +20,9 @@ size = Vector2( 100, 100 )
 pivot = Vector2( -50, 0 )
 horizental_pivot_align = 1
 
-[node name="Camera2D" type="Camera2D" parent="."]
+[node name="Camera2D" type="Camera2D" parent="." groups=[
+"navigate",
+]]
 position = Vector2( 510.807, 299.326 )
 current = true
 script = ExtResource( 4 )
@@ -39,7 +41,9 @@ script = ExtResource( 7 )
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="scroll" type="Control" parent="CanvasLayer"]
+[node name="scroll_bar" type="Control" parent="CanvasLayer" groups=[
+"navigate",
+]]
 anchor_left = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -51,7 +55,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="ColorRect" type="ColorRect" parent="CanvasLayer/scroll"]
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/scroll_bar"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 1
@@ -60,12 +64,14 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="select" type="ColorRect" parent="CanvasLayer/scroll"]
+[node name="select" type="ColorRect" parent="CanvasLayer/scroll_bar"]
 margin_right = 36.0
 margin_bottom = 40.0
 color = Color( 0.760784, 0.760784, 0.760784, 0.262745 )
 
-[node name="Navigate" type="VBoxContainer" parent="CanvasLayer"]
+[node name="Navigate" type="VBoxContainer" parent="CanvasLayer" groups=[
+"navigate",
+]]
 anchor_bottom = 1.0
 margin_top = 20.0
 margin_right = 42.0
@@ -120,8 +126,8 @@ margin_top = 341.0
 margin_right = 42.0
 margin_bottom = 361.0
 text = "End"
-[connection signal="mouse_entered" from="CanvasLayer/scroll" to="CanvasLayer/scroll" method="_on_scroll_mouse_entered"]
-[connection signal="mouse_exited" from="CanvasLayer/scroll" to="CanvasLayer/scroll" method="_on_scroll_mouse_exited"]
+[connection signal="mouse_entered" from="CanvasLayer/scroll_bar" to="CanvasLayer/scroll_bar" method="_on_scroll_mouse_entered"]
+[connection signal="mouse_exited" from="CanvasLayer/scroll_bar" to="CanvasLayer/scroll_bar" method="_on_scroll_mouse_exited"]
 [connection signal="pressed" from="CanvasLayer/Navigate/First" to="CanvasLayer/Navigate" method="_on_First_pressed"]
 [connection signal="pressed" from="CanvasLayer/Navigate/Prev" to="CanvasLayer/Navigate" method="_on_Prev_pressed"]
 [connection signal="pressed" from="CanvasLayer/Navigate/Next" to="CanvasLayer/Navigate" method="_on_Next_pressed"]

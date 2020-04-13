@@ -24,6 +24,19 @@ var hook_keys := []
 var hooks := []
 
 
+
+
+#func notify(key: String):
+#
+#	var index = keys.find(key)
+#
+#	if index != -1:
+#
+#		call_hooks(keys[index], values[index])
+#
+
+
+
 func set_value(key: String, value, hooking := true):
 	debug('set_value:\t%s\t%s' % [key, value])
 	

@@ -7,7 +7,7 @@ var mouse_captured := false
 
 
 
-func _input(event):
+func _unhandled_input(event):
 
 	if event.is_action_pressed("view_click_mouse"):
 		mouse_captured = true
