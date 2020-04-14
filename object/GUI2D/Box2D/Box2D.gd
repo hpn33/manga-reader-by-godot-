@@ -133,7 +133,7 @@ func _draw() -> void:
 		return
 
 	# pivot point
-	draw_circle(Vector2.ZERO, 1.5, Color.plum)
+	draw_circle(Vector2.ZERO, 5, Color.plum)
 
 
 	# out board

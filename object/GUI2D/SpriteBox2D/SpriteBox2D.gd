@@ -29,7 +29,9 @@ func set_centered(_centered):
 	resize()
 
 
-
+func set_texture(texture):
+	get_sprite().texture = texture
+	
 
 
 

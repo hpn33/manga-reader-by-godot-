@@ -37,8 +37,8 @@ func render(image_list):
 	owner.reset()
 	
 	# load
-#	for child in get_children():
-#		child.loading()
+	for child in get_children():
+		child.loading()
 
 
 
@@ -77,6 +77,4 @@ func find_child_index(camera_height):
 			return child.get_position_in_parent()
 	
 	return -1
-
-
 

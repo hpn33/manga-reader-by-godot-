@@ -48,18 +48,23 @@ func loading():
 	loader.load_image(file_info.full_path())
 
 
-func loaded(diff):
-	adapter.fix_pos_to_last(get_position_in_parent(), diff)
+func loaded(texture):
+	
+	
+	var prev_size = height()
+	
+	set_texture(texture)
+	
+	var diff = height() - prev_size
+	set_offset_half_top()
+
 	
 	# set label position
-#	var y = get_sprite().texture.get_size().y
-	var y = height()
-#	var x = get_sprite().texture.get_size().x/2
-	var x = width()/2
 	
-	var offy = label.rect_size.y
+	label.rect_position = Vector2(width() / 2, height() - label.rect_size.y)
 	
-	label.rect_position = Vector2(x, y-offy)
+	
+	adapter.sort_from(get_position_in_parent(), diff)
 
 
 func set_margin(_margin: Vector2):
@@ -124,3 +129,5 @@ func set_offset_half_top():
 #func _on_ImageHolder2D_texture_changed() -> void:
 #	set_size()
 
+func set_texture(texture):
+	sprite_box.set_texture(texture)

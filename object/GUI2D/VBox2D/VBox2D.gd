@@ -70,19 +70,19 @@ func sort_children():
 	resize()
 
 
-func sort_to_last(index: int, diff):
+func sort_from(index: int, diff: float):
 	
 	for i in get_child_count():
-		
 		var child = get_children()[i]
 		
-		child.position.x = offset.x
+		child.position.x = get_x_position()
 		
 		if i > index:
+#			print(child.position)
 			child.position.y += diff
+#			print(child.position)
 	
-#	camera.moved()
-	
+	resize()
 
 
 
