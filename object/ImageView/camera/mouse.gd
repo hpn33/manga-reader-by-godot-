@@ -21,7 +21,7 @@ func _unhandled_input(event):
 		#like we're grabbing the view
 		
 		var pos = get_parent().position - event.relative * get_parent().zoom
-		get_parent().setting(pos)
+		get_parent().set_pos(pos)
 	
 
 

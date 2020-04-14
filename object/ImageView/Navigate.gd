@@ -5,12 +5,17 @@ onready var index_label = $"Current"
 onready var all_index_label = $"All"
 
 
-var index := 0
+var index := 0 setget set_index
+func set_index(_index):
+	index = _index
+	
+	owner.index = index
+
 var count := 0
 
 
 func reset():
-	index = 1
+	self.index = 0
 	count = owner.get_image_count()
 	all_index_label.text = str(count)
 	
@@ -20,10 +25,10 @@ func reset():
 func _on_First_pressed():
 	
 	if count == 0:
-		index = 0
+		self.index = 0
 		return
 	
-	index = 1
+	self.index = 0
 	
 	refresh()
 
@@ -31,10 +36,10 @@ func _on_First_pressed():
 func _on_Prev_pressed():
 	
 	if count == 0:
-		index = 0
+		self.index = 0
 		return
 	
-	index = clamp(index - 1, 1, count)
+	self.index = clamp(index - 1, 0, count-1)
 	
 	refresh()
 
@@ -42,10 +47,10 @@ func _on_Prev_pressed():
 func _on_Next_pressed():
 	
 	if count == 0:
-		index = 0
+		self.index = 0
 		return
 	
-	index = clamp(index + 1, 1, count)
+	self.index = clamp(index + 1, 0, count-1)
 	
 	refresh()
 
@@ -53,19 +58,17 @@ func _on_Next_pressed():
 func _on_End_pressed():
 	
 	if count == 0:
-		index = 0
+		self.index = 0
 		return
 	
-	index = count
+	self.index = count-1
 	
 	refresh()
 
 
 
 func refresh(can_go = true):
-	index_label.text = str(index)
-	
-	owner.index = index - 1
+	index_label.text = str(index + 1)
 	
 	if can_go:
 		owner.notify(self)
@@ -76,7 +79,7 @@ func set_current_index(_index):
 	if _index == -1:
 		return
 	
-	index = _index + 1
+	self.index = _index
 	
 	refresh(false)
 

@@ -1,10 +1,10 @@
 extends Control
 
 
-var active = false
-
 
 onready var select = $select
+
+var active := false
 
 
 func _ready():
@@ -14,14 +14,6 @@ func _ready():
 	select.rect_size.y = perhundred()
 
 
-
-
-func position_perhundred():
-	return get_local_mouse_position().y / perhundred()
-
-
-func perhundred():
-	return (rect_size.y - select.rect_size.y) /100.0
 
 
 var mouse_capture = false
@@ -55,19 +47,29 @@ func _on_scroll_mouse_exited():
 
 
 
+
+
+
+
+
+func perhundred():
+	return (rect_size.y - select.rect_size.y) /100.0
+
+
+
+
+
+
+
+
+var scroll := 0.0
+
+
 func set_scroll(_height):
 	select.rect_position.y = _height
-
-
-
-func get_scroll() -> float:
 	
-	var scroll := 0.0
-	
-	if select.rect_position.y != 0: 
+	if select.rect_position.y != 0:
 		scroll = select.rect_position.y / perhundred()
-	
-	return scroll
 
 
 func notify(last):

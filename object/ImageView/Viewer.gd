@@ -55,11 +55,11 @@ func child_position(_index: int):
 	if get_children().empty():
 		return
 	
-	var index :int= _index - 1
+	var index := _index - 1
 	
 	var _height := 0.0
 	
-	if index >= 0 and index < get_child_count():
+	if 0 <= index and index < get_child_count():
 		_height = get_child(index).position.y
 	
 	return _height

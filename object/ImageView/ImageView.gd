@@ -1,14 +1,13 @@
 tool
 extends Node2D
 
-onready var viewer = $Viewer setget , get_viewer
-
 onready var Camera2D = $Camera2D
 onready var scroll_bar = $CanvasLayer/scroll_bar
 onready var Navigate = $CanvasLayer/Navigate
 
 
 
+onready var viewer = $Viewer setget , get_viewer
 func get_viewer():
 	if viewer == null:
 		viewer = get_child(0)
@@ -23,10 +22,39 @@ func get_limit_rect() -> Rect2:
 
 
 
+var index := 0 setget set_index, get_index
+func set_index(_index: int):
+	index = _index
 
+func get_index() -> int:
+	index = viewer.find_child_index(get_camera_position())
+	return index
+
+
+
+var scroll := 0.0
+#func set_scroll(_scroll: float):
+#	scroll = _scroll
+
+func get_scroll(target) -> float:
+	
+	if target.name == 'Camera2D':
+		scroll = scroll_bar.scroll
+	
+	elif target.name == 'scroll_bar':
+		scroll = Camera2D.scroll
+	
+	return scroll
+
+func g_scroll():
+	print(viewer.height())
+	print(Camera2D.position)
+	
+	
+	pass
 
 var image_list := []
-
+var last = self
 
 func _ready():
 	manager.connect("showing", self, 'show')
@@ -71,11 +99,6 @@ func goto_index(_index):
 
 
 
-var index := 0
-func get_index() -> int:
-	return viewer.find_child_index(get_camera_position())
-
-
 var camera_position := 0.0 setget , get_camera_position
 func get_camera_position() -> float:
 	return Camera2D.position.y
@@ -85,18 +108,8 @@ func get_index_position() -> float:
 
 
 func get_scroll_by_camera():
-	return Camera2D.get_scroll_by_position(get_index_position())
+	return Camera2D.get_scroll_by_height(get_index_position())
 
-var scroll := 0.0
-func get_scroll(target) -> float:
-	
-	if target.name == 'Camera2D':
-		return scroll_bar.get_scroll()
-	
-	elif target.name == 'scroll_bar':
-		return Camera2D.get_scroll()
-	
-	return 0.0
 
 func get_image_count() -> int:
 	return viewer.get_child_count()
@@ -104,5 +117,6 @@ func get_image_count() -> int:
 
 
 
-func notify(last):
+func notify(_last):
+	last = _last
 	get_tree().call_group('navigate', 'notify', last)
