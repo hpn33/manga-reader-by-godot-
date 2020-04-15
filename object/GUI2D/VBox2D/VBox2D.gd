@@ -30,24 +30,6 @@ func get_x_position() -> float:
 	return 0.0
 
 
-#func add_child(node: Node, legible_unique_name: bool = false):
-#	print(node)
-#	if not node is Box2D:
-#		.add_child(node)
-#		return
-	
-#	print(node)
-#
-#	var y = 0
-#	for child in get_children():
-#		y += child.out_rect().size.y
-#
-#	node.position.y = y
-#	node.position.x = get_x_position()
-#
-#	.add_child(node)
-
-
 func remove_children():
 	# remove_children
 	for child in get_children():

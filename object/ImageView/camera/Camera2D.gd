@@ -98,7 +98,6 @@ func notify(last):
 	elif last.name == 'scroll_bar':
 		
 		position.y = owner.perhundred() * owner.get_scroll(self)
-		print(owner.get_scroll(self))
-		print(position)
+		
 		snap_to_limits(true, false)
 
