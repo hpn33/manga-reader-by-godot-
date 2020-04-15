@@ -12,6 +12,7 @@
 
 [node name="ImageView" type="Node2D"]
 script = ExtResource( 1 )
+index = null
 
 [node name="Viewer" type="Node2D" parent="."]
 script = ExtResource( 9 )

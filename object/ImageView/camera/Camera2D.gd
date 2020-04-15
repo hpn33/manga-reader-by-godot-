@@ -1,7 +1,22 @@
 extends Camera2D
 
 
-var scroll := 0.0
+export var scroll := 0.0
+
+
+
+
+
+
+
+func reset():
+	
+	set_pos(Vector2())
+
+
+
+
+
 
 
 func snap_to_limits_util(target = position):
@@ -29,8 +44,10 @@ func snap_to_limits(fix_position = true, can_moving = true):
 
 func moved():
 	
+	if position.y == 0:
+		scroll = 0
 	
-	if position.y != 0 and owner.perhundred() != 0:
+	elif position.y != 0 and owner.perhundred() != 0:
 		scroll = position.y / owner.perhundred()
 	
 	owner.notify(self)
@@ -79,9 +96,9 @@ func notify(last):
 		snap_to_limits(true, false)
 	
 	elif last.name == 'scroll_bar':
-		var perhundred = owner.limit_rect.end.y / 100.0
 		
-		position.y = perhundred * owner.get_scroll(self)
-		
+		position.y = owner.perhundred() * owner.get_scroll(self)
+		print(owner.get_scroll(self))
+		print(position)
 		snap_to_limits(true, false)
 

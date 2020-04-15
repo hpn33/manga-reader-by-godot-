@@ -9,8 +9,6 @@ var active := false
 
 func _ready():
 	
-	share.add_hook('navigate', self, 'set_navigate')
-	
 	select.rect_size.y = perhundred()
 
 
@@ -34,7 +32,6 @@ func _process(delta):
 	if mouse_capture:
 		set_scroll(get_local_mouse_position().y)
 		
-		
 		get_tree().set_input_as_handled()
 		owner.notify(self)
 
@@ -44,6 +41,10 @@ func _on_scroll_mouse_entered():
 
 func _on_scroll_mouse_exited():
 	active = false
+
+
+func reset():
+	set_scroll(0)
 
 
 
@@ -66,9 +67,12 @@ var scroll := 0.0
 
 
 func set_scroll(_height):
-	select.rect_position.y = _height
+	select.rect_position.y = clamp(_height, 0, rect_size.y-select.rect_size.y)
 	
-	if select.rect_position.y != 0:
+	if select.rect_position.y == 0:
+		scroll = 0.0
+	
+	elif select.rect_position.y != 0:
 		scroll = select.rect_position.y / perhundred()
 
 

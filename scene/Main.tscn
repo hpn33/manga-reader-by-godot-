@@ -220,6 +220,7 @@ margin_bottom = 582.559
 position = Vector2( 0, 1 )
 
 [node name="ImageView" parent="." instance=ExtResource( 2 )]
+index = null
 [connection signal="gui_input" from="UI/TitleBar" to="UI/TitleBar" method="_on_TitleBar_gui_input"]
 [connection signal="pressed" from="UI/TitleBar/ColorRect/HBoxContainer/left/Color" to="UI" method="open_options"]
 [connection signal="pressed" from="UI/TitleBar/ColorRect/HBoxContainer/left/Info" to="UI" method="open_info"]

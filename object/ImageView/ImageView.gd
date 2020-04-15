@@ -1,9 +1,34 @@
 tool
 extends Node2D
 
-onready var Camera2D = $Camera2D
+onready var camera = $Camera2D
 onready var scroll_bar = $CanvasLayer/scroll_bar
 onready var Navigate = $CanvasLayer/Navigate
+
+
+var image_list := []
+
+
+
+
+func _ready():
+	manager.connect("showing", self, 'show')
+	
+
+
+func show():
+	image_list = manager.show_list()
+	
+	self.viewer.render(image_list)
+
+
+
+func reset():
+	Navigate.reset()
+	camera.reset()
+	scroll_bar.reset()
+
+
 
 
 
@@ -22,7 +47,7 @@ func get_limit_rect() -> Rect2:
 
 
 
-var index := 0 setget set_index, get_index
+export var index := 0 setget set_index, get_index
 func set_index(_index: int):
 	index = _index
 
@@ -32,44 +57,18 @@ func get_index() -> int:
 
 
 
-var scroll := 0.0
-#func set_scroll(_scroll: float):
-#	scroll = _scroll
-
 func get_scroll(target) -> float:
+	
+	var scroll := 0.0
 	
 	if target.name == 'Camera2D':
 		scroll = scroll_bar.scroll
 	
 	elif target.name == 'scroll_bar':
-		scroll = Camera2D.scroll
+		scroll = camera.scroll
 	
 	return scroll
 
-func g_scroll():
-	print(viewer.height())
-	print(Camera2D.position)
-	
-	
-	pass
-
-var image_list := []
-var last = self
-
-func _ready():
-	manager.connect("showing", self, 'show')
-	
-
-
-func show():
-	image_list = manager.show_list()
-	
-	self.viewer.render(image_list)
-
-
-
-func reset():
-	Navigate.reset()
 
 
 
@@ -93,7 +92,7 @@ func goto_index(_index):
 	
 	print('index ', _index, ' ', count)
 	
-	Camera2D.goto(self.viewer.child_position(_index))
+	camera.goto(self.viewer.child_position(_index))
 
 
 
@@ -101,14 +100,14 @@ func goto_index(_index):
 
 var camera_position := 0.0 setget , get_camera_position
 func get_camera_position() -> float:
-	return Camera2D.position.y
+	return camera.position.y
 
 func get_index_position() -> float:
 	return viewer.child_position(index)
 
 
 func get_scroll_by_camera():
-	return Camera2D.get_scroll_by_height(get_index_position())
+	return camera.get_scroll_by_height(get_index_position())
 
 
 func get_image_count() -> int:
@@ -117,6 +116,5 @@ func get_image_count() -> int:
 
 
 
-func notify(_last):
-	last = _last
+func notify(last):
 	get_tree().call_group('navigate', 'notify', last)

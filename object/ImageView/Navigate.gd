@@ -5,7 +5,7 @@ onready var index_label = $"Current"
 onready var all_index_label = $"All"
 
 
-var index := 0 setget set_index
+export var index := 0 setget set_index
 func set_index(_index):
 	index = _index
 	
