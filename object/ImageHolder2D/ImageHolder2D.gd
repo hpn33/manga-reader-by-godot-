@@ -64,7 +64,7 @@ func loaded(texture):
 	label.rect_position = Vector2(width() / 2, height() - label.rect_size.y)
 	
 	
-	adapter.sort_from(get_position_in_parent(), diff)
+	adapter.sort_from(get_index(), diff)
 
 
 func set_margin(_margin: Vector2):

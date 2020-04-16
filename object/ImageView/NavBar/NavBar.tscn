@@ -1,0 +1,65 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://object/ImageView/NavBar/NavBar.gd" type="Script" id=1]
+
+[node name="NavBar" type="VBoxContainer" groups=[
+"navigate",
+]]
+anchor_bottom = 1.0
+margin_top = 20.0
+margin_right = 42.0
+margin_bottom = -3.0
+alignment = 1
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="First" type="Button" parent="."]
+margin_top = 215.0
+margin_right = 42.0
+margin_bottom = 235.0
+text = "First"
+
+[node name="Prev" type="Button" parent="."]
+margin_top = 239.0
+margin_right = 42.0
+margin_bottom = 259.0
+text = "Prev"
+
+[node name="Current" type="Label" parent="."]
+margin_top = 263.0
+margin_right = 42.0
+margin_bottom = 277.0
+text = "0"
+align = 1
+
+[node name="Label" type="Label" parent="."]
+margin_top = 281.0
+margin_right = 42.0
+margin_bottom = 295.0
+text = "---"
+align = 1
+
+[node name="All" type="Label" parent="."]
+margin_top = 299.0
+margin_right = 42.0
+margin_bottom = 313.0
+text = "0"
+align = 1
+
+[node name="Next" type="Button" parent="."]
+margin_top = 317.0
+margin_right = 42.0
+margin_bottom = 337.0
+text = "Next"
+
+[node name="End" type="Button" parent="."]
+margin_top = 341.0
+margin_right = 42.0
+margin_bottom = 361.0
+text = "End"
+[connection signal="pressed" from="First" to="." method="_on_First_pressed"]
+[connection signal="pressed" from="Prev" to="." method="_on_Prev_pressed"]
+[connection signal="pressed" from="Next" to="." method="_on_Next_pressed"]
+[connection signal="pressed" from="End" to="." method="_on_End_pressed"]

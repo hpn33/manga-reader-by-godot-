@@ -3,6 +3,7 @@ extends Node
 
 onready var camera = $'ImageView/Camera2D'
 onready var ui = $UI
+onready var image_view = $ImageView 
 
 #   ُTODO = dfjksjfjj
 # warning: sfd
@@ -29,3 +30,9 @@ func _ready() -> void:
 	share.set_value('colors', config.get_data('colors'))
 	share.set_value('recents', config.get_data('recents'))
 	
+
+
+
+
+func _on_Clear_pressed():
+	image_view.clear()

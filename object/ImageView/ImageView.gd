@@ -2,8 +2,8 @@ tool
 extends Node2D
 
 onready var camera = $Camera2D
-onready var scroll_bar = $CanvasLayer/scroll_bar
-onready var Navigate = $CanvasLayer/Navigate
+onready var scroll_bar = $CanvasLayer/ScrollBar
+onready var nav_bar = $CanvasLayer/NavBar
 
 
 var image_list := []
@@ -14,47 +14,36 @@ var image_list := []
 func _ready():
 	manager.connect("showing", self, 'show')
 	
+	reset()
 
 
 func show():
 	image_list = manager.show_list()
 	
-	self.viewer.render(image_list)
+	viewer.render(image_list)
 
 
 
 func reset():
-	Navigate.reset()
+	nav_bar.reset()
 	camera.reset()
 	scroll_bar.reset()
 
+func clear():
+	viewer.reset()
+	reset()
 
-
-
-
-onready var viewer = $Viewer setget , get_viewer
-func get_viewer():
-	if viewer == null:
-		viewer = get_child(0)
-	
-	return viewer
+onready var viewer = $Viewer
 
 
 
 var limit_rect := Rect2() setget , get_limit_rect
 func get_limit_rect() -> Rect2:
-	return self.viewer.out_rect()
+	return viewer.out_rect()
 
 
-
-export var index := 0 setget set_index, get_index
-func set_index(_index: int):
-	index = _index
-
-func get_index() -> int:
-	index = viewer.find_child_index(get_camera_position())
-	return index
-
+func get_fouce_index(target) -> int:
+	return viewer.find_child_index(camera.position.y)
 
 
 func get_scroll(target) -> float:
@@ -70,43 +59,22 @@ func get_scroll(target) -> float:
 	return scroll
 
 
-
-
-
 func perhundred() -> float:
-	return self.viewer.perhundred()
+	return viewer.perhundred()
 
-
-
-func goto_index(_index):
-	
-	var count = viewer.get_child_count()
-	
-	if not count > 0:
-		print('no image set')
-		return
-	
-	if _index <= 0 or _index > count:
-		print('index [', _index ,'] out of range [0 : ',count, ']')
-		return
-	
-	print('index ', _index, ' ', count)
-	
-	camera.goto(self.viewer.child_position(_index))
-
-
-
-
-
-var camera_position := 0.0 setget , get_camera_position
-func get_camera_position() -> float:
-	return camera.position.y
 
 func get_index_position() -> float:
-	return viewer.child_position(index)
+	return viewer.child_position(nav_bar.index)
 
 
-func get_scroll_by_camera():
+func get_focus_image():
+	if nav_bar.index == -1:
+		return
+	
+	return viewer.get_child(nav_bar.index)
+
+
+func get_scroll_by_camera() -> float:
 	return camera.get_scroll_by_height(get_index_position())
 
 
@@ -116,5 +84,5 @@ func get_image_count() -> int:
 
 
 
-func notify(last):
+func notify(last) -> void:
 	get_tree().call_group('navigate', 'notify', last)

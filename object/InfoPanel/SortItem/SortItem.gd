@@ -23,7 +23,7 @@ func get_drag_data(position):
 	preview.text = title.text
 	set_drag_preview(preview) # not necessary
 	
-	return get_position_in_parent()
+	return get_index()
 
 
 func can_drop_data(position, data):
@@ -31,10 +31,10 @@ func can_drop_data(position, data):
 
 
 func drop_data(position, item): # end drag
-	get_parent().move_item(item, get_position_in_parent())
+	get_parent().move_item(item, get_index())
 
 
 func _on_Check_pressed():
-	get_parent().update_item(get_position_in_parent(), check.pressed)
+	get_parent().update_item(get_index(), check.pressed)
 
 

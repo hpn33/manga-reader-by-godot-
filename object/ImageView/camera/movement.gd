@@ -11,18 +11,18 @@ var target := Vector2()
 
 func _ready():
 	
-	get_parent().position = target
+	owner.position = target
 
 
 func _unhandled_input(event):
 	
 	# long movement
-	var _direction := int(event.is_action_pressed("page_down")) - int(event.is_action_pressed("page_up"))
+	var _direction := int(event.is_action("page_down")) - int(event.is_action("page_up"))
 	
 	if _direction != 0:
-		target.y += get_parent().viewport_height() * 0.85 * get_parent().zoom.y * _direction
-		target = get_parent().snap_to_limits_util(target)
-		get_parent().moved()
+		target.y += owner.viewport().y * 0.85  * _direction
+		target = owner.snap_to_limits_util(target)
+		owner.moved()
 
 
 
@@ -35,22 +35,24 @@ func _process(delta):
 	direction.y = int(Input.is_action_pressed("down")) - int(Input.is_action_pressed("up"))
 
 	if direction.length_squared() > 0:
-		target += direction.normalized() * speed * get_parent().zoom
+		target += direction.normalized() * speed * owner.zoom
 		
 #		if owner.limit_rect: 
-		target = get_parent().snap_to_limits_util(target)
+		target = owner.snap_to_limits_util(target)
 		
-		get_parent().moved()
+		owner.moved()
 	
 	
 	# final
-	get_parent().position = lerp(get_parent().position, target, 25 * delta)
+	owner.position = lerp(owner.position, target, 25 * delta)
 
 
 func reset():
-	get_parent().setting()
+	owner.reset()
+	
 
 func reset_x():
-	get_parent().setting(Vector2(0, target.y))
+	target = Vector2(0, target.y)
+	owner.position = target
 
 

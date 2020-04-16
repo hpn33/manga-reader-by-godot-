@@ -1,0 +1,26 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://object/ImageView/camera/Camera2D.gd" type="Script" id=1]
+[ext_resource path="res://object/ImageView/camera/movement.gd" type="Script" id=2]
+[ext_resource path="res://object/ImageView/camera/reset.gd" type="Script" id=3]
+[ext_resource path="res://object/ImageView/camera/mouse.gd" type="Script" id=4]
+[ext_resource path="res://object/ImageView/camera/zoom.gd" type="Script" id=5]
+
+[node name="Camera2D" type="Camera2D" groups=[
+"navigate",
+]]
+position = Vector2( 510.807, 299.326 )
+current = true
+script = ExtResource( 1 )
+
+[node name="movement" type="Node" parent="."]
+script = ExtResource( 2 )
+
+[node name="zoom" type="Node" parent="."]
+script = ExtResource( 5 )
+
+[node name="reset" type="Node" parent="."]
+script = ExtResource( 3 )
+
+[node name="mouse" type="Node" parent="."]
+script = ExtResource( 4 )

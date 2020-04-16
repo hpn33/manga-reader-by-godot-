@@ -11,7 +11,18 @@ export var scroll := 0.0
 
 func reset():
 	
-	set_pos(Vector2())
+	var image = get_parent().get_focus_image()
+	
+	if not image:
+		set_pos(Vector2())
+		return
+	
+	var z :float= 0.9 if image.height() > viewport(false).y else 1
+	
+	set_pos(
+		Vector2(0, image.position.y + (viewport(false).y * z) / 2),
+		true, false)
+	
 
 
 
@@ -29,14 +40,14 @@ func snap_to_limits_util(target = position):
 	return target
 
 
-func snap_to_limits(fix_position = true, can_moving = true):
+func snap_to_limits(fix_position = true, notify = true):
 	position = snap_to_limits_util()
 	
 	if fix_position:
 		$movement.target = position
 	
 	
-	if can_moving:
+	if notify:
 		moved()
 
 
@@ -53,21 +64,20 @@ func moved():
 	owner.notify(self)
 
 
-func set_pos(pos):
+func set_pos(pos, fix_position = true, notify = true):
 	position = pos
 	
-	snap_to_limits()
+	snap_to_limits(fix_position, notify)
 
 
-func goto(height):
+func viewport(zooming = true) -> Vector2:
 	
-	set_pos(Vector2(0, height))
-
-
-
-
-func viewport_height() -> float:
-	return get_tree().root.get_viewport().size.y
+	var viewport :Vector2= get_tree().root.get_viewport().size
+	
+	if zooming:
+		viewport *= zoom
+	
+	return viewport
 
 
 
@@ -91,13 +101,17 @@ func get_scroll_by_height(height):
 func notify(last):
 	
 	if last.name == 'Navigate':
-		position.y = owner.get_index_position()
 		
-		snap_to_limits(true, false)
+		var image = owner.get_focus_image()
+		var z :float= 0.9 if image.height() > viewport(false).y else 1
+		
+		set_pos(
+			Vector2(0, image.position.y + (viewport(false).y * z) / 2),
+			true, false)
 	
 	elif last.name == 'scroll_bar':
 		
-		position.y = owner.perhundred() * owner.get_scroll(self)
-		
-		snap_to_limits(true, false)
+		set_pos(
+			Vector2(0, owner.perhundred() * owner.get_scroll(self)),
+			true, false)
 

@@ -9,6 +9,8 @@ onready var info = $info
 
 
 
+
+
 func open_options():
 	color_picker.popup_centered()
 
@@ -19,5 +21,3 @@ func open_info():
 
 func open_file_dialog():
 	file_dialog.popup_centered()
-
-

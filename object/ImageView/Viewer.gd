@@ -42,7 +42,6 @@ func render(image_list):
 
 
 
-
 func perhundred() -> float:
 	return height() / 100.0
 
@@ -63,7 +62,7 @@ func child_position(index: int):
 	return height
 
 
-func find_child_index(camera_height):
+func find_child_index(camera_height) -> int:
 	
 	if get_children().empty():
 		return -1
@@ -72,7 +71,7 @@ func find_child_index(camera_height):
 		
 		if child.position.y <= camera_height and camera_height <= child.position.y + child.height():
 			
-			return child.get_position_in_parent()
+			return child.get_index()
 	
 	return -1
 

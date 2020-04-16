@@ -1,0 +1,34 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://object/ImageView/ScrollBar/ScrollBar.gd" type="Script" id=1]
+
+
+[node name="ScrollBar" type="Control" groups=[
+"navigate",
+]]
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -36.0
+margin_top = 20.0
+margin_bottom = -1.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 1
+color = Color( 1, 1, 1, 0.054902 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="select" type="ColorRect" parent="."]
+margin_right = 36.0
+margin_bottom = 40.0
+color = Color( 0.760784, 0.760784, 0.760784, 0.262745 )
+[connection signal="mouse_entered" from="." to="." method="_on_scroll_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_scroll_mouse_exited"]

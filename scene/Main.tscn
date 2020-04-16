@@ -105,6 +105,13 @@ margin_bottom = 20.0
 text = "Info"
 flat = true
 
+[node name="Clear" type="Button" parent="UI/TitleBar/ColorRect/HBoxContainer/left"]
+margin_left = 90.0
+margin_right = 134.0
+margin_bottom = 20.0
+text = "Clear"
+flat = true
+
 [node name="center" type="HBoxContainer" parent="UI/TitleBar/ColorRect/HBoxContainer"]
 margin_left = 342.0
 margin_right = 680.0
@@ -220,10 +227,10 @@ margin_bottom = 582.559
 position = Vector2( 0, 1 )
 
 [node name="ImageView" parent="." instance=ExtResource( 2 )]
-index = null
 [connection signal="gui_input" from="UI/TitleBar" to="UI/TitleBar" method="_on_TitleBar_gui_input"]
 [connection signal="pressed" from="UI/TitleBar/ColorRect/HBoxContainer/left/Color" to="UI" method="open_options"]
 [connection signal="pressed" from="UI/TitleBar/ColorRect/HBoxContainer/left/Info" to="UI" method="open_info"]
+[connection signal="pressed" from="UI/TitleBar/ColorRect/HBoxContainer/left/Clear" to="." method="_on_Clear_pressed"]
 [connection signal="pressed" from="UI/TitleBar/ColorRect/HBoxContainer/center/OpenFolder" to="UI/TitleBar/ColorRect/HBoxContainer/center/OpenFolder" method="_on_OpenFolder_pressed"]
 [connection signal="pressed" from="UI/TitleBar/ColorRect/HBoxContainer/right/minimize" to="UI/TitleBar" method="_on_minimaiz_pressed"]
 [connection signal="pressed" from="UI/TitleBar/ColorRect/HBoxContainer/right/maximize" to="UI/TitleBar" method="_on_maximize_pressed"]

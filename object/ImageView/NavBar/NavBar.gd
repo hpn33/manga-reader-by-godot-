@@ -2,33 +2,31 @@ extends VBoxContainer
 
 
 onready var index_label = $"Current"
-onready var all_index_label = $"All"
+onready var count_label = $"All"
 
 
-export var index := 0 setget set_index
-func set_index(_index):
-	index = _index
-	
-	owner.index = index
-
+var index := -1
 var count := 0
 
 
 func reset():
-	self.index = 0
 	count = owner.get_image_count()
-	all_index_label.text = str(count)
+	count_label.text = str(count)
+	
+	index = -1 if count == 0 else 0
 	
 	refresh(false)
+	
+	print(index, '/', count)
 
 
 func _on_First_pressed():
 	
 	if count == 0:
-		self.index = 0
+		index = -1
 		return
 	
-	self.index = 0
+	index = 0
 	
 	refresh()
 
@@ -36,10 +34,10 @@ func _on_First_pressed():
 func _on_Prev_pressed():
 	
 	if count == 0:
-		self.index = 0
+		index = -1
 		return
 	
-	self.index = clamp(index - 1, 0, count-1)
+	index = clamp(index - 1, 0, count-1)
 	
 	refresh()
 
@@ -47,10 +45,10 @@ func _on_Prev_pressed():
 func _on_Next_pressed():
 	
 	if count == 0:
-		self.index = 0
+		index = -1
 		return
 	
-	self.index = clamp(index + 1, 0, count-1)
+	index = clamp(index + 1, 0, count-1)
 	
 	refresh()
 
@@ -58,17 +56,17 @@ func _on_Next_pressed():
 func _on_End_pressed():
 	
 	if count == 0:
-		self.index = 0
+		index = -1
 		return
 	
-	self.index = count-1
+	index = count-1
 	
 	refresh()
 
 
 
 func refresh(can_go = true):
-	index_label.text = str(index + 1)
+	index_label.text = str(clamp(index, -1, count - 1) + 1)
 	
 	if can_go:
 		owner.notify(self)
@@ -79,7 +77,7 @@ func set_current_index(_index):
 	if _index == -1:
 		return
 	
-	self.index = _index
+	index = _index
 	
 	refresh(false)
 
@@ -90,4 +88,4 @@ func notify(last):
 	if last.name == name:
 		return
 	
-	set_current_index(owner.get_index())
+	set_current_index(owner.get_fouce_index(self))
