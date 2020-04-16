@@ -63,8 +63,8 @@ move easer between image's
 #### Movement
 - [x] full reset view `control + shift + R`
 - [x] center of view `control + R`
-- [ ] go to the first
-- [ ] go to the end
+- [x] go to the first
+- [x] go to the end
 
 - [x] movement with keyboard
 * normal move `WASD` or `arrow keys`
@@ -73,6 +73,9 @@ move easer between image's
 - [x] movement with mouse
 movement with `left click`
 zoom with `scroll`
+
+- [ ] use number for move on every 10 persend
+like key one is 10%
 
 
 #### Scroll Bar
@@ -109,7 +112,6 @@ backlog: like model binding is can extend to a script and save setting
 - [x] config file on image folder ( for sorting images and set custom setting )
 - [ ] load on thread or courotine
 - [x] refresh anything that need when opening new folder
-- [ ] clean code for scrolling
-- [ ] clean code on imagePlace and imageHolder
-- [ ] clean and add ability of navigate to core of program
-
+- [x] clean code for scrolling
+- [x] clean code on imagePlace and imageHolder
+- [x] clean and add ability of navigate to core of program
