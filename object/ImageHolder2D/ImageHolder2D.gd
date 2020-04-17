@@ -8,6 +8,9 @@ export var can_debug := false
 onready var loader = $loader
 onready var label = $Label
 
+var loaded := false
+var on_loading := false
+
 
 onready var sprite_box : SpriteBox = $SpriteBox setget , get_sprite_box
 func get_sprite_box() -> SpriteBox:
@@ -45,10 +48,16 @@ func init(_adapter, _file_info: FileInfo):
 
 
 func loading():
+	
+	if loaded or on_loading:
+		return
+	
+	on_loading = true
 	loader.load_image(file_info.full_path())
 
 
-func loaded(texture):
+func loaded(texture: ImageTexture):
+	
 	
 	
 	var prev_size = height()
@@ -65,6 +74,7 @@ func loaded(texture):
 	
 	
 	adapter.sort_from(get_index(), diff)
+	loaded = true
 
 
 func set_margin(_margin: Vector2):
@@ -120,6 +130,10 @@ func height():
 func width():
 #	return self.sprite.texture.get_size().x
 	return self.sprite_box.width()
+
+
+func rect() -> Rect2:
+	return Rect2(position, Vector2(width(), height()))
 
 
 func set_offset_half_top():

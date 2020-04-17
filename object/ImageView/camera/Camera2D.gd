@@ -17,10 +17,10 @@ func reset():
 		set_pos(Vector2())
 		return
 	
-	var z :float= 0.9 if image.height() > viewport(false).y else 1
+	var z :float= (viewport(false).y * 0.9) if image.height() > viewport(false).y else image.height()
 	
 	set_pos(
-		Vector2(0, image.position.y + (viewport(false).y * z) / 2),
+		Vector2(0, image.position.y + z / 2),
 		true, false)
 	
 
@@ -115,3 +115,13 @@ func notify(last):
 			Vector2(0, owner.perhundred() * owner.get_scroll(self)),
 			true, false)
 
+
+#func _process(delta):
+#	update()
+#
+#
+#func _draw():
+#
+#	draw_circle(Vector2.ZERO, 3, Color.white)
+#
+#	draw_line(Vector2.ZERO, Vector2(0, viewport(false).y), Color.white)

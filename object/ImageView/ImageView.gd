@@ -82,7 +82,16 @@ func get_image_count() -> int:
 	return viewer.get_child_count()
 
 
-
+func image_on_the_range():
+	
+	var height = camera.viewport().y
+	var pos = camera.position.y
+	
+	return viewer.child_in_range(pos - height, pos + height)
 
 func notify(last) -> void:
+	
+	if last.name == 'Camera2D':
+		viewer.refresh()
+	
 	get_tree().call_group('navigate', 'notify', last)

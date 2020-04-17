@@ -16,8 +16,6 @@ func reset():
 	index = -1 if count == 0 else 0
 	
 	refresh(false)
-	
-	print(index, '/', count)
 
 
 func _on_First_pressed():

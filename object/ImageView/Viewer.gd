@@ -37,8 +37,23 @@ func render(image_list):
 	owner.reset()
 	
 	# load
-	for child in get_children():
-		child.loading()
+#	for child in get_children():
+#		child.loading()
+	
+	refresh()
+
+
+func refresh():
+	
+	
+	
+#	for child in get_children():
+#		child.visible = false
+
+	for image in owner.image_on_the_range():
+		image.loading()
+	
+	pass
 
 
 
@@ -60,6 +75,23 @@ func child_position(index: int):
 		height = get_child(index).position.y
 	
 	return height
+
+
+func child_in_range(start, end):
+	var in_range := []
+	
+	for child in get_children():
+		var rect = child.rect()
+		
+		if rect.position.y in range(start, end):
+			in_range.append(child)
+			
+		
+		elif rect.end.y in range(start, end):
+			in_range.append(child)
+		
+	
+	return in_range
 
 
 func find_child_index(camera_height) -> int:

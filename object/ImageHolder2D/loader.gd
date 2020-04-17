@@ -12,9 +12,9 @@ func load_image(path):
 
 func _thread_load(path):
 	
-	var image = Image.new()
+	var image := Image.new()
 	image.load(path)
-	var image_texture = ImageTexture.new()
+	var image_texture := ImageTexture.new()
 	
 	image_texture.create_from_image(image)
 	
@@ -22,7 +22,7 @@ func _thread_load(path):
 	call_deferred("_thread_done", image_texture)
 
 
-func _thread_done(image_texture):
+func _thread_done(image_texture: ImageTexture):
 	assert(image_texture)
 	
 	# Always wait for threads to finish, this is required on Windows

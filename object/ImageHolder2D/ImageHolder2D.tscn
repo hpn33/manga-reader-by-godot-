@@ -8,6 +8,10 @@
 script = ExtResource( 3 )
 
 [node name="SpriteBox" parent="." instance=ExtResource( 1 )]
+margin = Vector2( 0, 0 )
+padding = Vector2( 0, 0 )
+offset = Vector2( 0, 0 )
+centered = true
 
 [node name="Label" type="Label" parent="."]
 margin_left = 33.25
