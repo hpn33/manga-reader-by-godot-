@@ -78,7 +78,7 @@ func set_scroll(_height):
 
 func notify(last):
 	
-	if last.name == 'Navigate':
+	if last.name == 'NavBar':
 		set_scroll(perhundred() * owner.get_scroll_by_camera())
 	elif last.name == 'Camera2D':
 		set_scroll(perhundred() * owner.get_scroll(self))

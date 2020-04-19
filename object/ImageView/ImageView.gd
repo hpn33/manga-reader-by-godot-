@@ -53,7 +53,7 @@ func get_scroll(target) -> float:
 	if target.name == 'Camera2D':
 		scroll = scroll_bar.scroll
 	
-	elif target.name == 'scroll_bar':
+	elif target.name == 'ScrollBar':
 		scroll = camera.scroll
 	
 	return scroll
@@ -74,6 +74,13 @@ func get_focus_image():
 	return viewer.get_child(nav_bar.index)
 
 
+func get_last_image():
+	if viewer.get_child_count() == 0:
+		return
+	
+	return viewer.last()
+
+
 func get_scroll_by_camera() -> float:
 	return camera.get_scroll_by_height(get_index_position())
 
@@ -84,7 +91,7 @@ func get_image_count() -> int:
 
 func image_on_the_range():
 	
-	var height = camera.viewport().y
+	var height = camera.viewport(false).y
 	var pos = camera.position.y
 	
 	return viewer.child_in_range(pos - height, pos + height)

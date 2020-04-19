@@ -44,17 +44,25 @@ func render(image_list):
 
 
 func refresh():
-	
-	
-	
-#	for child in get_children():
-#		child.visible = false
 
 	for image in owner.image_on_the_range():
 		image.loading()
-	
-	pass
 
+
+
+
+func changing(image, diff: float):
+	
+	
+	sort_from(image.get_index(), diff)
+	
+	if owner.camera.position.y >= image.position.y + image.height() \
+		or owner.camera.position.y >= image.position.y:
+
+		var camera_position = owner.camera.position
+		camera_position.y += diff
+		
+		owner.camera.set_pos(camera_position)
 
 
 func perhundred() -> float:
@@ -77,19 +85,19 @@ func child_position(index: int):
 	return height
 
 
-func child_in_range(start, end):
+func child_in_range(start, end) -> Array:
 	var in_range := []
 	
 	for child in get_children():
 		var rect = child.rect()
 		
-		if rect.position.y in range(start, end):
-			in_range.append(child)
-			
-		
-		elif rect.end.y in range(start, end):
+		if start < rect.position.y and rect.position.y < end:
 			in_range.append(child)
 		
+		
+		elif start < rect.end.y and rect.end.y < end:
+			in_range.append(child)
+	
 	
 	return in_range
 

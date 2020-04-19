@@ -31,7 +31,7 @@ func get_x_position() -> float:
 
 
 func remove_children():
-	# remove_children
+	
 	for child in get_children():
 		remove_child(child)
 
@@ -40,13 +40,9 @@ func sort_children():
 	var y = 0
 	for child in get_children():
 		
-#		if not child is Box2D:
-#			continue
-		
 		child.position.y = y
 		child.position.x = get_x_position()
 		
-#		y += child.out_rect().size.y
 		y += child.height()
 	
 	resize()
@@ -60,9 +56,8 @@ func sort_from(index: int, diff: float):
 		child.position.x = get_x_position()
 		
 		if i > index:
-#			print(child.position)
+			
 			child.position.y += diff
-#			print(child.position)
 	
 	resize()
 
@@ -84,7 +79,6 @@ func resize():
 		size = Vector2(x, y)
 	
 	
-	# re pivot
 	repivot()
 
 
@@ -92,3 +86,11 @@ func resize():
 func reset():
 	remove_children()
 	resize()
+
+
+func first():
+	return get_child(0)
+
+
+func last():
+	return get_child(get_child_count()-1)

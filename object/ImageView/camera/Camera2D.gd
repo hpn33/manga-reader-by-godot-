@@ -11,7 +11,8 @@ export var scroll := 0.0
 
 func reset():
 	
-	var image = get_parent().get_focus_image()
+#	var image = get_parent().get_focus_image()
+	var image = get_parent().get_last_image()
 	
 	if not image:
 		set_pos(Vector2())
@@ -97,19 +98,19 @@ func get_scroll_by_height(height):
 
 
 
-
 func notify(last):
 	
-	if last.name == 'Navigate':
+	if last.name == 'NavBar':
 		
 		var image = owner.get_focus_image()
-		var z :float= 0.9 if image.height() > viewport(false).y else 1
+		
+		var z :float= (viewport(false).y * 0.9) if image.height() > viewport(false).y else image.height()
 		
 		set_pos(
-			Vector2(0, image.position.y + (viewport(false).y * z) / 2),
-			true, false)
+			Vector2(0, image.position.y + z / 2))
+		
 	
-	elif last.name == 'scroll_bar':
+	elif last.name == 'ScrollBar':
 		
 		set_pos(
 			Vector2(0, owner.perhundred() * owner.get_scroll(self)),
