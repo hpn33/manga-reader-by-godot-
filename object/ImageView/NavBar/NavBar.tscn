@@ -16,16 +16,22 @@ __meta__ = {
 }
 
 [node name="First" type="Button" parent="."]
+margin_top = 191.0
+margin_right = 42.0
+margin_bottom = 211.0
+text = "First"
+
+[node name="TenPrv" type="Button" parent="."]
 margin_top = 215.0
 margin_right = 42.0
 margin_bottom = 235.0
-text = "First"
+text = "-10"
 
-[node name="Prev" type="Button" parent="."]
+[node name="Prv" type="Button" parent="."]
 margin_top = 239.0
 margin_right = 42.0
 margin_bottom = 259.0
-text = "Prev"
+text = "-1"
 
 [node name="Current" type="Label" parent="."]
 margin_top = 263.0
@@ -52,14 +58,22 @@ align = 1
 margin_top = 317.0
 margin_right = 42.0
 margin_bottom = 337.0
-text = "Next"
+text = "+1"
 
-[node name="End" type="Button" parent="."]
+[node name="TenNext" type="Button" parent="."]
 margin_top = 341.0
 margin_right = 42.0
 margin_bottom = 361.0
+text = "+10"
+
+[node name="End" type="Button" parent="."]
+margin_top = 365.0
+margin_right = 42.0
+margin_bottom = 385.0
 text = "End"
 [connection signal="pressed" from="First" to="." method="_on_First_pressed"]
-[connection signal="pressed" from="Prev" to="." method="_on_Prev_pressed"]
+[connection signal="pressed" from="TenPrv" to="." method="_on_TenPrv_pressed"]
+[connection signal="pressed" from="Prv" to="." method="_on_Prev_pressed"]
 [connection signal="pressed" from="Next" to="." method="_on_Next_pressed"]
+[connection signal="pressed" from="TenNext" to="." method="_on_TenNext_pressed"]
 [connection signal="pressed" from="End" to="." method="_on_End_pressed"]
