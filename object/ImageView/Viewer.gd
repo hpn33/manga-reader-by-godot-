@@ -53,11 +53,10 @@ func refresh():
 
 func changing(image, diff: float):
 	
-	
 	sort_from(image.get_index(), diff)
 	
-	if owner.camera.position.y >= image.position.y + image.height() \
-		or owner.camera.position.y >= image.position.y:
+	if image.get_index() < owner.focus \
+		and image.get_index() == owner.focus:
 
 		var camera_position = owner.camera.position
 		camera_position.y += diff

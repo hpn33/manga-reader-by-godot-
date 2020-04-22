@@ -8,6 +8,9 @@ onready var nav_bar = $CanvasLayer/NavBar
 
 var image_list := []
 
+var focus := 0
+var prv_focus := 0
+
 
 
 
@@ -42,7 +45,7 @@ func get_limit_rect() -> Rect2:
 	return viewer.out_rect()
 
 
-func get_fouce_index(target) -> int:
+func get_focus_index() -> int:
 	return viewer.find_child_index(camera.position.y)
 
 
@@ -96,9 +99,19 @@ func image_on_the_range():
 	
 	return viewer.child_in_range(pos - height, pos + height)
 
+
+func refresh_focus():
+	
+	prv_focus = focus
+	focus = get_focus_index()
+
+
 func notify(last) -> void:
+	
+	refresh_focus()
 	
 	if last.name == 'Camera2D':
 		viewer.refresh()
 	
 	get_tree().call_group('navigate', 'notify', last)
+	

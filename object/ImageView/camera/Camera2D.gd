@@ -11,8 +11,7 @@ export var scroll := 0.0
 
 func reset():
 	
-#	var image = get_parent().get_focus_image()
-	var image = get_parent().get_last_image()
+	var image = get_parent().get_focus_image()
 	
 	if not image:
 		set_pos(Vector2())
@@ -63,7 +62,7 @@ func moved():
 		scroll = position.y / owner.perhundred()
 	
 	owner.notify(self)
-
+	
 
 func set_pos(pos, fix_position = true, notify = true):
 	position = pos

@@ -86,4 +86,4 @@ func notify(last):
 	if last.name == name:
 		return
 	
-	set_current_index(owner.get_fouce_index(self))
+	set_current_index(owner.get_focus_index())
