@@ -6,6 +6,7 @@ addons/quentincaffeino-console/
 
 .import/
 .mr/
+.mrconfig/
 
 todo.cache.ini
 todo.config.ini
