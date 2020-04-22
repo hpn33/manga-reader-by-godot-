@@ -52,7 +52,9 @@ func loading():
 		return
 	
 	loadition = true
+	set_label('Loading...')
 	loader.load_image(file_info.full_path())
+	
 
 
 func loaded(texture: ImageTexture):
@@ -70,6 +72,7 @@ func loaded(texture: ImageTexture):
 	
 	adapter.changing(self, diff)
 #	adapter.sort_from(get_index(), diff)
+	set_label(file_info.full_path())
 
 
 func set_margin(_margin: Vector2):
