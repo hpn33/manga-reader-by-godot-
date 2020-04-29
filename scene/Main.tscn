@@ -1,14 +1,16 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://object/RegularView/RegularView.tscn" type="PackedScene" id=1]
 [ext_resource path="res://object/ImageView/ImageView.tscn" type="PackedScene" id=2]
 [ext_resource path="res://object/InfoPanel/InfoPanel.tscn" type="PackedScene" id=3]
+[ext_resource path="res://scene/FileMenu.gd" type="Script" id=4]
 [ext_resource path="res://scene/ui/FileDialog.gd" type="Script" id=5]
 [ext_resource path="res://scene/ui/info.gd" type="Script" id=6]
 [ext_resource path="res://scene/ui/TitleBar/TitleBar.gd" type="Script" id=7]
 [ext_resource path="res://scene/Main.gd" type="Script" id=8]
 [ext_resource path="res://scene/ui/GuildText.gd" type="Script" id=9]
 [ext_resource path="res://scene/ui/UI.gd" type="Script" id=10]
+[ext_resource path="res://object/FileMenu/FileMenu.tscn" type="PackedScene" id=11]
 [ext_resource path="res://scene/ui/TitleBar/RecentMenu.gd" type="Script" id=12]
 [ext_resource path="res://object/ColorPicker/ColorPicker.tscn" type="PackedScene" id=13]
 [ext_resource path="res://scene/ui/TitleBar/OpenFolder.gd" type="Script" id=14]
@@ -119,7 +121,7 @@ margin_bottom = 20.0
 size_flags_horizontal = 3
 
 [node name="RecentMenu" type="MenuButton" parent="UI/TitleBar/ColorRect/HBoxContainer/center"]
-margin_right = 300.0
+margin_right = 270.0
 margin_bottom = 20.0
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 9.0
@@ -132,12 +134,20 @@ __meta__ = {
 [node name="Tween" type="Tween" parent="UI/TitleBar/ColorRect/HBoxContainer/center/RecentMenu"]
 
 [node name="OpenFolder" type="Button" parent="UI/TitleBar/ColorRect/HBoxContainer/center"]
-margin_left = 304.0
-margin_right = 338.0
+margin_left = 274.0
+margin_right = 304.0
 margin_bottom = 20.0
 size_flags_horizontal = 3
 text = "O"
 script = ExtResource( 14 )
+
+[node name="FileMenu" type="Button" parent="UI/TitleBar/ColorRect/HBoxContainer/center"]
+margin_left = 308.0
+margin_right = 338.0
+margin_bottom = 20.0
+size_flags_horizontal = 3
+text = "O"
+script = ExtResource( 4 )
 
 [node name="right" type="HBoxContainer" parent="UI/TitleBar/ColorRect/HBoxContainer"]
 margin_left = 684.0
@@ -223,6 +233,8 @@ margin_top = 654.559
 margin_right = 1047.71
 margin_bottom = 582.559
 
+[node name="FileMenu" parent="UI/PopMenu" instance=ExtResource( 11 )]
+
 [node name="RegularView" parent="." instance=ExtResource( 1 )]
 position = Vector2( 0, 1 )
 
@@ -231,7 +243,8 @@ position = Vector2( 0, 1 )
 [connection signal="pressed" from="UI/TitleBar/ColorRect/HBoxContainer/left/Color" to="UI" method="open_options"]
 [connection signal="pressed" from="UI/TitleBar/ColorRect/HBoxContainer/left/Info" to="UI" method="open_info"]
 [connection signal="pressed" from="UI/TitleBar/ColorRect/HBoxContainer/left/Clear" to="." method="_on_Clear_pressed"]
-[connection signal="pressed" from="UI/TitleBar/ColorRect/HBoxContainer/center/OpenFolder" to="UI/TitleBar/ColorRect/HBoxContainer/center/OpenFolder" method="_on_OpenFolder_pressed"]
+[connection signal="pressed" from="UI/TitleBar/ColorRect/HBoxContainer/center/OpenFolder" to="UI" method="open_file_dialog"]
+[connection signal="pressed" from="UI/TitleBar/ColorRect/HBoxContainer/center/FileMenu" to="UI" method="open_file_menu"]
 [connection signal="pressed" from="UI/TitleBar/ColorRect/HBoxContainer/right/minimize" to="UI/TitleBar" method="_on_minimaiz_pressed"]
 [connection signal="pressed" from="UI/TitleBar/ColorRect/HBoxContainer/right/maximize" to="UI/TitleBar" method="_on_maximize_pressed"]
 [connection signal="pressed" from="UI/TitleBar/ColorRect/HBoxContainer/right/quit" to="UI/TitleBar" method="_on_quit_pressed"]

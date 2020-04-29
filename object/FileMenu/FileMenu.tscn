@@ -1,0 +1,13 @@
+[gd_scene format=2]
+
+[node name="FileMenu" type="PopupPanel"]
+visible = true
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 30.7839
+margin_top = 1165.37
+margin_right = -29.2161
+margin_bottom = 1093.37
+__meta__ = {
+"_edit_use_anchors_": false
+}
