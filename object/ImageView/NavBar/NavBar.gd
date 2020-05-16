@@ -42,7 +42,7 @@ func _on_TenPrv_pressed():
 		index = -1
 		return
 	
-	index = clamp(index - 10, 0, count-1)
+	index = int(clamp(index - 10, 0, count-1))
 	
 	refresh()
 
@@ -53,7 +53,7 @@ func _on_Prev_pressed():
 		index = -1
 		return
 	
-	index = clamp(index - 1, 0, count-1)
+	index = int(clamp(index - 1, 0, count-1))
 	
 	refresh()
 
@@ -64,7 +64,7 @@ func _on_Next_pressed():
 		index = -1
 		return
 	
-	index = clamp(index + 1, 0, count-1)
+	index = int(clamp(index + 1, 0, count-1))
 	
 	refresh()
 
@@ -74,7 +74,7 @@ func _on_TenNext_pressed():
 		index = -1
 		return
 	
-	index = clamp(index + 10, 0, count-1)
+	index = int(clamp(index + 10, 0, count-1))
 	
 	refresh()
 

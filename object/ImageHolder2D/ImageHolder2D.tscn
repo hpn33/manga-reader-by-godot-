@@ -1,7 +1,6 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://object/GUI2D/SpriteBox2D/SpriteBox2D.tscn" type="PackedScene" id=1]
-[ext_resource path="res://object/ImageHolder2D/loader.gd" type="Script" id=2]
 [ext_resource path="res://object/ImageHolder2D/ImageHolder2D.gd" type="Script" id=3]
 
 [node name="ImageHolder2D" type="Node2D"]
@@ -22,6 +21,3 @@ text = "Title"
 __meta__ = {
 "_edit_use_anchors_": false
 }
-
-[node name="loader" type="Node" parent="."]
-script = ExtResource( 2 )

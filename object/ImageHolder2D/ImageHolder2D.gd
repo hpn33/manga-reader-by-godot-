@@ -5,7 +5,6 @@ class_name ImageHolder2D
 
 export var can_debug := false
 
-onready var loader = $loader
 onready var label = $Label
 
 var loadition := false
@@ -53,7 +52,7 @@ func loading():
 	
 	loadition = true
 	set_label('Loading...')
-	loader.load_image(file_info.full_path())
+	loader.load(file_info.full_path(), self, "loaded")
 	
 
 

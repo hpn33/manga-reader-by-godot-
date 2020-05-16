@@ -137,6 +137,7 @@ config/icon="res://icon.png"
 config="*res://autoload/AppSetting.gd"
 share="*res://autoload/SharePoint.gd"
 manager="*res://autoload/manager.gd"
+loader="*res://autoload/Loader.gd"
 
 [debug]
 
